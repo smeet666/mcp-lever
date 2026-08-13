@@ -19,6 +19,9 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
           cache: npm
+      # Trusted publishing needs a recent npm CLI, newer than the one Node 20
+      # carries, and it is what mints the OIDC token.
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run typecheck && npm test && npm run build
       # Trusted publishing: the repository's own identity, with no stored token.
