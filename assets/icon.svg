@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="mcp-lever">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f6feb"/>
+      <stop offset="1" stop-color="#0b3d91"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <!-- The fulcrum: a job board is read from one point, one company at a time. -->
+  <path d="M256 300 L206 392 L306 392 Z" fill="#ffffff" opacity="0.92"/>
+  <!-- The beam, tilted: a lever moves what one hand could not. -->
+  <rect x="86" y="248" width="340" height="34" rx="17" fill="#ffffff"
+        transform="rotate(-16 256 265)"/>
+  <!-- The load lifted at the short end. -->
+  <circle cx="392" cy="188" r="34" fill="#ffffff" opacity="0.92"/>
+</svg>

@@ -1,3 +1,5 @@
+<img src="assets/icon-128.png" alt="" width="96" align="right">
+
 # mcp-lever
 
 An MCP server for the public job boards companies publish through
@@ -62,7 +64,12 @@ here, so no preparation is needed.
 Lever offers no full-text search and accepts no filter on workplace type,
 country or salary, which is why those are applied here. `limit` applies per
 company, and a company whose openings fill it may publish more: the notes say
-when that happened.
+when that happened, and that a count taken inside that window measures the
+window.
+
+`posted_within_days` walks up to five pages per company. Lever pages by title,
+so an opening published yesterday sits anywhere in a board, and a recency
+question read from the first page answers about the first page.
 
 ### `get_job`
 
@@ -75,7 +82,7 @@ runs to megabytes.
 The team, location and commitment wordings one company uses. Read it before
 filtering: Lever matches its own wording, and **answers a wording it does not
 know with an empty list and no error**, which reads as "nothing found". The
-vocabulary belongs to each company — one writes `Full-time`, another `Full Time`,
+vocabulary belongs to each company: one writes `Full-time`, another `Full Time`,
 another `EE Full-Time`.
 
 ## What the answers never claim
@@ -189,7 +196,13 @@ résolu ici, sans préparation.
 
 Lever n'offre aucune recherche plein texte et n'accepte de filtre ni sur le mode
 de travail, ni sur le pays, ni sur le salaire. `limit` s'applique par entreprise,
-et une entreprise qui le remplit peut publier davantage : les notes le disent.
+et une entreprise qui le remplit peut publier davantage : les notes le disent, et
+disent aussi qu'un compte pris dans cette fenêtre mesure la fenêtre.
+
+`posted_within_days` parcourt jusqu'à cinq pages par entreprise. Lever pagine par
+titre, donc une offre publiée hier se trouve n'importe où dans une page
+carrières, et une question de fraîcheur lue sur la première page répond sur la
+première page.
 
 ### `get_job`
 

@@ -5,21 +5,49 @@
   "version": "0.1.0",
   "description": "Search public Lever job boards. No API key required.",
   "long_description": "Lever hosts one job board per company and publishes no index across them, so every question starts with a company name. This server turns a name into the site name that addresses its board, searches the openings of the companies you name, reads one opening in full, and lists the filter wordings each company uses. It says plainly what it could not find: a site name that does not exist, a site publishing nothing, and a failed read are three different answers.",
-  "author": { "name": "Damien Bouissou", "url": "https://github.com/smeet666" },
+  "author": {
+    "name": "Damien Bouissou",
+    "url": "https://github.com/smeet666"
+  },
   "homepage": "https://github.com/smeet666/mcp-lever",
   "documentation": "https://github.com/smeet666/mcp-lever#readme",
   "support": "https://github.com/smeet666/mcp-lever/issues",
   "license": "MIT",
-  "keywords": ["lever", "jobs", "job-search", "ats", "hiring", "careers"],
+  "keywords": [
+    "lever",
+    "jobs",
+    "job-search",
+    "ats",
+    "hiring",
+    "careers"
+  ],
   "server": {
     "type": "node",
     "entry_point": "dist/index.js",
-    "mcp_config": { "command": "node", "args": ["${__dirname}/dist/index.js"] }
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ]
+    }
   },
   "tools": [
-    { "name": "resolve_company", "description": "Turn a company name into its Lever site name." },
-    { "name": "search_jobs", "description": "Search the openings of named companies." },
-    { "name": "get_job", "description": "Read one opening in full." },
-    { "name": "list_filter_values", "description": "List the filter wordings a company uses." }
-  ]
+    {
+      "name": "resolve_company",
+      "description": "Turn a company name into its Lever site name."
+    },
+    {
+      "name": "search_jobs",
+      "description": "Search the openings of named companies."
+    },
+    {
+      "name": "get_job",
+      "description": "Read one opening in full."
+    },
+    {
+      "name": "list_filter_values",
+      "description": "List the filter wordings a company uses."
+    }
+  ],
+  "icon": "assets/icon-128.png"
 }
