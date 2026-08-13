@@ -61,7 +61,7 @@ describe("les outils déclarés", () => {
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
     const tools = await harness.listTools();
-    const outcome = await harness.call("resolve_company", { name: "Acme Robotics" });
+    const outcome = await harness.call("resolve_company", { names: ["Acme Robotics"] });
     await harness.close();
 
     const schema = tools.find((t) => t.name === "resolve_company")?.outputSchema;

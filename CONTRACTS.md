@@ -191,16 +191,28 @@ Enregistrés dans cet ordre. Chacun déclare un `outputSchema`, et
 
 ### 1. `resolve_company`
 
-Arguments : `{ name: string }`.
+Arguments : `{ names: string[] }`, un à 25.
+
+Une liste plutôt qu'un nom : sonder dix entreprises coûte dix résolutions, là où
+`search_jobs` lirait dix pages carrières entières pour la même question.
 
 ```jsonc
 {
   "type": "object",
-  "required": ["input", "found", "tried", "notes"],
+  "required": ["resolved", "notes"],
   "additionalProperties": false,
   "properties": {
-    "input": { "type": "string" },
-    "found": {
+    "resolved": { "type": "array", "items": { "$ref": "#/$defs/Resolved" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": { "Resolved": {
+    "type": "object",
+    "required": ["input", "found", "tried", "cached"],
+    "additionalProperties": false,
+    "properties": {
+      "input": { "type": "string" },
+      "cached": { "type": "boolean" },
+      "found": {
       "type": "array",
       "items": {
         "type": "object",
@@ -213,9 +225,8 @@ Arguments : `{ name: string }`.
         }
       }
     },
-    "tried": { "type": "array", "items": { "type": "string" } },
-    "notes": { "type": "array", "items": { "type": "string" } }
-  }
+      "tried": { "type": "array", "items": { "type": "string" } }
+  }}}
 }
 ```
 

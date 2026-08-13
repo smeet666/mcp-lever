@@ -18,7 +18,7 @@ describe("l'espion sur la couche HTTP", () => {
     const stub = corpusFetch();
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
-    await harness.call("resolve_company", { name: "Acme Robotics" });
+    await harness.call("resolve_company", { names: ["Acme Robotics"] });
     await harness.call("search_jobs", { companies: ["acmerobotics"], limit: 25 });
     await harness.call("get_job", {
       company_slug: "acmerobotics",
@@ -51,7 +51,7 @@ describe("l'espion sur la couche HTTP", () => {
     const stub = corpusFetch();
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
-    await harness.call("resolve_company", { name: "Zephyr Works" });
+    await harness.call("resolve_company", { names: ["Zephyr Works"] });
     await harness.close();
 
     expect(new Set(stub.hosts())).toEqual(new Set(["api.lever.co", "api.eu.lever.co"]));

@@ -54,15 +54,22 @@ export const jobRecordSchema = z.object({
 });
 
 export const resolveCompanyOutputShape = {
-  input: z.string(),
-  found: z.array(
+  resolved: z.array(
     z.object({
-      slug: z.string(),
-      instance: instanceSchema,
-      publishes: z.boolean().describe("False when the site exists and publishes nothing."),
+      input: z.string(),
+      found: z.array(
+        z.object({
+          slug: z.string(),
+          instance: instanceSchema,
+          publishes: z.boolean().describe("False when the site exists and publishes nothing."),
+        }),
+      ),
+      tried: z.array(z.string()).describe("The forms sent, in order, one entry per request."),
+      cached: z
+        .boolean()
+        .describe("True when this session had already resolved the name, so nothing was sent."),
     }),
   ),
-  tried: z.array(z.string()).describe("The forms actually sent, in order."),
   notes: z.array(z.string()),
 } as const;
 

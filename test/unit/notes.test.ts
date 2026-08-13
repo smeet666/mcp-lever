@@ -33,10 +33,10 @@ describe("les notes du serveur", () => {
     const stub = corpusFetch();
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
-    const outcome = await harness.call("resolve_company", { name: "Mitek Systems" });
+    const outcome = await harness.call("resolve_company", { names: ["Mitek Systems"] });
     await harness.close();
 
-    expect(outcome.structured?.["found"]).toEqual([]);
+    expect(((outcome.structured?.["resolved"] as { found: unknown[] }[])[0]?.found)).toEqual([]);
     const notes = notesOf(outcome.structured);
     expect(notes.length).toBeGreaterThan(0);
     expect(notes.join(" ")).toMatch(/case/i);
@@ -47,10 +47,10 @@ describe("les notes du serveur", () => {
     const stub = corpusFetch();
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
-    const outcome = await harness.call("resolve_company", { name: "Duplex Labs" });
+    const outcome = await harness.call("resolve_company", { names: ["Duplex Labs"] });
     await harness.close();
 
-    expect(outcome.structured?.["found"]).toHaveLength(2);
+    expect(((outcome.structured?.["resolved"] as { found: unknown[] }[])[0]?.found)).toHaveLength(2);
     expect(notesOf(outcome.structured).join(" ")).toMatch(/both Lever instances|global.*eu|eu.*global/i);
   });
 
@@ -58,7 +58,7 @@ describe("les notes du serveur", () => {
     const stub = corpusFetch();
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
-    const outcome = await harness.call("resolve_company", { name: "Acme Robotics" });
+    const outcome = await harness.call("resolve_company", { names: ["Acme Robotics"] });
     await harness.close();
 
     expect(notesOf(outcome.structured).join(" ")).not.toMatch(/prove|proof/i);

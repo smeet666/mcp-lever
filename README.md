@@ -16,7 +16,7 @@ question therefore starts with a company name, and this server turns that name
 into the site name that addresses its board.
 
 ```
-resolve_company("Included Health")  ->  includedhealth, global instance, publishing
+resolve_company(["Included Health"])  ->  includedhealth, global instance, publishing
 search_jobs(["Included Health"], keyword: "therapist")
 get_job("includedhealth", "6f97a19f-…")
 ```
@@ -44,7 +44,9 @@ Claude Desktop, `claude_desktop_config.json`:
 
 ### `resolve_company`
 
-A company name in, the Lever site name out, with every instance that answered.
+Company names in, the Lever site names out, with every instance that answered. It
+takes a list, because probing ten names costs ten resolutions where a search
+would read ten boards.
 
 Lever site names distinguish case: `Flex` answers where `flex` returns 404. Four
 spellings are tried on each of Lever's two instances, stopping at the first one
@@ -148,7 +150,7 @@ traverse. Toute question part donc d'un nom d'entreprise, que ce serveur
 transforme en identifiant de site.
 
 ```
-resolve_company("Included Health")  ->  includedhealth, instance globale, publie
+resolve_company(["Included Health"])  ->  includedhealth, instance globale, publie
 search_jobs(["Included Health"], keyword: "therapist")
 get_job("includedhealth", "6f97a19f-…")
 ```
@@ -176,8 +178,9 @@ Claude Desktop, dans `claude_desktop_config.json` :
 
 ### `resolve_company`
 
-Un nom d'entreprise en entrée, l'identifiant de site Lever en sortie, avec
-chaque instance qui a répondu.
+Des noms d'entreprises en entrée, leurs identifiants de site en sortie, avec
+chaque instance qui a répondu. L'outil prend une liste, parce que sonder dix noms
+coûte dix résolutions là où une recherche lirait dix pages carrières.
 
 Les identifiants distinguent la casse : `Flex` répond là où `flex` rend 404.
 Quatre formes sont essayées sur chacune des deux instances, en s'arrêtant à la

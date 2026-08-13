@@ -135,6 +135,15 @@ function distance(a: string, b: string): number {
 
 /** Two edits is the widest miss that still names one argument rather than another question. */
 function nearest(written: string, declared: readonly string[]): string | undefined {
+  // A caller who wrote `slug` wants `company_slug`, eight edits away. Naming a
+  // part of the argument is the miss a model actually makes, so it is caught
+  // before the edit count is consulted.
+  const typed = written.toLowerCase();
+  const contained = declared.find(
+    (name) => name !== typed && (name.startsWith(typed) || name.endsWith(typed)),
+  );
+  if (contained) return contained;
+
   let best: { name: string; apart: number } | undefined;
   for (const name of declared) {
     const apart = distance(written.toLowerCase(), name.toLowerCase());

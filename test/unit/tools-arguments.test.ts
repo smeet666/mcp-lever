@@ -115,7 +115,7 @@ describe("les arguments que le serveur refuse", () => {
     const harness = await connect({ fetchImpl: stub.fetchImpl });
 
     const outcome = await harness.call("resolve_company", {
-      name: "Acme Robotics",
+      names: ["Acme Robotics"],
       instance: "global",
     });
     await harness.close();

@@ -70,7 +70,7 @@ export function createServer(options: ClientOptions = {}): McpServer {
   server.registerTool(
     "resolve_company",
     {
-      title: "Resolve a company to its Lever board",
+      title: "Resolve company names to Lever boards",
       description: resolveCompanyDescription,
       inputSchema: resolveCompanySchema,
       outputSchema: z.object(resolveCompanyOutputShape),

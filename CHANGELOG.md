@@ -4,6 +4,32 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-08-13
+
+### Changed
+
+- `resolve_company` takes `names`, a list, and reports each one. Probing ten
+  companies costs ten resolutions, where a search would read ten boards to
+  answer the same question. Its output moves under `resolved`, one entry per
+  name, each carrying whether this session had already resolved it.
+
+### Added
+
+- A near miss is offered from the site names Lever confirmed during the session,
+  so a spelling that fails next to one that worked is named.
+- `posted_within_days` walks up to five pages per company. Lever pages by title,
+  so a recent opening sits anywhere in a board.
+
+### Fixed
+
+- Grouped reads no longer fail on the group Lever returns without a title, which
+  holds the openings carrying no value for that field. It is reported as the gap
+  it names.
+- Failures are recognised by shape rather than class identity, which failed
+  across the two entry points this package ships and reached callers blank.
+- An argument named after part of a declared one is suggested: `slug` points at
+  `company_slug`.
+
 ## [0.1.0] - 2026-08-13
 
 ### Added
