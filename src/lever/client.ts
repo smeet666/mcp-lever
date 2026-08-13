@@ -18,7 +18,7 @@ import {
   type ListParams,
 } from "./postings.js";
 import { RateLimiter } from "./rateLimiter.js";
-import { resolveCompany } from "./resolve.js";
+import { nearestKnown, resolveCompany } from "./resolve.js";
 
 /**
  * The published low-level client: pacing, cache and error taxonomy, with no
@@ -31,6 +31,8 @@ export class Client {
   private readonly documents: Cache<unknown>;
   private readonly resolutions: Cache<Resolution>;
   private readonly inFlight = new Map<string, Promise<unknown>>();
+  /** Site names Lever confirmed during this session, and nothing else. */
+  private readonly confirmed = new Set<string>();
 
   constructor(options: ClientOptions = {}) {
     this.http = {
@@ -84,8 +86,14 @@ export class Client {
     const hit = this.resolutions.get(key);
     if (hit) return { ...hit, cached: true };
     const resolution = await resolveCompany(name, this);
+    for (const site of resolution.found) this.confirmed.add(site.slug);
     this.resolutions.set(key, resolution);
     return resolution;
+  }
+
+  /** A confirmed site name close to one that did not answer, when there is one. */
+  suggestSlug(name: string): string | undefined {
+    return nearestKnown(name, this.confirmed);
   }
 
   listPostings(params: ListParams): Promise<Read<RawPosting[] | null>> {

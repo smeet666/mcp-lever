@@ -64,3 +64,34 @@ export async function resolveCompany(name: string, requester: Requester): Promis
 
   return { input: name, found, tried, cached: false };
 }
+
+/**
+ * The confirmed site name a failed spelling is closest to.
+ *
+ * Lever publishes no directory, so the only names this server can vouch for are
+ * the ones it has already confirmed. Two edits is the widest miss that still
+ * points at one name rather than at a different company.
+ */
+export function nearestKnown(name: string, known: Iterable<string>): string | undefined {
+  const written = (slugForms(name)[0] ?? name).toLowerCase();
+  let best: { slug: string; apart: number } | undefined;
+  for (const slug of known) {
+    const apart = editDistance(written, slug.toLowerCase());
+    if (apart === 0 || apart > 2) continue;
+    if (best === undefined || apart < best.apart) best = { slug, apart };
+  }
+  return best?.slug;
+}
+
+function editDistance(a: string, b: string): number {
+  let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= a.length; i += 1) {
+    const current = [i];
+    for (let j = 1; j <= b.length; j += 1) {
+      const substitution = (previous[j - 1] ?? 0) + (a[i - 1] === b[j - 1] ? 0 : 1);
+      current[j] = Math.min(substitution, (previous[j] ?? 0) + 1, (current[j - 1] ?? 0) + 1);
+    }
+    previous = current;
+  }
+  return previous[b.length] ?? Math.max(a.length, b.length);
+}

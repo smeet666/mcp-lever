@@ -41,6 +41,14 @@ export const MAX_SLUG_FORMS = 4;
  */
 export const MAX_BODY_BYTES = 24_000_000;
 
+/**
+ * Pages a recency search walks before it stops.
+ *
+ * Lever pages by title, so an opening published yesterday can sit anywhere in a
+ * board. A count taken from the first page alone measures the first page.
+ */
+export const MAX_RECENCY_PAGES = 5;
+
 export const REQUEST_TIMEOUT_MS = 30_000;
 
 export const CACHE_TTL_MS = 5 * 60_000;

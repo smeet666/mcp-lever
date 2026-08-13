@@ -28,8 +28,14 @@ export async function runResolveCompany(
     const notes: string[] = [];
 
     if (resolution.found.length === 0) {
+      const near = client.suggestSlug(args.name);
       notes.push(
         `None of the forms tried names a Lever site. A Lever site name distinguishes case and does not always derive from the company name, so this does not prove that ${args.name} is absent from Lever.`,
+      );
+      notes.push(
+        near
+          ? `The site "${near}", confirmed earlier in this session, is one edit away from what was asked.`
+          : "A company's exact site name appears in the address of its Lever careers page, jobs.lever.co followed by that name.",
       );
     }
     if (resolution.found.length > 1) {

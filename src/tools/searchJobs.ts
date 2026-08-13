@@ -4,6 +4,7 @@ import {
   DEFAULT_MAX_COMPANIES,
   MAX_COMPANIES,
   MAX_LIMIT,
+  MAX_RECENCY_PAGES,
   MAX_SLUG_FORMS,
 } from "../lever/config.js";
 import { invalidInput, isLeverError, type LeverError } from "../lever/errors.js";
@@ -39,7 +40,8 @@ export const searchJobsDescription =
   `A name found on the first spelling costs 3 requests, and one that resists costs up to ${WORST_REQUESTS_PER_COMPANY}, at one second each. ` +
   "location, team, department and commitment are sent to Lever and need its exact wording. " +
   "keyword, workplace_type, country, salary and recency are applied here, because Lever accepts none of them as filters. " +
-  "limit applies per company, so a company whose openings fill it may publish more.";
+  "limit applies per company, so a company whose openings fill it may publish more. " +
+  `posted_within_days walks up to ${MAX_RECENCY_PAGES} pages per company, because Lever pages by title and a recent opening sits anywhere.`;
 
 export const searchJobsSchema = strictInput({
   companies: values("companies", "a company name or a Lever site name", MAX_COMPANIES),
@@ -91,6 +93,7 @@ interface Counters {
   otherCurrency: number;
   belowSalary: number;
   filled: string[];
+  walked: string[];
 }
 
 export async function runSearchJobs(client: Client, args: SearchJobsArgs): Promise<CallToolResult> {
@@ -119,6 +122,7 @@ export async function runSearchJobs(client: Client, args: SearchJobsArgs): Promi
       otherCurrency: 0,
       belowSalary: 0,
       filled: [],
+      walked: [],
     };
 
     for (const input of args.companies) {
@@ -178,23 +182,18 @@ async function readOne(
     const resolution = await client.resolveCompany(input);
     site = chooseSite(resolution.found, input, notes);
     if (!site) {
+      const near = client.suggestSlug(input);
       notes.push(
-        `No Lever site was found for "${safeLine(input)}", so nothing here says whether that company is hiring. Site names distinguish case; resolve_company shows what was tried.`,
+        `No Lever site was found for "${safeLine(input)}", so nothing here says whether that company is hiring. Site names distinguish case; resolve_company shows what was tried.` +
+          (near
+            ? ` The site "${near}", confirmed earlier in this session, is one edit away.`
+            : ""),
       );
       return { input, slug: null, instance: null, status: "unresolved", read: 0, returned: 0 };
     }
 
     const limit = args.limit ?? DEFAULT_LIMIT;
-    const found = await client.listPostings({
-      slug: site.slug,
-      instance: site.instance,
-      limit,
-      ...(args.skip !== undefined ? { skip: args.skip } : {}),
-      ...(args.location ? { location: args.location } : {}),
-      ...(args.team ? { team: args.team } : {}),
-      ...(args.department ? { department: args.department } : {}),
-      ...(args.commitment ? { commitment: args.commitment } : {}),
-    });
+    const found = await readBoard(client, args, site, limit);
 
     if (found.data === null) {
       // The probe confirmed this site moments ago, so a 404 here is a change on
@@ -220,7 +219,8 @@ async function readOne(
       return { input, slug: site.slug, instance: site.instance, status: "empty", read: 0, returned: 0 };
     }
 
-    if (found.data.length >= limit) counters.filled.push(input);
+    if (found.truncated) counters.filled.push(input);
+    if (found.pages > 1) counters.walked.push(`${input} (${found.pages} pages)`);
     const kept = found.data.filter((posting) => keeps(posting, args, counters));
     for (const posting of kept) jobs.push(toRow(posting, site.slug, site.instance));
     return {
@@ -246,6 +246,47 @@ async function readOne(
       error: isLeverError(error) ? `[${error.code}] ${error.message}` : String(error),
     };
   }
+}
+
+/**
+ * Reads one board, walking pages when the question is about dates.
+ *
+ * Lever pages by title, so an opening published yesterday can sit on any page.
+ * A recency filter applied to the first page alone measures the first page, and
+ * a caller reads it as a measure of the company.
+ */
+async function readBoard(
+  client: Client,
+  args: SearchJobsArgs,
+  site: ResolvedSite,
+  limit: number,
+): Promise<{ data: RawPosting[] | null; pages: number; truncated: boolean }> {
+  const filters = {
+    ...(args.location ? { location: args.location } : {}),
+    ...(args.team ? { team: args.team } : {}),
+    ...(args.department ? { department: args.department } : {}),
+    ...(args.commitment ? { commitment: args.commitment } : {}),
+  };
+  const maxPages = args.posted_within_days === undefined ? 1 : MAX_RECENCY_PAGES;
+  const collected: RawPosting[] = [];
+  let skip = args.skip ?? 0;
+  let pages = 0;
+
+  for (; pages < maxPages; pages += 1) {
+    const read = await client.listPostings({
+      slug: site.slug,
+      instance: site.instance,
+      limit,
+      ...(skip > 0 ? { skip } : {}),
+      ...filters,
+    });
+    if (read.data === null) return { data: null, pages, truncated: false };
+    collected.push(...read.data);
+    if (read.data.length < limit) return { data: collected, pages: pages + 1, truncated: false };
+    skip += limit;
+  }
+
+  return { data: collected, pages, truncated: true };
 }
 
 /**
@@ -520,10 +561,16 @@ function addOutcomeNotes(
   counters: Counters,
   notes: string[],
 ): void {
+  if (counters.walked.length > 0) {
+    notes.push(
+      `Lever pages by title, so a recency question cannot be answered from one page: ${counters.walked.map(safeLine).join(", ")} were walked page by page.`,
+    );
+  }
   if (counters.filled.length > 0) {
     const limit = args.limit ?? DEFAULT_LIMIT;
+    const walked = args.posted_within_days === undefined ? 1 : MAX_RECENCY_PAGES;
     notes.push(
-      `${counters.filled.map(safeLine).join(", ")} filled the limit of ${limit} openings, which applies per company, so ${counters.filled.length === 1 ? "it" : "they"} may publish more than this call read. Raise limit, or step forward with skip.`,
+      `${counters.filled.map(safeLine).join(", ")} still had openings after ${walked === 1 ? `the limit of ${limit}` : `${walked} pages of ${limit}`}, which applies per company, so ${counters.filled.length === 1 ? "it publishes" : "they publish"} more than this call read. Raise limit, or step forward with skip.`,
     );
     // Lever pages by title, so the window is alphabetical rather than the
     // openings a filter would have picked. A count taken inside it is a count
