@@ -112,6 +112,26 @@ It never reads `jobs.lever.co`, whose `robots.txt` names six agents and refuses
 each of them. Openings carry the address of their page there, because citing an
 address is not crawling it.
 
+## Stability
+
+A major version covers what a caller writes against and reads back:
+
+- the four tool names, and the names and types of their arguments;
+- the shape of what each tool returns, and the fields it carries;
+- the six error codes;
+- the `./client` subpath: `Client`, `Read<T>`, and the shapes it hands back.
+
+These stay minor, and a caller who reads only what it asked for is untouched:
+
+- a new optional argument, or a new tool;
+- a new field in an answer, or a new note;
+- the wording of a note, a description, or an error message;
+- following a newer revision of the Model Context Protocol, which changes the
+  envelope around the tools rather than the tools.
+
+A field that Lever stops publishing is reported as absent rather than removed
+from the shape, so a schema never narrows without a major version.
+
 ## Use it as a library
 
 The low-level client is published on its own, with the pacing, the cache and the
@@ -246,6 +266,27 @@ le nom du projet et une adresse de contact.
 Il ne lit jamais `jobs.lever.co`, dont le `robots.txt` nomme six agents et les
 refuse chacun. Les offres portent l'adresse de leur page là-bas, citer une
 adresse n'étant pas la parcourir.
+
+## Stabilité
+
+Une version majeure couvre ce qu'un appelant écrit et relit :
+
+- les noms des quatre outils, et les noms et types de leurs arguments ;
+- la forme de ce que chaque outil rend, et les champs qu'elle porte ;
+- les six codes d'erreur ;
+- le sous-chemin `./client` : `Client`, `Read<T>`, et les formes qu'il rend.
+
+Restent mineurs, et laissent intact un appelant qui ne lit que ce qu'il a
+demandé :
+
+- un argument optionnel de plus, ou un outil de plus ;
+- un champ de plus dans une réponse, ou une note de plus ;
+- la formulation d'une note, d'une description ou d'un message d'erreur ;
+- le passage à une révision plus récente du Model Context Protocol, qui change
+  l'enveloppe autour des outils plutôt que les outils.
+
+Un champ que Lever cesse de publier se rend absent plutôt que retiré de la
+forme, de sorte qu'un schéma ne se rétrécit jamais sans version majeure.
 
 ## Comme bibliothèque
 

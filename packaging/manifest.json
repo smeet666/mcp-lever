@@ -2,7 +2,7 @@
   "manifest_version": "0.2",
   "name": "mcp-lever",
   "display_name": "Lever job boards",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Search public Lever job boards. No API key required.",
   "long_description": "Lever hosts one job board per company and publishes no index across them, so every question starts with a company name. This server turns a name into the site name that addresses its board, searches the openings of the companies you name, reads one opening in full, and lists the filter wordings each company uses. It says plainly what it could not find: a site name that does not exist, a site publishing nothing, and a failed read are three different answers.",
   "author": {

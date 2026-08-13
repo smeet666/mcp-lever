@@ -16,3 +16,5 @@ test/fixtures/
 # Working material for review sessions.
 .probe/
 .ask.mjs
+
+.endtoend.mjs
