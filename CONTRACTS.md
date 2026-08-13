@@ -122,9 +122,8 @@ Règles de `slugForms` :
 4. les mots joints par un tiret, en minuscules.
 
 Les doublons se suppriment en gardant le premier rang. Un nom d'un seul mot rend
-donc moins de quatre formes. Un nom qui **est déjà un identifiant exact** —
-il ne contient ni espace ni ponctuation — se présente tel quel en première
-position, sa casse conservée, ce qui fait que `Flex` est essayé avant `flex`.
+donc moins de quatre formes. Un nom qui **est déjà un identifiant exact**, sans
+espace ni ponctuation, se présente tel quel en première position, sa casse conservée, ce qui fait que `Flex` est essayé avant `flex`.
 
 Chaque entrée de `tried` s'écrit `forme (instance)`, par exemple
 `miteksystems (global)`. Une entrée par requête réellement partie : le contrat

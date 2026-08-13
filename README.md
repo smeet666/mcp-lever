@@ -7,7 +7,7 @@ An MCP server for the public job boards companies publish through
 read one in full, and see the wordings each company filters by. No API key, no
 account, read-only.
 
-[Français](#mcp-lever--français)
+[Français](#mcp-lever-français)
 
 ## What it does
 
@@ -134,7 +134,7 @@ and link the page each opening carries.
 
 ---
 
-# mcp-lever — français
+# mcp-lever (français)
 
 Un serveur MCP pour les pages carrières que les entreprises publient à travers
 [Lever](https://www.lever.co). Cherchez les offres des entreprises que vous
