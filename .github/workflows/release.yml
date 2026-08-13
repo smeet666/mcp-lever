@@ -33,29 +33,3 @@ jobs:
         with:
           files: mcp-lever.mcpb
           generate_release_notes: true
-
-  registry:
-    needs: bundle
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Point server.json at the bundle this tag published
-        run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/mcp-lever.mcpb"
-          # Computed here rather than written by hand: a version left behind
-          # serves an older bundle than the one announced.
-          node -e '
-            const fs = require("fs");
-            const doc = JSON.parse(fs.readFileSync("server.json", "utf8"));
-            doc.version = process.env.VERSION;
-            for (const p of doc.packages) p.version = process.env.VERSION;
-            fs.writeFileSync("server.json", JSON.stringify(doc, null, 2) + "\n");
-          '
-          echo "bundle: $URL"
-        env:
-          VERSION: ${{ github.ref_name }}
-      - uses: modelcontextprotocol/registry-publish-action@main
-        continue-on-error: true
