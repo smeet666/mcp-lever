@@ -12,3 +12,7 @@ test/fixtures/
 # deliverable, and one swept in by `git add -A` carries whatever it was fed.
 .audit*
 .scratch*
+
+# Working material for review sessions.
+.probe/
+.ask.mjs
