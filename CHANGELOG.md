@@ -19,3 +19,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   Lever answers a wording it does not know with an empty list and no error.
 - A published low-level client under the `./client` subpath, carrying the
   pacing, the cache and the error taxonomy without the protocol.
+
+### Notes the answers carry
+
+- Counts of what a filter dropped, each taken over every opening read, with the
+  warning that one opening turned away twice appears in both.
+- The reminder that filters applied here see only the openings a call read, so
+  their figures are a share of that window and no share of what a company
+  publishes.
+- The openings Lever files under no wording for a field, which no filter on that
+  field can reach.

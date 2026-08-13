@@ -345,6 +345,17 @@ function matchesKeyword(posting: RawPosting, keyword: string): boolean {
   return haystack.includes(needle);
 }
 
+/** The filters applied here, after Lever has already cut the page. */
+function hasLocalFilters(args: SearchJobsArgs): boolean {
+  return (
+    args.keyword !== undefined ||
+    args.salary_min !== undefined ||
+    args.posted_within_days !== undefined ||
+    Boolean(args.workplace_type?.length) ||
+    Boolean(args.country?.length)
+  );
+}
+
 function hasSiteFilters(args: SearchJobsArgs): boolean {
   return Boolean(
     args.location?.length ||
@@ -372,7 +383,7 @@ async function refuseUnknownFilterValue(
     refuseAgainst(
       field,
       wanted,
-      read.data.map((group) => group.title),
+      read.data.map((group) => group.title).filter((t): t is string => typeof t === "string"),
       slug,
     );
   }
@@ -425,6 +436,25 @@ function refuseAgainst(
 }
 
 function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[]): void {
+  // Each filter is judged on every opening read, so one opening turned away by
+  // two of them is counted by both. Summed, the counts exceed what was read,
+  // and a reader who adds them up concludes the arithmetic is wrong.
+  const dropped =
+    counters.keyword +
+    counters.workplace +
+    counters.country +
+    counters.unknownCountry +
+    counters.tooOld +
+    counters.noSalary +
+    counters.otherInterval +
+    counters.otherCurrency +
+    counters.belowSalary;
+  if (dropped > 0) {
+    notes.push(
+      "Each count below is taken over every opening this call read, so an opening turned away by two filters appears in both counts. They are reasons, and adding them up counts openings twice.",
+    );
+  }
+
   if (args.keyword !== undefined && counters.keyword > 0) {
     notes.push(
       `${counters.keyword} opening(s) that were read do not carry "${safeLine(args.keyword)}" in their title or advert and were dropped. Lever offers no full-text search, so a keyword only reaches the openings this call read.`,
@@ -447,6 +477,9 @@ function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[
         `${counters.unknownCountry} opening(s) were dropped because Lever records no country for them, which is not the same as recording another one.`,
       );
     }
+    notes.push(
+      "Lever records one country per opening, taken from its main location, while an opening can list several places. An opening open in two countries carries the country of the first, so all_locations is worth reading before concluding it is out of reach.",
+    );
   }
   if (args.posted_within_days !== undefined && counters.tooOld > 0) {
     notes.push(
@@ -468,9 +501,11 @@ function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[
         `${counters.otherInterval} opening(s) were dropped because their salary is published per a different period than ${interval}.`,
       );
     }
-    if (counters.otherCurrency > 0) {
+    if (args.currency) {
       notes.push(
-        `${counters.otherCurrency} opening(s) were dropped because their salary is published in another currency, and nothing here converts one.`,
+        counters.otherCurrency > 0
+          ? `${counters.otherCurrency} opening(s) were dropped because their salary is published in a currency other than ${args.currency.toUpperCase()}, and nothing here converts one.`
+          : `currency kept only salaries published in ${args.currency.toUpperCase()}, and turned none away.`,
       );
     }
     if (counters.belowSalary > 0) {
@@ -490,6 +525,14 @@ function addOutcomeNotes(
     notes.push(
       `${counters.filled.map(safeLine).join(", ")} filled the limit of ${limit} openings, which applies per company, so ${counters.filled.length === 1 ? "it" : "they"} may publish more than this call read. Raise limit, or step forward with skip.`,
     );
+    // Lever pages by title, so the window is alphabetical rather than the
+    // openings a filter would have picked. A count taken inside it is a count
+    // of the window, and reads as a count of the company.
+    if (hasLocalFilters(args)) {
+      notes.push(
+        `keyword, workplace_type, country, salary and recency were applied to those ${limit} openings alone, not to everything ${counters.filled.length === 1 ? "that company" : "those companies"} publishes. These figures are a share of what was read, and no share of what exists: Lever pages by title, so a wider limit or a step forward with skip changes them. list_filter_values counts the openings a company has open, which is the denominator this call does not carry.`,
+      );
+    }
   }
   const failed = perCompany.filter((c) => c.status === "failed");
   if (failed.length > 0) {

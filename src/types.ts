@@ -59,9 +59,14 @@ export interface RawSalaryRange {
   interval: string;
 }
 
-/** A grouping, as `group=team|location|commitment` returns it. */
+/**
+ * A grouping, as `group=team|location|commitment` returns it.
+ *
+ * `title` is absent on the group Lever fills with the openings carrying no
+ * value for that field, so it names a gap rather than a wording.
+ */
 export interface RawGroup {
-  title: string;
+  title?: string;
   postings: RawPosting[];
 }
 
@@ -79,6 +84,7 @@ export interface JobRow {
   team: string;
   department?: string;
   salary: Salary | null;
+  /** When Lever recorded the opening, in ISO 8601 UTC. */
   posted_at: string;
   url: string;
   apply_url: string;

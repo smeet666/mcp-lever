@@ -34,6 +34,26 @@ export const parseFailure = (message: string) => new LeverError("parse_failure",
 export const networkError = (message: string) => new LeverError("network_error", message);
 export const timeout = (message: string) => new LeverError("timeout", message);
 
+const CODES: readonly string[] = [
+  "not_found",
+  "invalid_input",
+  "rate_limited",
+  "parse_failure",
+  "network_error",
+  "timeout",
+];
+
+/**
+ * Recognises this server's own failures by their shape.
+ *
+ * The package ships two entry points, each carrying its own copy of this
+ * module, so an identity test would call one of them a stranger and hand a
+ * caller a blank failure in place of a coded one.
+ */
 export function isLeverError(value: unknown): value is LeverError {
-  return value instanceof LeverError;
+  return (
+    value instanceof Error &&
+    value.name === "LeverError" &&
+    CODES.includes((value as LeverError).code)
+  );
 }

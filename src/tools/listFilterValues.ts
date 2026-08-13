@@ -46,18 +46,50 @@ export async function runListFilterValues(
     const instance: Instance = args.instance ?? "global";
     const wanted = args.fields?.length ? args.fields : FIELDS;
     const fields: Record<string, { value: string; count: number | null }[]> = {};
+    const unlabelled: string[] = [];
 
     for (const field of wanted) {
       const read = await client.listGroups(args.company_slug, instance, field);
+      // Lever returns one group with no title, holding the openings that carry
+      // no value for this field. It names a gap, so it is reported as one
+      // rather than offered as a wording a filter could carry.
+      const missing = read.data
+        .filter((group) => typeof group.title !== "string" || group.title === "")
+        .reduce(
+          (sum, group) => sum + (Array.isArray(group.postings) ? group.postings.length : 0),
+          0,
+        );
+      if (missing > 0) {
+        unlabelled.push(
+          `${missing} opening(s) carry no ${field}, and Lever files them under no wording, so no ${field} filter reaches them.`,
+        );
+      }
       fields[field] = read.data
-        .map((group) => ({ value: group.title, count: Array.isArray(group.postings) ? group.postings.length : null }))
+        .filter((group) => typeof group.title === "string" && group.title !== "")
+        .map((group) => ({
+          value: group.title as string,
+          count: Array.isArray(group.postings) ? group.postings.length : null,
+        }))
         .sort((a, b) => a.value.localeCompare(b.value));
     }
 
-    const notes = [
-      "These wordings are what this company uses, and another company on Lever uses others.",
+    const notes: string[] = [];
+    // Lever builds these groupings from the openings a company has open, so a
+    // company between hiring rounds publishes an empty vocabulary rather than no
+    // vocabulary. Reading the first as the second says it files nothing.
+    if (Object.values(fields).every((entries) => entries.length === 0)) {
+      notes.push(
+        `The ${args.company_slug} site publishes no openings on the ${instance} instance right now. Lever builds these wordings from open roles, so this is an empty board rather than a company that files its roles under nothing.`,
+      );
+    } else {
+      notes.push(
+        "These wordings are what this company uses, and another company on Lever uses others.",
+      );
+    }
+    for (const gap of unlabelled) notes.push(gap);
+    notes.push(
       "Pass a value exactly as it appears here. Lever matches one value in any case, and matches several values only when each is written exactly.",
-    ];
+    );
 
     const payload = { company_slug: args.company_slug, instance, fields, notes };
     return {

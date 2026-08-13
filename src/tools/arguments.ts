@@ -25,7 +25,11 @@ export function parseArgs<Shape extends z.ZodRawShape>(
 ): z.infer<z.ZodObject<Shape>> {
   const parsed = schema.safeParse(args ?? {});
   if (parsed.success) return parsed.data;
-  const first = parsed.error.issues[0];
+  // A caller who wrote `id` for `job_id` is told about `id` first: the missing
+  // required argument is the consequence, and naming it alone sends them looking
+  // for something they did write.
+  const issues = parsed.error.issues;
+  const first = issues.find((i) => i.code === "unrecognized_keys") ?? issues[0];
   const message = first?.message ?? "These arguments cannot produce a request.";
   throw invalidInput(message.startsWith(CODE) ? message.slice(CODE.length).trim() : message);
 }
@@ -77,12 +81,12 @@ function listOf(
   most: number,
 ): z.ZodArray<z.ZodString> {
   const empty = `${CODE} ${argument} was written as an empty list, which narrows nothing.`;
-  const error = `${CODE} ${argument} takes ${what}, one to ${most} of them.`;
+  const error = `${CODE} ${argument} takes a list of ${what}, one to ${most} of them, written between square brackets even when there is only one.`;
   return z
     .array(item, { error })
     .min(1, empty)
     .max(most, error)
-    .describe(`${what[0]?.toUpperCase() ?? ""}${what.slice(1)}, one to ${most} of them.`);
+    .describe(`A list of ${what}, one to ${most} of them.`);
 }
 
 /**

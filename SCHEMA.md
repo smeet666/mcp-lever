@@ -90,6 +90,21 @@ absence se rend absente.
 `allLocations` porte un lieu sur 425 offres, et jusqu'à neuf : 2 offres en
 portent 9, 2 en portent 4, 7 en portent 3, 13 en portent 2.
 
+## Le groupement, et son groupe sans titre
+
+`group=team|location|commitment` rend un tableau de `{ title, postings[] }`, et
+**`title` manque sur un des groupes**. Vérifié sur Spotify, dont le groupement
+par type de contrat rend quatre groupes : `Full Time Contractor` (1),
+`Permanent` (91), `Short Term` (4), et un quatrième sans titre portant 6 offres.
+
+Ce groupe rassemble les offres dont le champ n'est pas renseigné. Il nomme un
+manque, jamais un libellé : le proposer comme valeur de filtre offrirait un mot
+que Lever n'accepte pas, et les 6 offres qu'il porte ne sont atteignables par
+aucun filtre de ce champ.
+
+Les compteurs des trois groupements somment au nombre d'offres publiées par le
+site, ce qui est le seul total que l'API laisse calculer.
+
 ## Les vocabulaires
 
 **`workplaceType` — trois valeurs observées, une quatrième documentée.**
@@ -149,7 +164,9 @@ sans annualisation.
 - `hostedUrl` : commence par `https://jobs.lever.co/` et **contient l'id** sur
   les 450.
 - `applyUrl` : vaut exactement `hostedUrl` suivi de `/apply` sur les 450.
-- `createdAt` : entier, millisecondes depuis l'époque Unix. Le corpus s'étale du
+- `createdAt` : entier, millisecondes depuis l'époque Unix. C'est la date à
+  laquelle Lever a enregistré l'offre, et l'API n'en publie aucune autre : une
+  offre rafraîchie garde la sienne. Le corpus s'étale du
   30 août 2017 au 13 août 2026, donc une annonce peut être très ancienne et
   toujours publiée.
 - `country` : code ISO 3166-1 alpha-2, 22 valeurs distinctes, nul sur 2 offres.
