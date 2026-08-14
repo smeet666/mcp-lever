@@ -2,6 +2,12 @@
 
 # mcp-lever
 
+[![npm](https://img.shields.io/npm/v/mcp-lever.svg)](https://www.npmjs.com/package/mcp-lever)
+[![CI](https://github.com/smeet666/mcp-lever/actions/workflows/ci.yml/badge.svg)](https://github.com/smeet666/mcp-lever/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/mcp-lever.svg)](./LICENSE)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-6E56CF)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.smeet666/mcp-lever)
+[![Glama](https://glama.ai/mcp/servers/smeet666/mcp-lever/badges/score.svg)](https://glama.ai/mcp/servers/smeet666/mcp-lever)
+
 An MCP server for the public job boards companies publish through
 [Lever](https://www.lever.co). Search the openings of the companies you name,
 read one in full, and see the wordings each company filters by. No API key, no
