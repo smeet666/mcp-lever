@@ -8,7 +8,7 @@ import {
 } from "./config.js";
 import type { Instance, RawGroup, RawPosting, Read, Resolution } from "../types.js";
 import { Cache } from "./cache.js";
-import { isLeverError, LeverError } from "./errors.js";
+import { isLeverError } from "./errors.js";
 import { getJson, type HttpOptions } from "./http.js";
 import {
   getPosting,
@@ -51,7 +51,7 @@ export class Client {
     const hit = this.documents.get(url);
     // An absence is cached like anything else: resolving one company probes up
     // to eight addresses, and re-asking for the same missing one costs a second.
-    if (hit instanceof LeverError) throw hit;
+    if (isLeverError(hit)) throw Object.assign(hit, { cached: true });
     if (hit !== undefined) return { value: hit as T, cached: true };
 
     // Two concurrent reads of one address are one read: the published client is
@@ -69,6 +69,7 @@ export class Client {
     } catch (error) {
       if (isLeverError(error)) {
         if (error.code === "not_found") this.documents.set(url, error);
+        error.cached = false;
         // Lever named a delay, so the next departure waits it out rather than
         // walking straight back into the wall.
         if (error.code === "rate_limited" && error.retryAfterMs) {

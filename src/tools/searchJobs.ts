@@ -522,10 +522,15 @@ function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[
       "Lever records one country per opening, taken from its main location, while an opening can list several places. An opening open in two countries carries the country of the first, so all_locations is worth reading before concluding it is out of reach.",
     );
   }
-  if (args.posted_within_days !== undefined && counters.tooOld > 0) {
+  if (args.posted_within_days !== undefined) {
     notes.push(
-      `${counters.tooOld} opening(s) that were read are older than ${args.posted_within_days} day(s) and were dropped.`,
+      "The date filtered on is when Lever recorded the opening, which is the only date it publishes. An opening a company republished or refreshed keeps its first one, so recency here measures when a role was first posted rather than when it last moved.",
     );
+    if (counters.tooOld > 0) {
+      notes.push(
+        `${counters.tooOld} opening(s) that were read are older than ${args.posted_within_days} day(s) and were dropped.`,
+      );
+    }
   }
   if (args.salary_min !== undefined) {
     const interval = args.salary_interval ?? DEFAULT_SALARY_INTERVAL;

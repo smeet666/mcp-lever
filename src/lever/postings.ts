@@ -21,6 +21,11 @@ function isMissing(error: unknown): boolean {
   return isLeverError(error) && error.code === "not_found";
 }
 
+/** An absence replayed from the cache cost no request, and says so. */
+function isCached(error: unknown): boolean {
+  return isLeverError(error) && error.cached === true;
+}
+
 export type GroupKey = "team" | "location" | "commitment";
 
 export interface ListParams {
@@ -47,7 +52,7 @@ export async function listPostings(
   try {
     read = await requester.read<RawPosting[]>(buildListUrl(params));
   } catch (error) {
-    if (isMissing(error)) return { data: null, cached: false };
+    if (isMissing(error)) return { data: null, cached: isCached(error) };
     throw error;
   }
   if (!Array.isArray(read.value)) {
@@ -94,15 +99,15 @@ export async function listGroups(
   }
 }
 
-/** Confirms a site name exists. `null` when it does not. */
+/** Confirms a site name exists. `site` is null when it does not. */
 export async function probeSite(
   slug: string,
   instance: Instance,
   requester: Requester,
-): Promise<{ publishes: boolean } | null> {
+): Promise<{ site: { publishes: boolean } | null; cached: boolean }> {
   const read = await listPostings({ slug, instance, limit: 1 }, requester);
-  if (read.data === null) return null;
-  return { publishes: read.data.length > 0 };
+  if (read.data === null) return { site: null, cached: read.cached };
+  return { site: { publishes: read.data.length > 0 }, cached: read.cached };
 }
 
 export function buildListUrl(params: ListParams): string {

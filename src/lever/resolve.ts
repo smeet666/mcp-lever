@@ -50,19 +50,27 @@ export async function resolveCompany(name: string, requester: Requester): Promis
   }
   const tried: string[] = [];
   const found: ResolvedSite[] = [];
+  // A resolution costs what its probes cost, so it is cached only when every
+  // one of them was.
+  let everyProbeCached = true;
 
   for (const instance of INSTANCES) {
     for (const form of forms) {
       tried.push(`${form} (${instance})`);
       const probe = await probeSite(form, instance as Instance, requester);
-      if (probe) {
-        found.push({ slug: form, instance: instance as Instance, publishes: probe.publishes });
+      if (!probe.cached) everyProbeCached = false;
+      if (probe.site) {
+        found.push({
+          slug: form,
+          instance: instance as Instance,
+          publishes: probe.site.publishes,
+        });
         break;
       }
     }
   }
 
-  return { input: name, found, tried, cached: false };
+  return { input: name, found, tried, cached: everyProbeCached };
 }
 
 /**

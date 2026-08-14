@@ -17,6 +17,8 @@ export class LeverError extends Error {
   readonly allowedValues?: string[];
   /** Set on rate_limited when Lever named a delay. */
   retryAfterMs?: number;
+  /** Set when the failure was replayed from the cache rather than asked again. */
+  cached?: boolean;
 
   constructor(code: ErrorCode, message: string, allowedValues?: string[]) {
     super(message);

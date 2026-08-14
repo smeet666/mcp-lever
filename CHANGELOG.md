@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-08-14
+
+### Fixed
+
+- A recency search says which date it filtered on. Lever publishes the date it
+  recorded an opening and no other, so an opening a company republished keeps
+  its first one, and recency measures when a role was first posted.
+- A read served from the cache no longer reports itself as fresh. An absence
+  replayed from the cache, and a resolution whose every probe came from it, both
+  say so.
+
 ## [1.0.0] - 2026-08-13
 
 This release fixes what the tools promise. See **Stability** in the README for
