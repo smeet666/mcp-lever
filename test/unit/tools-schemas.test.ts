@@ -156,7 +156,10 @@ describe("les outils déclarés", () => {
     });
     await harness.close();
 
-    const fields = outcome.structured?.["fields"] as Record<string, { value: string; count: number }[]>;
+    const fields = outcome.structured?.["fields"] as Record<
+      string,
+      { value: string; count: number }[]
+    >;
     const engineering = fields["team"]?.find((v) => v.value === "Engineering");
     expect(engineering?.count).toBeGreaterThan(0);
   });

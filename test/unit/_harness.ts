@@ -261,7 +261,11 @@ export async function connect(clientOptions: Record<string, unknown>): Promise<H
             .concat(JSON.stringify(result["structuredContent"] ?? "")),
         };
       } catch (error) {
-        return { ok: false, structured: undefined, text: String((error as Error)?.message ?? error) };
+        return {
+          ok: false,
+          structured: undefined,
+          text: String((error as Error)?.message ?? error),
+        };
       }
     },
     close: async () => {

@@ -13,12 +13,12 @@ candidat, ni du côté recruteur.
 
 ## 2. Le `robots.txt`
 
-| Hôte | Contenu |
-|---|---|
-| `api.lever.co` | `Allow: /`, `Crawl-delay: 1` |
-| `api.eu.lever.co` | `Allow: /`, `Crawl-delay: 1` |
-| `www.lever.co` | `Disallow: /studio/`, `/api/`, `/404`, `/500` |
-| `jobs.lever.co` | bloc Cloudflare : `Content-Signal`, puis `Disallow: /` nommément pour six agents |
+| Hôte              | Contenu                                                                          |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `api.lever.co`    | `Allow: /`, `Crawl-delay: 1`                                                     |
+| `api.eu.lever.co` | `Allow: /`, `Crawl-delay: 1`                                                     |
+| `www.lever.co`    | `Disallow: /studio/`, `/api/`, `/404`, `/500`                                    |
+| `jobs.lever.co`   | bloc Cloudflare : `Content-Signal`, puis `Disallow: /` nommément pour six agents |
 
 Le serveur lit `api.lever.co`, qui autorise tout et demande une seconde entre
 deux requêtes. Ce fichier ne nomme aucun agent et ne porte aucun `Content-Signal`.
@@ -84,17 +84,17 @@ l'éditeur, avec les paramètres, les champs et des exemples.
 
 Les champs d'une annonce, tels que l'API les rend :
 
-| Champ | Ce qu'il porte |
-|---|---|
-| `id`, `text` | identifiant UUID, intitulé du poste |
-| `categories` | `location`, `commitment`, `team`, `department`, **`allLocations`** |
-| `country` | code ISO 3166-1 alpha-2, **`null` quand il est inconnu** |
-| `workplaceType` | `unspecified`, `on-site`, `remote`, `hybrid` |
-| `salaryRange` | objet `{ currency, interval, min, max }`, optionnel |
-| `descriptionPlain`, `openingPlain`, `descriptionBodyPlain` | le texte, déjà en clair |
-| `lists` | les blocs nommés de l'annonce, prérequis et avantages |
-| `hostedUrl`, `applyUrl` | la page de l'annonce, le formulaire de candidature |
-| `createdAt` | horodatage en millisecondes |
+| Champ                                                      | Ce qu'il porte                                                     |
+| ---------------------------------------------------------- | ------------------------------------------------------------------ |
+| `id`, `text`                                               | identifiant UUID, intitulé du poste                                |
+| `categories`                                               | `location`, `commitment`, `team`, `department`, **`allLocations`** |
+| `country`                                                  | code ISO 3166-1 alpha-2, **`null` quand il est inconnu**           |
+| `workplaceType`                                            | `unspecified`, `on-site`, `remote`, `hybrid`                       |
+| `salaryRange`                                              | objet `{ currency, interval, min, max }`, optionnel                |
+| `descriptionPlain`, `openingPlain`, `descriptionBodyPlain` | le texte, déjà en clair                                            |
+| `lists`                                                    | les blocs nommés de l'annonce, prérequis et avantages              |
+| `hostedUrl`, `applyUrl`                                    | la page de l'annonce, le formulaire de candidature                 |
+| `createdAt`                                                | horodatage en millisecondes                                        |
 
 Trois choses valent d'être soulignées, parce qu'elles évitent chacune un
 mensonge courant :
@@ -147,11 +147,11 @@ absence ne se déclare qu'après avoir interrogé les deux.
 
 C'est la propriété qui rend ce site honnête :
 
-| Réponse | Ce qu'elle veut dire |
-|---|---|
+| Réponse                                         | Ce qu'elle veut dire                           |
+| ----------------------------------------------- | ---------------------------------------------- |
 | `404 {"ok":false,"error":"Document not found"}` | ce nom de site n'existe pas sur cette instance |
-| `200 []` | le site existe et ne publie rien |
-| `200 [ … ]` | le site existe et publie |
+| `200 []`                                        | le site existe et ne publie rien               |
+| `200 [ … ]`                                     | le site existe et publie                       |
 
 Vérifié : `zzznotreal999` répond 404, `lever`, `plaid` et `mistral` rendent
 `200 []`, `theathletic` rend 14 offres. La même distinction vaut sur une annonce

@@ -86,7 +86,9 @@ describe("l'agrégation par entreprise", () => {
     });
     await harness.close();
 
-    const statuses = Object.fromEntries(perCompany(outcome.structured).map((e) => [e.input, e.status]));
+    const statuses = Object.fromEntries(
+      perCompany(outcome.structured).map((e) => [e.input, e.status]),
+    );
     expect(statuses).toEqual({
       acmerobotics: "read",
       "Mitek Systems": "unresolved",

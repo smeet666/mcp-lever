@@ -28,7 +28,7 @@ export function slugForms(name: string): string[] {
 
   forms.push(joined);
   forms.push(joined.charAt(0).toUpperCase() + joined.slice(1));
-  forms.push(cleaned[0]!.toLowerCase());
+  forms.push((cleaned[0] ?? "").toLowerCase());
   forms.push(cleaned.map((w) => w.toLowerCase()).join("-"));
 
   const seen = new Set<string>();

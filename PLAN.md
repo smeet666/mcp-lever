@@ -34,15 +34,15 @@ src/lever/*.ts        http, rythme, cache, analyse     ← n'importe jamais le S
 
 Modules de la couche basse :
 
-| Fichier | Rôle |
-|---|---|
-| `config.ts` | hôtes autorisés, intervalle minimal, plafonds, `User-Agent` |
-| `hosts.ts` | la liste blanche, et le refus de toute autre adresse |
-| `http.ts` | une requête à la fois, intervalle plancher, traduction des erreurs |
-| `postings.ts` | construction de la requête, lecture de la charge, `Read<T>` |
-| `resolve.ts` | nom d'entreprise → identifiant de site, par l'échelle de variantes |
-| `vocabulary.ts` | le vocabulaire d'un site, lu par `group=` |
-| `errors.ts` | les six codes, et rien de plus |
+| Fichier         | Rôle                                                               |
+| --------------- | ------------------------------------------------------------------ |
+| `config.ts`     | hôtes autorisés, intervalle minimal, plafonds, `User-Agent`        |
+| `hosts.ts`      | la liste blanche, et le refus de toute autre adresse               |
+| `http.ts`       | une requête à la fois, intervalle plancher, traduction des erreurs |
+| `postings.ts`   | construction de la requête, lecture de la charge, `Read<T>`        |
+| `resolve.ts`    | nom d'entreprise → identifiant de site, par l'échelle de variantes |
+| `vocabulary.ts` | le vocabulaire d'un site, lu par `group=`                          |
+| `errors.ts`     | les six codes, et rien de plus                                     |
 
 `Read<T> = { data, cached, skipped? }`. Six codes d'erreur : `not_found`,
 `invalid_input`, `rate_limited`, `parse_failure`, `network_error`, `timeout`.
@@ -66,12 +66,12 @@ aucun navigateur.
 Enregistrés dans cet ordre, qui est celui du rendu. Leur forme détaillée vit
 dans `DESIGN-DRAFT.md`.
 
-| Outil | Requêtes réseau |
-|---|---|
-| `resolve_company` | une par variante et par instance, deux au mieux |
-| `search_jobs` | la résolution, puis une par entreprise |
-| `get_job` | une |
-| `list_filter_values` | une par regroupement demandé |
+| Outil                | Requêtes réseau                                 |
+| -------------------- | ----------------------------------------------- |
+| `resolve_company`    | une par variante et par instance, deux au mieux |
+| `search_jobs`        | la résolution, puis une par entreprise          |
+| `get_job`            | une                                             |
+| `list_filter_values` | une par regroupement demandé                    |
 
 **La résolution est le poste de dépense du serveur**, et son arithmétique se
 regarde en face. Quatre formes essayées sur deux instances font huit requêtes,
@@ -109,8 +109,7 @@ c'est la limite de ce qu'un appel d'outil peut promettre.
    catégorie, et le filtre ne compare qu'à période égale.
 3. **`min` égal à `max` se rend tel quel.** Cinq offres portent un montant
    unique.
-4. **`country: null` se rend `null`**, et vaut « pays inconnu ». Deux offres sur
-   450.
+4. **`country: null` se rend `null`**, et vaut « pays inconnu ». Deux offres sur 450.
 5. **`all_locations` se rend en tableau**, jamais recollé, et `location` reste le
    lieu principal que Lever désigne. 25 offres en portent plusieurs, jusqu'à
    neuf.

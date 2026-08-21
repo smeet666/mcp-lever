@@ -36,7 +36,9 @@ describe("les notes du serveur", () => {
     const outcome = await harness.call("resolve_company", { names: ["Mitek Systems"] });
     await harness.close();
 
-    expect(((outcome.structured?.["resolved"] as { found: unknown[] }[])[0]?.found)).toEqual([]);
+    expect(
+      (outcome.structured?.["resolved"] as { found: unknown[] }[] | undefined)?.[0]?.found,
+    ).toEqual([]);
     const notes = notesOf(outcome.structured);
     expect(notes.length).toBeGreaterThan(0);
     expect(notes.join(" ")).toMatch(/case/i);
@@ -50,8 +52,12 @@ describe("les notes du serveur", () => {
     const outcome = await harness.call("resolve_company", { names: ["Duplex Labs"] });
     await harness.close();
 
-    expect(((outcome.structured?.["resolved"] as { found: unknown[] }[])[0]?.found)).toHaveLength(2);
-    expect(notesOf(outcome.structured).join(" ")).toMatch(/both Lever instances|global.*eu|eu.*global/i);
+    expect(
+      (outcome.structured?.["resolved"] as { found: unknown[] }[] | undefined)?.[0]?.found,
+    ).toHaveLength(2);
+    expect(notesOf(outcome.structured).join(" ")).toMatch(
+      /both Lever instances|global.*eu|eu.*global/i,
+    );
   });
 
   it("n'écrit aucune note d'absence quand une entreprise se résout", async () => {
@@ -121,7 +127,9 @@ describe("les notes du serveur", () => {
 
     const notes = notesOf(outcome.structured);
     expect(contientLeNombre(notes, horsFenetre)).toBe(true);
-    expect((outcome.structured?.["jobs"] as unknown[]).length).toBe(acme.length - horsFenetre);
+    expect((outcome.structured?.["jobs"] as unknown[] | undefined)?.length).toBe(
+      acme.length - horsFenetre,
+    );
   });
 
   it("nomme la valeur de filtre écartée et invite à lire le vocabulaire du site", async () => {

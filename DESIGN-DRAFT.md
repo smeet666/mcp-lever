@@ -45,33 +45,33 @@ Ce que l'API permet, et ce qui mérite d'être exposé. Les deux colonnes sont
 séparées, parce qu'un outil faisable et sans intérêt coûte des tokens à chaque
 appel de `tools/list`.
 
-| Outil envisagé | Faisable | Pertinent | Pourquoi |
-|---|---|---|---|
-| `resolve_company` | oui | **oui** | Rien ne s'appelle sans un site nommé, et le nom ne se devine pas à tous les coups |
-| `search_jobs` | oui | **oui** | Le cœur du serveur, `companies` requis |
-| `get_job` | oui | **oui** | Une liste ne peut pas porter le texte : 25 offres pèsent déjà 466 Ko |
-| `list_filter_values` | oui | **oui** | Une valeur inconnue rend `200 []` sans erreur, donc le vocabulaire se lit avant de filtrer |
-| Recherche sans entreprise nommée | **non** | — | Aucun index ne traverse les clientes de Lever |
-| Annuaire d'entreprises embarqué | oui | **non** | Une liste figée vieillit d'un tiers par an et se lit comme l'ensemble des clientes, ce qu'elle n'est pas |
-| Recherche plein texte chez Lever | **non** | — | L'éditeur écrit que l'API ne le fait pas ; le mot-clé s'applique chez nous |
-| Annuaire des entreprises clientes | **non** | — | Aucune route ne les énumère |
-| Formulaire de candidature d'une offre | **non** | — | L'éditeur écrit que les questions personnalisées ne sont pas exposées |
-| Fiche d'entreprise | partiellement | **non** | Aucune route ne la publie ; la déduire des offres inventerait un profil |
-| Candidater à une offre | oui | **non** | Une route `POST` existe et ces serveurs n'écrivent nulle part |
-| Statistiques de salaire | oui | **non** | 14 offres sur 50 publient un salaire, et les périodes diffèrent : la moyenne mentirait |
-| Rendu HTML ou iframe | oui | **non** | Destiné à l'inclusion dans une page carrières, sans usage pour un agent |
-| Offres récentes | oui | **non** | `posted_within_days` sur `search_jobs` y répond sans outil de plus |
+| Outil envisagé                        | Faisable      | Pertinent | Pourquoi                                                                                                 |
+| ------------------------------------- | ------------- | --------- | -------------------------------------------------------------------------------------------------------- |
+| `resolve_company`                     | oui           | **oui**   | Rien ne s'appelle sans un site nommé, et le nom ne se devine pas à tous les coups                        |
+| `search_jobs`                         | oui           | **oui**   | Le cœur du serveur, `companies` requis                                                                   |
+| `get_job`                             | oui           | **oui**   | Une liste ne peut pas porter le texte : 25 offres pèsent déjà 466 Ko                                     |
+| `list_filter_values`                  | oui           | **oui**   | Une valeur inconnue rend `200 []` sans erreur, donc le vocabulaire se lit avant de filtrer               |
+| Recherche sans entreprise nommée      | **non**       | —         | Aucun index ne traverse les clientes de Lever                                                            |
+| Annuaire d'entreprises embarqué       | oui           | **non**   | Une liste figée vieillit d'un tiers par an et se lit comme l'ensemble des clientes, ce qu'elle n'est pas |
+| Recherche plein texte chez Lever      | **non**       | —         | L'éditeur écrit que l'API ne le fait pas ; le mot-clé s'applique chez nous                               |
+| Annuaire des entreprises clientes     | **non**       | —         | Aucune route ne les énumère                                                                              |
+| Formulaire de candidature d'une offre | **non**       | —         | L'éditeur écrit que les questions personnalisées ne sont pas exposées                                    |
+| Fiche d'entreprise                    | partiellement | **non**   | Aucune route ne la publie ; la déduire des offres inventerait un profil                                  |
+| Candidater à une offre                | oui           | **non**   | Une route `POST` existe et ces serveurs n'écrivent nulle part                                            |
+| Statistiques de salaire               | oui           | **non**   | 14 offres sur 50 publient un salaire, et les périodes diffèrent : la moyenne mentirait                   |
+| Rendu HTML ou iframe                  | oui           | **non**   | Destiné à l'inclusion dans une page carrières, sans usage pour un agent                                  |
+| Offres récentes                       | oui           | **non**   | `posted_within_days` sur `search_jobs` y répond sans outil de plus                                       |
 
 ## Les quatre outils
 
 Enregistrés dans cet ordre, qui est celui du rendu. Les requêtes qu'ils coûtent :
 
-| Outil | Requêtes réseau |
-|---|---|
-| `resolve_company` | une par forme et par instance, deux au mieux, huit au pire |
-| `search_jobs` | la résolution, puis une par entreprise |
-| `get_job` | une |
-| `list_filter_values` | une par regroupement demandé |
+| Outil                | Requêtes réseau                                            |
+| -------------------- | ---------------------------------------------------------- |
+| `resolve_company`    | une par forme et par instance, deux au mieux, huit au pire |
+| `search_jobs`        | la résolution, puis une par entreprise                     |
+| `get_job`            | une                                                        |
+| `list_filter_values` | une par regroupement demandé                               |
 
 Un cache de résolution tenu pour la session évite de payer deux fois la même
 entreprise, et un `companies` portant déjà un identifiant exact évite l'échelle
@@ -95,7 +95,7 @@ l'européenne, et **s'arrête à la première que Lever confirme**.
 {
   "resolved": { "slug": "includedhealth", "instance": "global", "publishes": true },
   "tried": ["includedhealth"],
-  "notes": []
+  "notes": [],
 }
 ```
 
@@ -106,7 +106,9 @@ une absence :
 {
   "resolved": null,
   "tried": ["mitek", "Mitek", "miteksystems", "mitek-systems"],
-  "notes": ["Aucune de ces formes n'existe sur Lever. L'identifiant d'un site est sensible à la casse et ne dérive pas toujours du nom de l'entreprise, donc ce résultat ne prouve pas que Mitek Systems soit absente de la plateforme."]
+  "notes": [
+    "Aucune de ces formes n'existe sur Lever. L'identifiant d'un site est sensible à la casse et ne dérive pas toujours du nom de l'entreprise, donc ce résultat ne prouve pas que Mitek Systems soit absente de la plateforme.",
+  ],
 }
 ```
 
@@ -119,16 +121,16 @@ Une ou plusieurs entreprises en entrée, une liste d'offres en sortie. Le
 paramètre `companies` est requis, et sa description dit pourquoi : Lever ne
 publie aucun index traversant ses clientes.
 
-| Argument | Type | Où il s'applique |
-|---|---|---|
-| `companies` | string[] | requis, noms ou identifiants de site |
-| `keyword` | string | chez nous, sur l'intitulé et le texte |
-| `location`, `team`, `department`, `commitment`, `level` | string[] | chez Lever, valeur exacte |
-| `workplace_type` | enum[] | chez nous, `onsite` `remote` `hybrid` `unspecified` |
-| `country` | string[] | chez nous, ISO 3166-1 alpha-2 |
-| `salary_min`, `currency` | number, string | chez nous, sur les offres qui publient un salaire |
-| `posted_within_days` | integer | chez nous, sur `createdAt` |
-| `limit`, `skip` | integer | chez Lever, `limit` plafonné par le serveur |
+| Argument                                                | Type           | Où il s'applique                                    |
+| ------------------------------------------------------- | -------------- | --------------------------------------------------- |
+| `companies`                                             | string[]       | requis, noms ou identifiants de site                |
+| `keyword`                                               | string         | chez nous, sur l'intitulé et le texte               |
+| `location`, `team`, `department`, `commitment`, `level` | string[]       | chez Lever, valeur exacte                           |
+| `workplace_type`                                        | enum[]         | chez nous, `onsite` `remote` `hybrid` `unspecified` |
+| `country`                                               | string[]       | chez nous, ISO 3166-1 alpha-2                       |
+| `salary_min`, `currency`                                | number, string | chez nous, sur les offres qui publient un salaire   |
+| `posted_within_days`                                    | integer        | chez nous, sur `createdAt`                          |
+| `limit`, `skip`                                         | integer        | chez Lever, `limit` plafonné par le serveur         |
 
 Les filtres de Lever exigent la valeur exacte et distinguent la casse. Un filtre
 que le site refuse fait réessayer sans lui, et la note nomme ce qui a été écarté.
@@ -137,14 +139,14 @@ Sortie :
 
 ```jsonc
 {
-  "jobs": [ /* la ligne décrite plus bas */ ],
+  "jobs": [/* la ligne décrite plus bas */],
   "per_company": [
     { "company": "Included Health", "slug": "includedhealth", "status": "read", "returned": 25 },
-    { "company": "Mitek Systems", "slug": null, "status": "unresolved", "returned": 0 }
+    { "company": "Mitek Systems", "slug": null, "status": "unresolved", "returned": 0 },
   ],
   "has_more": true,
   "total_available": null,
-  "notes": []
+  "notes": [],
 }
 ```
 
@@ -217,14 +219,20 @@ Les mêmes champs, plus le texte :
   // … tous les champs de la ligne …
   "description": "…",
   "sections": [
-    { "heading": "Responsibilities:", "items": ["Perform age-appropriate history and virtual examinations…", "…"] },
-    { "heading": "Required Qualifications", "items": ["Completion of a 3-year Family Medicine or Emergency Medicine residency", "…"] }
+    {
+      "heading": "Responsibilities:",
+      "items": ["Perform age-appropriate history and virtual examinations…", "…"],
+    },
+    {
+      "heading": "Required Qualifications",
+      "items": ["Completion of a 3-year Family Medicine or Emergency Medicine residency", "…"],
+    },
   ],
   "salary_note": null,
   "source": {
     "site": "Lever",
-    "retrieved_from": "https://api.lever.co/v0/postings/includedhealth/1a0a2e39-a95d-467d-b24e-54bc4479edb0"
-  }
+    "retrieved_from": "https://api.lever.co/v0/postings/includedhealth/1a0a2e39-a95d-467d-b24e-54bc4479edb0",
+  },
 }
 ```
 
@@ -246,18 +254,18 @@ Elles viennent du corpus et gouverneront les tests.
    « sur site ». Les valeurs observées sont `remote`, `hybrid` et `onsite`, cette
    dernière s'écrivant sans tiret dans la charge là où la documentation la note
    `on-site`. Le serveur suit la charge.
-11. **Une valeur de filtre que Lever ne connaît pas rend une liste vide sans
-    erreur.** `team=Engineering` sur un site qui n'a pas cette équipe répond
-    `200 []`. Le serveur vérifie donc la valeur contre le vocabulaire du site
-    avant d'appeler, et une valeur absente devient `invalid_input` avec les
-    valeurs permises, plutôt qu'une absence fabriquée.
-7. **Un site non résolu se dit non résolu**, avec les formes essayées, et jamais
+7. **Une valeur de filtre que Lever ne connaît pas rend une liste vide sans
+   erreur.** `team=Engineering` sur un site qui n'a pas cette équipe répond
+   `200 []`. Le serveur vérifie donc la valeur contre le vocabulaire du site
+   avant d'appeler, et une valeur absente devient `invalid_input` avec les
+   valeurs permises, plutôt qu'une absence fabriquée.
+8. **Un site non résolu se dit non résolu**, avec les formes essayées, et jamais
    comme une entreprise sans offre.
-8. **Les entités HTML se déséchappent.** Le texte des rubriques porte `&nbsp;`
+9. **Les entités HTML se déséchappent.** Le texte des rubriques porte `&nbsp;`
    dans la charge, et le rendre tel quel montre du balisage au lecteur.
-9. **`posted_at` se convertit en ISO 8601 UTC** depuis les millisecondes de
-   `createdAt`, sans changer l'instant.
-10. Le texte venu du site ne doit pas pouvoir imiter une ligne que le serveur
+10. **`posted_at` se convertit en ISO 8601 UTC** depuis les millisecondes de
+    `createdAt`, sans changer l'instant.
+11. Le texte venu du site ne doit pas pouvoir imiter une ligne que le serveur
     écrit : les préfixes `Note:` et `Source:` se décalent.
 
 ## Ce qui reste ouvert

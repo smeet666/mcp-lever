@@ -57,9 +57,9 @@ describe("la liste blanche d'hôtes", () => {
 
   it("refuse un sous-domaine qui préfixe un hôte autorisé", () => {
     expect(isAllowedHost("https://api.lever.co.attacker.test/v0/postings/x")).toBe(false);
-    expect(codeOfThrow(() => assertAllowedUrl("https://api.lever.co.attacker.test/v0/postings/x"))).toBe(
-      "invalid_input",
-    );
+    expect(
+      codeOfThrow(() => assertAllowedUrl("https://api.lever.co.attacker.test/v0/postings/x")),
+    ).toBe("invalid_input");
   });
 
   it("refuse une adresse dont le chemin seul imite un hôte autorisé", () => {
@@ -71,9 +71,9 @@ describe("la liste blanche d'hôtes", () => {
 
   it("refuse un hôte autorisé placé en partie d'authentification", () => {
     expect(isAllowedHost("https://api.lever.co@evil.test/v0/postings/x")).toBe(false);
-    expect(codeOfThrow(() => assertAllowedUrl("https://api.lever.co@evil.test/v0/postings/x"))).toBe(
-      "invalid_input",
-    );
+    expect(
+      codeOfThrow(() => assertAllowedUrl("https://api.lever.co@evil.test/v0/postings/x")),
+    ).toBe("invalid_input");
   });
 
   it("refuse une chaîne qui n'est pas une adresse absolue", () => {

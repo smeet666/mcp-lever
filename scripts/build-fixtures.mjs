@@ -149,8 +149,7 @@ const acme = [
     country: "US",
     workplaceType: "remote",
     createdAt: at("2026-02-11T21:45:10.500Z"),
-    salaryDescriptionPlain:
-      "Compensation is set by level and by the city the person works from.",
+    salaryDescriptionPlain: "Compensation is set by level and by the city the person works from.",
   }),
 
   posting("acmerobotics", "country_null", {

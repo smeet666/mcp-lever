@@ -90,9 +90,7 @@ describe("la traduction des pannes", () => {
   });
 
   it("rend timeout quand la réponse n'arrive pas dans le délai", async () => {
-    const code = await codeOfRejection(() =>
-      getJson(URL_UNDER_TEST, options(neverAnswers, 5_000)),
-    );
+    const code = await codeOfRejection(() => getJson(URL_UNDER_TEST, options(neverAnswers, 5_000)));
     expect(code).toBe("timeout");
   });
 

@@ -9,13 +9,16 @@ porte les règles de rendu numérotées.
 ## Le vocabulaire commun
 
 ```ts
-interface Read<T> { data: T; cached: boolean; skipped?: string[] }
+interface Read<T> {
+  data: T;
+  cached: boolean;
+  skipped?: string[];
+}
 
 type Instance = "global" | "eu";
 
 type ErrorCode =
-  | "not_found" | "invalid_input" | "rate_limited"
-  | "parse_failure" | "network_error" | "timeout";
+  "not_found" | "invalid_input" | "rate_limited" | "parse_failure" | "network_error" | "timeout";
 
 class LeverError extends Error {
   readonly code: ErrorCode;
@@ -63,7 +66,11 @@ Une requête à la fois. L'intervalle configuré ne descend jamais sous
 ### `src/lever/http.ts`
 
 ```ts
-interface HttpOptions { timeoutMs: number; userAgent: string; fetchImpl: typeof fetch }
+interface HttpOptions {
+  timeoutMs: number;
+  userAgent: string;
+  fetchImpl: typeof fetch;
+}
 
 /** Passe par assertAllowedUrl, puis par le limiteur, puis traduit les erreurs. */
 function getJson<T>(url: string, options: HttpOptions): Promise<T>;
@@ -78,7 +85,7 @@ Traduction : 404 → `not_found`, 429 → `rate_limited`, 5xx et coupure →
 interface ListParams {
   slug: string;
   instance: Instance;
-  limit?: number;   // défaut 25, plafond 100
+  limit?: number; // défaut 25, plafond 100
   skip?: number;
   location?: string[];
   team?: string[];
@@ -89,12 +96,19 @@ interface ListParams {
 /** null quand le site est inconnu sur cette instance ; [] quand il ne publie rien. */
 function listPostings(p: ListParams, c: Client): Promise<Read<RawPosting[] | null>>;
 
-function getPosting(slug: string, id: string, instance: Instance, c: Client)
-  : Promise<Read<RawPosting>>;
+function getPosting(
+  slug: string,
+  id: string,
+  instance: Instance,
+  c: Client,
+): Promise<Read<RawPosting>>;
 
-function listGroups(slug: string, instance: Instance,
-                    group: "team" | "location" | "commitment", c: Client)
-  : Promise<Read<RawGroup[]>>;
+function listGroups(
+  slug: string,
+  instance: Instance,
+  group: "team" | "location" | "commitment",
+  c: Client,
+): Promise<Read<RawGroup[]>>;
 ```
 
 `listPostings` rend `null` sur 404 et `[]` sur une liste vide, et ces deux
@@ -203,30 +217,33 @@ Une liste plutôt qu'un nom : sonder dix entreprises coûte dix résolutions, l�
   "additionalProperties": false,
   "properties": {
     "resolved": { "type": "array", "items": { "$ref": "#/$defs/Resolved" } },
-    "notes": { "type": "array", "items": { "type": "string" } }
+    "notes": { "type": "array", "items": { "type": "string" } },
   },
-  "$defs": { "Resolved": {
-    "type": "object",
-    "required": ["input", "found", "tried", "cached"],
-    "additionalProperties": false,
-    "properties": {
-      "input": { "type": "string" },
-      "cached": { "type": "boolean" },
-      "found": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["slug", "instance", "publishes"],
-        "additionalProperties": false,
-        "properties": {
-          "slug": { "type": "string" },
-          "instance": { "enum": ["global", "eu"] },
-          "publishes": { "type": "boolean" }
-        }
-      }
+  "$defs": {
+    "Resolved": {
+      "type": "object",
+      "required": ["input", "found", "tried", "cached"],
+      "additionalProperties": false,
+      "properties": {
+        "input": { "type": "string" },
+        "cached": { "type": "boolean" },
+        "found": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["slug", "instance", "publishes"],
+            "additionalProperties": false,
+            "properties": {
+              "slug": { "type": "string" },
+              "instance": { "enum": ["global", "eu"] },
+              "publishes": { "type": "boolean" },
+            },
+          },
+        },
+        "tried": { "type": "array", "items": { "type": "string" } },
+      },
     },
-      "tried": { "type": "array", "items": { "type": "string" } }
-  }}}
+  },
 }
 ```
 
@@ -237,16 +254,16 @@ qui le dit, en nommant la sensibilité à la casse.
 
 Arguments :
 
-| Nom | Type | Contrainte |
-|---|---|---|
-| `companies` | string[] | requis, 1 à 25, défaut de traitement 10 |
-| `keyword` | string | chez nous |
-| `location`, `team`, `department`, `commitment` | string[] | chez Lever, valeur exacte |
-| `workplace_type` | string[] | chez nous |
-| `country` | string[] | chez nous, ISO alpha-2 |
-| `salary_min` | number | chez nous, ≥ 0 |
-| `salary_interval` | string | chez nous, défaut `per-year-salary` |
-| `currency` | string | chez nous, ISO 4217 |
+| Nom                                            | Type     | Contrainte                              |
+| ---------------------------------------------- | -------- | --------------------------------------- |
+| `companies`                                    | string[] | requis, 1 à 25, défaut de traitement 10 |
+| `keyword`                                      | string   | chez nous                               |
+| `location`, `team`, `department`, `commitment` | string[] | chez Lever, valeur exacte               |
+| `workplace_type`                               | string[] | chez nous                               |
+| `country`                                      | string[] | chez nous, ISO alpha-2                  |
+| `salary_min`                                   | number   | chez nous, ≥ 0                          |
+| `salary_interval`                              | string   | chez nous, défaut `per-year-salary`     |
+| `currency`                                     | string   | chez nous, ISO 4217                     |
 
 `salary_interval` existe parce qu'un seuil nu n'a pas de période. Lever publie
 des montants annuels et des taux horaires, et comparer 60 000 à 63,09 est une
@@ -270,18 +287,18 @@ publiée dans une autre période est écartée et comptée.
         "required": ["input", "slug", "instance", "status", "returned"],
         "additionalProperties": false,
         "properties": {
-          "input":    { "type": "string" },
-          "slug":     { "type": ["string", "null"] },
+          "input": { "type": "string" },
+          "slug": { "type": ["string", "null"] },
           "instance": { "enum": ["global", "eu", null] },
-          "status":   { "enum": ["read", "unresolved", "empty", "failed"] },
+          "status": { "enum": ["read", "unresolved", "empty", "failed"] },
           "returned": { "type": "integer" },
-          "error":    { "type": "string" }
-        }
-      }
+          "error": { "type": "string" },
+        },
+      },
     },
     "total_available": { "type": "null" },
-    "notes": { "type": "array", "items": { "type": "string" } }
-  }
+    "notes": { "type": "array", "items": { "type": "string" } },
+  },
 }
 ```
 
@@ -312,12 +329,12 @@ Arguments : `{ company_slug: string, instance?: Instance, fields?: ("team" | "lo
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "team":       { "$ref": "#/$defs/FilterValues" },
-        "location":   { "$ref": "#/$defs/FilterValues" },
-        "commitment": { "$ref": "#/$defs/FilterValues" }
-      }
+        "team": { "$ref": "#/$defs/FilterValues" },
+        "location": { "$ref": "#/$defs/FilterValues" },
+        "commitment": { "$ref": "#/$defs/FilterValues" },
+      },
     },
-    "notes": { "type": "array", "items": { "type": "string" } }
+    "notes": { "type": "array", "items": { "type": "string" } },
   },
   "$defs": {
     "FilterValues": {
@@ -326,10 +343,10 @@ Arguments : `{ company_slug: string, instance?: Instance, fields?: ("team" | "lo
         "type": "object",
         "required": ["value", "count"],
         "additionalProperties": false,
-        "properties": { "value": { "type": "string" }, "count": { "type": "integer" } }
-      }
-    }
-  }
+        "properties": { "value": { "type": "string" }, "count": { "type": "integer" } },
+      },
+    },
+  },
 }
 ```
 
@@ -340,26 +357,38 @@ Arguments : `{ company_slug: string, instance?: Instance, fields?: ("team" | "lo
 ```jsonc
 {
   "type": "object",
-  "required": ["id", "title", "company_slug", "instance", "location",
-               "all_locations", "country", "workplace_type", "team",
-               "salary", "posted_at", "url", "apply_url"],
+  "required": [
+    "id",
+    "title",
+    "company_slug",
+    "instance",
+    "location",
+    "all_locations",
+    "country",
+    "workplace_type",
+    "team",
+    "salary",
+    "posted_at",
+    "url",
+    "apply_url",
+  ],
   "additionalProperties": false,
   "properties": {
-    "id":             { "type": "string" },
-    "title":          { "type": "string" },
-    "company_slug":   { "type": "string" },
-    "instance":       { "enum": ["global", "eu"] },
-    "location":       { "type": "string" },
-    "all_locations":  { "type": "array", "items": { "type": "string" } },
-    "country":        { "type": ["string", "null"] },
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "company_slug": { "type": "string" },
+    "instance": { "enum": ["global", "eu"] },
+    "location": { "type": "string" },
+    "all_locations": { "type": "array", "items": { "type": "string" } },
+    "country": { "type": ["string", "null"] },
     "workplace_type": { "type": "string" },
-    "commitment":     { "type": "string" },
-    "team":           { "type": "string" },
-    "department":     { "type": "string" },
-    "salary":         { "$ref": "#/$defs/Salary" },
-    "posted_at":      { "type": "string", "format": "date-time" },
-    "url":            { "type": "string" },
-    "apply_url":      { "type": "string" }
+    "commitment": { "type": "string" },
+    "team": { "type": "string" },
+    "department": { "type": "string" },
+    "salary": { "$ref": "#/$defs/Salary" },
+    "posted_at": { "type": "string", "format": "date-time" },
+    "url": { "type": "string" },
+    "apply_url": { "type": "string" },
   },
   "$defs": {
     "Salary": {
@@ -370,15 +399,15 @@ Arguments : `{ company_slug: string, instance?: Instance, fields?: ("team" | "lo
           "required": ["min", "max", "currency", "interval"],
           "additionalProperties": false,
           "properties": {
-            "min":      { "type": "number" },
-            "max":      { "type": "number" },
+            "min": { "type": "number" },
+            "max": { "type": "number" },
             "currency": { "type": "string" },
-            "interval": { "type": "string" }
-          }
-        }
-      ]
-    }
-  }
+            "interval": { "type": "string" },
+          },
+        },
+      ],
+    },
+  },
 }
 ```
 
@@ -401,9 +430,9 @@ Tous les champs de `JobRow`, plus :
       "additionalProperties": false,
       "properties": {
         "heading": { "type": "string" },
-        "items": { "type": "array", "items": { "type": "string" } }
-      }
-    }
+        "items": { "type": "array", "items": { "type": "string" } },
+      },
+    },
   },
   "salary_note": { "type": ["string", "null"] },
   "source": {
@@ -412,9 +441,9 @@ Tous les champs de `JobRow`, plus :
     "additionalProperties": false,
     "properties": {
       "site": { "const": "Lever" },
-      "retrieved_from": { "type": "string" }
-    }
-  }
+      "retrieved_from": { "type": "string" },
+    },
+  },
 }
 ```
 
@@ -426,16 +455,16 @@ Elles sont normatives, et un test vérifie qu'elles paraissent au bon moment.
 instructions du serveur, notes et messages d'erreur. Le français reste la langue
 de ces documents de travail et de la moitié française du README.
 
-| Quand | Ce que la note dit |
-|---|---|
-| `found` vide | ce résultat ne prouve pas une absence, l'identifiant distingue la casse |
-| un site rendu par les deux instances | les deux répondent, aucune n'est élue |
-| `salary_min` employé | combien d'offres ont été écartées faute de salaire publié |
-| `salary_min` face à une autre période | combien d'offres ont été écartées parce que leur période diffère |
-| `posted_within_days` employé | combien d'offres lues ont été écartées |
-| une valeur de filtre refusée | la valeur écartée, et l'invitation à lire `list_filter_values` |
-| une entreprise en panne | laquelle, et que la liste ne couvre donc pas tout |
-| plus de 10 entreprises demandées | que chaque entreprise coûte une seconde |
+| Quand                                 | Ce que la note dit                                                      |
+| ------------------------------------- | ----------------------------------------------------------------------- |
+| `found` vide                          | ce résultat ne prouve pas une absence, l'identifiant distingue la casse |
+| un site rendu par les deux instances  | les deux répondent, aucune n'est élue                                   |
+| `salary_min` employé                  | combien d'offres ont été écartées faute de salaire publié               |
+| `salary_min` face à une autre période | combien d'offres ont été écartées parce que leur période diffère        |
+| `posted_within_days` employé          | combien d'offres lues ont été écartées                                  |
+| une valeur de filtre refusée          | la valeur écartée, et l'invitation à lire `list_filter_values`          |
+| une entreprise en panne               | laquelle, et que la liste ne couvre donc pas tout                       |
+| plus de 10 entreprises demandées      | que chaque entreprise coûte une seconde                                 |
 
 Le texte venu du site ne doit pas pouvoir imiter une note : les préfixes `Note:`
 et `Source:` se décalent dans tout texte tiers rendu.

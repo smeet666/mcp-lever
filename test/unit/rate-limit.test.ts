@@ -75,14 +75,7 @@ describe("le rythme", () => {
       ]),
     );
 
-    expect(events).toEqual([
-      "début a",
-      "fin a",
-      "début b",
-      "fin b",
-      "début c",
-      "fin c",
-    ]);
+    expect(events).toEqual(["début a", "fin a", "début b", "fin b", "début c", "fin c"]);
   });
 
   it("espace de mille millisecondes deux lectures rapprochées du même client", async () => {

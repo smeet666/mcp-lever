@@ -64,7 +64,9 @@ describe.skipIf(!live)("les robots.txt des hôtes lus", () => {
 
       const groups = parseRobots(await response.text());
       for (const agent of AGENTS_QUI_NOUS_CONCERNENT) {
-        expect(interdit(groups, agent, CHEMIN), `${host} interdit ${CHEMIN} à ${agent}`).toEqual([]);
+        expect(interdit(groups, agent, CHEMIN), `${host} interdit ${CHEMIN} à ${agent}`).toEqual(
+          [],
+        );
       }
     });
   }

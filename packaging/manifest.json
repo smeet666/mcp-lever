@@ -13,22 +13,13 @@
   "documentation": "https://github.com/smeet666/mcp-lever#readme",
   "support": "https://github.com/smeet666/mcp-lever/issues",
   "license": "MIT",
-  "keywords": [
-    "lever",
-    "jobs",
-    "job-search",
-    "ats",
-    "hiring",
-    "careers"
-  ],
+  "keywords": ["lever", "jobs", "job-search", "ats", "hiring", "careers"],
   "server": {
     "type": "node",
     "entry_point": "dist/index.js",
     "mcp_config": {
       "command": "node",
-      "args": [
-        "${__dirname}/dist/index.js"
-      ]
+      "args": ["${__dirname}/dist/index.js"]
     }
   },
   "tools": [
