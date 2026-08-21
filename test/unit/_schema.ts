@@ -13,16 +13,26 @@ interface Schema {
 }
 
 function typeOf(value: Json): string {
-  if (value === null) return "null";
-  if (Array.isArray(value)) return "array";
-  if (Number.isInteger(value)) return "integer";
+  if (value === null) {
+    return "null";
+  }
+  if (Array.isArray(value)) {
+    return "array";
+  }
+  if (Number.isInteger(value)) {
+    return "integer";
+  }
   return typeof value;
 }
 
 function matchesType(value: Json, expected: string): boolean {
   const actual = typeOf(value);
-  if (expected === "number") return actual === "number" || actual === "integer";
-  if (expected === "object") return actual === "object";
+  if (expected === "number") {
+    return actual === "number" || actual === "integer";
+  }
+  if (expected === "object") {
+    return actual === "object";
+  }
   return actual === expected;
 }
 
@@ -32,7 +42,9 @@ function deepEqual(a: Json, b: Json): boolean {
 
 function resolve(schema: Schema, root: Schema, path: string, errors: string[]): Schema | null {
   const ref = schema["$ref"];
-  if (typeof ref !== "string") return schema;
+  if (typeof ref !== "string") {
+    return schema;
+  }
   const match = /^#\/\$defs\/(.+)$/.exec(ref);
   if (!match) {
     errors.push(`${path}: référence non résolue « ${ref} »`);
@@ -47,9 +59,45 @@ function resolve(schema: Schema, root: Schema, path: string, errors: string[]): 
   return target;
 }
 
+/** Les clés qu'un objet doit porter, celles qu'il n'a pas le droit de porter, et le reste. */
+function checkObject(
+  object: Record<string, Json>,
+  s: Schema,
+  scope: Schema,
+  path: string,
+  errors: string[],
+): void {
+  const properties = (s["properties"] ?? {}) as Record<string, Schema>;
+
+  const required = s["required"];
+  if (Array.isArray(required)) {
+    for (const key of required as string[]) {
+      if (!(key in object)) {
+        errors.push(`${path}: la clé requise « ${key} » manque`);
+      }
+    }
+  }
+
+  if (s["additionalProperties"] === false) {
+    for (const key of Object.keys(object)) {
+      if (!(key in properties)) {
+        errors.push(`${path}: clé inattendue « ${key} »`);
+      }
+    }
+  }
+
+  for (const [key, sub] of Object.entries(properties)) {
+    if (key in object) {
+      check(object[key], sub, scope, `${path}.${key}`, errors);
+    }
+  }
+}
+
 function check(value: Json, schema: Schema, root: Schema, path: string, errors: string[]): void {
   const resolved = resolve(schema, root, path, errors);
-  if (!resolved) return;
+  if (!resolved) {
+    return;
+  }
   const s = resolved;
   const scope = (s["$defs"] ? s : root) as Schema;
 
@@ -70,12 +118,10 @@ function check(value: Json, schema: Schema, root: Schema, path: string, errors: 
     errors.push(`${path}: attendu ${JSON.stringify(s["const"])}, reçu ${JSON.stringify(value)}`);
   }
 
-  if (Array.isArray(s["enum"])) {
-    if (!s["enum"].some((allowed) => deepEqual(allowed, value))) {
-      errors.push(
-        `${path}: ${JSON.stringify(value)} hors de l'énumération ${JSON.stringify(s["enum"])}`,
-      );
-    }
+  if (Array.isArray(s["enum"]) && !s["enum"].some((allowed) => deepEqual(allowed, value))) {
+    errors.push(
+      `${path}: ${JSON.stringify(value)} hors de l'énumération ${JSON.stringify(s["enum"])}`,
+    );
   }
 
   const type = s["type"];
@@ -88,25 +134,7 @@ function check(value: Json, schema: Schema, root: Schema, path: string, errors: 
   }
 
   if (typeOf(value) === "object") {
-    const object = value as Record<string, Json>;
-    const properties = (s["properties"] ?? {}) as Record<string, Schema>;
-
-    const required = s["required"];
-    if (Array.isArray(required)) {
-      for (const key of required as string[]) {
-        if (!(key in object)) errors.push(`${path}: la clé requise « ${key} » manque`);
-      }
-    }
-
-    if (s["additionalProperties"] === false) {
-      for (const key of Object.keys(object)) {
-        if (!(key in properties)) errors.push(`${path}: clé inattendue « ${key} »`);
-      }
-    }
-
-    for (const [key, sub] of Object.entries(properties)) {
-      if (key in object) check(object[key], sub, scope, `${path}.${key}`, errors);
-    }
+    checkObject(value as Record<string, Json>, s, scope, path, errors);
   }
 
   if (typeOf(value) === "array" && s["items"]) {

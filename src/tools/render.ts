@@ -81,7 +81,9 @@ export function indentMarkerLines(text: string): string {
 
 function toSalary(posting: RawPosting): Salary | null {
   const range = posting.salaryRange;
-  if (!range) return null;
+  if (!range) {
+    return null;
+  }
   // Rendered as published: the interval carries the period, so no amount is
   // ever annualised and no currency is ever converted.
   return {
@@ -111,8 +113,12 @@ export function toRow(posting: RawPosting, slug: string, instance: Instance): Jo
   };
   // A site that does not classify a posting leaves the key out, and so do we:
   // an absent key says "not recorded", where null would say "recorded as none".
-  if (categories.commitment !== undefined) row.commitment = categories.commitment;
-  if (categories.department !== undefined) row.department = categories.department;
+  if (categories.commitment !== undefined) {
+    row.commitment = categories.commitment;
+  }
+  if (categories.department !== undefined) {
+    row.department = categories.department;
+  }
   return row;
 }
 

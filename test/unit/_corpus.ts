@@ -78,16 +78,22 @@ export const FIXED_NOW = corpus.now;
 
 export function site(slug: string, instance: "global" | "eu" = "global"): CorpusSite {
   const found = corpus.sites.find((s) => s.slug === slug && s.instance === instance);
-  if (!found) throw new Error(`corpus: aucun site ${slug} sur ${instance}`);
+  if (!found) {
+    throw new Error(`corpus: aucun site ${slug} sur ${instance}`);
+  }
   return found;
 }
 
 /** L'offre du cas nommé, dans le site principal du corpus. */
 export function posting(caseName: string): RawPosting {
   const id = corpus.cases[caseName];
-  if (!id) throw new Error(`corpus: aucun cas nommé ${caseName}`);
+  if (!id) {
+    throw new Error(`corpus: aucun cas nommé ${caseName}`);
+  }
   const found = site("acmerobotics").postings.find((p) => p.id === id);
-  if (!found) throw new Error(`corpus: le cas ${caseName} ne désigne aucune offre`);
+  if (!found) {
+    throw new Error(`corpus: le cas ${caseName} ne désigne aucune offre`);
+  }
   return found;
 }
 

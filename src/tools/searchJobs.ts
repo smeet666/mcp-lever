@@ -103,13 +103,13 @@ interface Counters {
 
 export async function runSearchJobs(client: Client, args: SearchJobsArgs): Promise<CallToolResult> {
   try {
-    args = parseArgs(searchJobsSchema, args) as typeof args;
+    const checked = parseArgs(searchJobsSchema, args) as typeof args;
     refuseIdleArguments(args);
 
     const notes: string[] = [];
-    if (args.companies.length > DEFAULT_MAX_COMPANIES) {
+    if (checked.companies.length > DEFAULT_MAX_COMPANIES) {
       notes.push(
-        `${args.companies.length} companies were asked for. Each one costs between 3 and ${WORST_REQUESTS_PER_COMPANY} requests at one second apiece, so this call may run for minutes.`,
+        `${checked.companies.length} companies were asked for. Each one costs between 3 and ${WORST_REQUESTS_PER_COMPANY} requests at one second apiece, so this call may run for minutes.`,
       );
     }
 
@@ -130,7 +130,7 @@ export async function runSearchJobs(client: Client, args: SearchJobsArgs): Promi
       walked: [],
     };
 
-    for (const input of args.companies) {
+    for (const input of checked.companies) {
       perCompany.push(await readOne(client, args, input, jobs, counters, notes, refusals));
     }
 
@@ -160,7 +160,9 @@ export async function runSearchJobs(client: Client, args: SearchJobsArgs): Promi
  * which a caller reads as the answer to the question they asked.
  */
 function refuseIdleArguments(args: SearchJobsArgs): void {
-  if (args.salary_min !== undefined) return;
+  if (args.salary_min !== undefined) {
+    return;
+  }
   const idle = [
     args.currency === undefined ? undefined : "currency",
     args.salary_interval === undefined ? undefined : "salary_interval",
@@ -229,10 +231,16 @@ async function readOne(
       };
     }
 
-    if (found.truncated) counters.filled.push(input);
-    if (found.pages > 1) counters.walked.push(`${input} (${found.pages} pages)`);
+    if (found.truncated) {
+      counters.filled.push(input);
+    }
+    if (found.pages > 1) {
+      counters.walked.push(`${input} (${found.pages} pages)`);
+    }
     const kept = found.data.filter((posting) => keeps(posting, args, counters));
-    for (const posting of kept) jobs.push(toRow(posting, site.slug, site.instance));
+    for (const posting of kept) {
+      jobs.push(toRow(posting, site.slug, site.instance));
+    }
     return {
       input,
       slug: site.slug,
@@ -245,7 +253,9 @@ async function readOne(
     // One company's wrong filter wording leaves the others readable: the
     // vocabulary belongs to each company, so a value one of them does not
     // publish says nothing about the rest of the call.
-    if (isLeverError(error) && error.code === "invalid_input") refusals.push(error);
+    if (isLeverError(error) && error.code === "invalid_input") {
+      refusals.push(error);
+    }
     return {
       input,
       slug: site?.slug ?? null,
@@ -290,9 +300,13 @@ async function readBoard(
       ...(skip > 0 ? { skip } : {}),
       ...filters,
     });
-    if (read.data === null) return { data: null, pages, truncated: false };
+    if (read.data === null) {
+      return { data: null, pages, truncated: false };
+    }
     collected.push(...read.data);
-    if (read.data.length < limit) return { data: collected, pages: pages + 1, truncated: false };
+    if (read.data.length < limit) {
+      return { data: collected, pages: pages + 1, truncated: false };
+    }
     skip += limit;
   }
 
@@ -308,7 +322,9 @@ function chooseSite(
   input: string,
   notes: string[],
 ): ResolvedSite | undefined {
-  if (found.length === 0) return undefined;
+  if (found.length === 0) {
+    return undefined;
+  }
   const chosen = found.find((site) => site.publishes) ?? found[0];
   if (found.length > 1 && chosen) {
     const others = found
@@ -429,7 +445,9 @@ async function refuseUnknownFilterValue(
 ): Promise<void> {
   for (const field of GROUPED_FIELDS) {
     const wanted = args[field];
-    if (!wanted?.length) continue;
+    if (!wanted?.length) {
+      continue;
+    }
     const read = await client.listGroups(slug, instance, field);
     refuseAgainst(
       field,
@@ -471,7 +489,9 @@ function refuseAgainst(
       ? !published.includes(value)
       : !published.some((title) => title.toLowerCase() === value.toLowerCase()),
   );
-  if (unknown.length === 0) return;
+  if (unknown.length === 0) {
+    return;
+  }
 
   const how = exact
     ? "Lever matches several values only when each is written exactly as it publishes it, and answers anything else with an empty list and no error."
@@ -484,6 +504,53 @@ function refuseAgainst(
     `The ${slug} site publishes no ${field} called ${unknown.map(safeLine).join(", ")}. ${how} This is refused rather than reported as "nothing found". The values are ${where}, and list_filter_values publishes them.`,
     published.map(safeLine),
   );
+}
+
+/**
+ * What filtering on a date or on a salary did, and what it could not.
+ *
+ * Both filters read a field Lever publishes on a minority of openings, and a
+ * dropped opening means something different in each case: an opening with no
+ * salary is not a low-paid one, and the date filtered on is when Lever first
+ * recorded the opening rather than when it last moved.
+ */
+function addRecencyAndPayNotes(args: SearchJobsArgs, counters: Counters, notes: string[]): void {
+  if (args.posted_within_days !== undefined) {
+    notes.push(
+      "The date filtered on is when Lever recorded the opening, which is the only date it publishes. An opening a company republished or refreshed keeps its first one, so recency here measures when a role was first posted rather than when it last moved.",
+    );
+    if (counters.tooOld > 0) {
+      notes.push(
+        `${counters.tooOld} opening(s) that were read are older than ${args.posted_within_days} day(s) and were dropped.`,
+      );
+    }
+  }
+  if (args.salary_min !== undefined) {
+    const interval = args.salary_interval ?? DEFAULT_SALARY_INTERVAL;
+    notes.push(
+      `salary_min was read as ${interval}, and an opening is kept when the upper bound of its range reaches it. Lever publishes a salary on a minority of openings, and an amount carries its own period, so amounts written in another period are never converted.`,
+    );
+    if (counters.noSalary > 0) {
+      notes.push(
+        `${counters.noSalary} opening(s) were dropped because the company published no salary, which is not the same as a low one.`,
+      );
+    }
+    if (counters.otherInterval > 0) {
+      notes.push(
+        `${counters.otherInterval} opening(s) were dropped because their salary is published per a different period than ${interval}.`,
+      );
+    }
+    if (args.currency) {
+      notes.push(
+        counters.otherCurrency > 0
+          ? `${counters.otherCurrency} opening(s) were dropped because their salary is published in a currency other than ${args.currency.toUpperCase()}, and nothing here converts one.`
+          : `currency kept only salaries published in ${args.currency.toUpperCase()}, and turned none away.`,
+      );
+    }
+    if (counters.belowSalary > 0) {
+      notes.push(`${counters.belowSalary} opening(s) publish a salary below salary_min.`);
+    }
+  }
 }
 
 function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[]): void {
@@ -532,42 +599,7 @@ function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[
       "Lever records one country per opening, taken from its main location, while an opening can list several places. An opening open in two countries carries the country of the first, so all_locations is worth reading before concluding it is out of reach.",
     );
   }
-  if (args.posted_within_days !== undefined) {
-    notes.push(
-      "The date filtered on is when Lever recorded the opening, which is the only date it publishes. An opening a company republished or refreshed keeps its first one, so recency here measures when a role was first posted rather than when it last moved.",
-    );
-    if (counters.tooOld > 0) {
-      notes.push(
-        `${counters.tooOld} opening(s) that were read are older than ${args.posted_within_days} day(s) and were dropped.`,
-      );
-    }
-  }
-  if (args.salary_min !== undefined) {
-    const interval = args.salary_interval ?? DEFAULT_SALARY_INTERVAL;
-    notes.push(
-      `salary_min was read as ${interval}, and an opening is kept when the upper bound of its range reaches it. Lever publishes a salary on a minority of openings, and an amount carries its own period, so amounts written in another period are never converted.`,
-    );
-    if (counters.noSalary > 0) {
-      notes.push(
-        `${counters.noSalary} opening(s) were dropped because the company published no salary, which is not the same as a low one.`,
-      );
-    }
-    if (counters.otherInterval > 0) {
-      notes.push(
-        `${counters.otherInterval} opening(s) were dropped because their salary is published per a different period than ${interval}.`,
-      );
-    }
-    if (args.currency) {
-      notes.push(
-        counters.otherCurrency > 0
-          ? `${counters.otherCurrency} opening(s) were dropped because their salary is published in a currency other than ${args.currency.toUpperCase()}, and nothing here converts one.`
-          : `currency kept only salaries published in ${args.currency.toUpperCase()}, and turned none away.`,
-      );
-    }
-    if (counters.belowSalary > 0) {
-      notes.push(`${counters.belowSalary} opening(s) publish a salary below salary_min.`);
-    }
-  }
+  addRecencyAndPayNotes(args, counters, notes);
 }
 
 function addOutcomeNotes(
@@ -626,7 +658,9 @@ function summarise(payload: {
       `- ${safeLine(company.input)}: ${company.status}, ${company.read} read, ${company.returned} kept.`,
     );
   }
-  for (const note of payload.notes) lines.push(`Note: ${note}`);
+  for (const note of payload.notes) {
+    lines.push(`Note: ${note}`);
+  }
   return lines.join("\n");
 }
 

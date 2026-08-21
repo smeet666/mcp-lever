@@ -26,7 +26,9 @@ function parseRobots(text: string): RobotsGroup[] {
 
   for (const rawLine of text.split(/\r?\n/)) {
     const line = rawLine.split("#")[0]?.trim() ?? "";
-    if (line === "") continue;
+    if (line === "") {
+      continue;
+    }
     const [rawField, ...rest] = line.split(":");
     const field = (rawField ?? "").trim().toLowerCase();
     const value = rest.join(":").trim();
@@ -41,7 +43,9 @@ function parseRobots(text: string): RobotsGroup[] {
       continue;
     }
     previousWasAgent = false;
-    if (field === "disallow" && current) current.disallow.push(value);
+    if (field === "disallow" && current) {
+      current.disallow.push(value);
+    }
   }
   return groups;
 }
@@ -60,7 +64,9 @@ describe.skipIf(!live)("les robots.txt des hôtes lus", () => {
         headers: { "user-agent": "mcp-lever (+https://github.com/smeet666/mcp-lever)" },
       });
       expect([200, 404]).toContain(response.status);
-      if (response.status === 404) return;
+      if (response.status === 404) {
+        return;
+      }
 
       const groups = parseRobots(await response.text());
       for (const agent of AGENTS_QUI_NOUS_CONCERNENT) {

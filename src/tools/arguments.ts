@@ -23,7 +23,9 @@ export function parseArgs<Shape extends z.ZodRawShape>(
   args: unknown,
 ): z.infer<z.ZodObject<Shape>> {
   const parsed = schema.safeParse(args ?? {});
-  if (parsed.success) return parsed.data;
+  if (parsed.success) {
+    return parsed.data;
+  }
   // A caller who wrote `id` for `job_id` is told about `id` first: the missing
   // required argument is the consequence, and naming it alone sends them looking
   // for something they did write.
@@ -141,13 +143,19 @@ function nearest(written: string, declared: readonly string[]): string | undefin
   const contained = declared.find(
     (name) => name !== typed && (name.startsWith(typed) || name.endsWith(typed)),
   );
-  if (contained) return contained;
+  if (contained) {
+    return contained;
+  }
 
   let best: { name: string; apart: number } | undefined;
   for (const name of declared) {
     const apart = distance(written.toLowerCase(), name.toLowerCase());
-    if (apart > 2) continue;
-    if (best === undefined || apart < best.apart) best = { name, apart };
+    if (apart > 2) {
+      continue;
+    }
+    if (best === undefined || apart < best.apart) {
+      best = { name, apart };
+    }
   }
   return best?.name;
 }

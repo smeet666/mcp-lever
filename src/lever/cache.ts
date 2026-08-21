@@ -11,7 +11,9 @@ export class Cache<T> {
 
   get(key: string): T | undefined {
     const hit = this.entries.get(key);
-    if (!hit) return undefined;
+    if (!hit) {
+      return undefined;
+    }
     if (hit.expiresAt <= Date.now()) {
       this.entries.delete(key);
       return undefined;
@@ -25,7 +27,9 @@ export class Cache<T> {
     this.entries.set(key, { value, expiresAt: Date.now() + this.ttlMs });
     while (this.entries.size > this.maxEntries) {
       const oldest = this.entries.keys().next();
-      if (oldest.done) break;
+      if (oldest.done) {
+        break;
+      }
       this.entries.delete(oldest.value);
     }
   }

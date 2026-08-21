@@ -16,10 +16,14 @@ export function isAllowedHost(url: string): boolean {
   } catch {
     return false;
   }
-  if (parsed.protocol !== "https:") return false;
+  if (parsed.protocol !== "https:") {
+    return false;
+  }
   // A userinfo section lets `https://api.lever.co@evil.test/` read as trusted
   // to anyone matching on the string rather than on the parsed host.
-  if (parsed.username !== "" || parsed.password !== "") return false;
+  if (parsed.username !== "" || parsed.password !== "") {
+    return false;
+  }
   return ALLOWED_HOSTS.includes(parsed.hostname.toLowerCase());
 }
 

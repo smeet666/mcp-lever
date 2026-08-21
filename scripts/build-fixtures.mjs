@@ -21,7 +21,7 @@ function uuidFrom(key) {
   const h = createHash("sha256").update(`mcp-lever/fixtures/${key}`).digest("hex");
   const c = h.slice(0, 32).split("");
   c[12] = "4";
-  c[16] = ["8", "9", "a", "b"][parseInt(h[16], 16) % 4];
+  c[16] = ["8", "9", "a", "b"][Number.parseInt(h[16], 16) % 4];
   const s = c.join("");
   return `${s.slice(0, 8)}-${s.slice(8, 12)}-${s.slice(12, 16)}-${s.slice(16, 20)}-${s.slice(20, 32)}`;
 }
@@ -30,8 +30,8 @@ const at = (iso) => Date.parse(iso);
 
 const paragraph = (subject) =>
   `${subject} works alongside a small team that ships weekly. ` +
-  `The role covers design, build and operation of the systems behind the product, ` +
-  `and the person holding it is expected to write down what they decide.`;
+  "The role covers design, build and operation of the systems behind the product, " +
+  "and the person holding it is expected to write down what they decide.";
 
 const html = (text) => `<div><p>${text}</p></div>`;
 
@@ -71,7 +71,9 @@ function posting(slug, key, fields) {
     ],
   };
 
-  if (fields.salaryRange) p.salaryRange = fields.salaryRange;
+  if (fields.salaryRange) {
+    p.salaryRange = fields.salaryRange;
+  }
   if (fields.salaryDescriptionPlain) {
     p.salaryDescription = html(fields.salaryDescriptionPlain);
     p.salaryDescriptionPlain = fields.salaryDescriptionPlain;
@@ -386,8 +388,12 @@ function groupsOf(postings, key) {
   for (const p of postings) {
     const values = key === "location" ? p.categories.allLocations : [p.categories[key]];
     for (const value of values) {
-      if (value === undefined) continue;
-      if (!buckets.has(value)) buckets.set(value, []);
+      if (value === undefined) {
+        continue;
+      }
+      if (!buckets.has(value)) {
+        buckets.set(value, []);
+      }
       buckets.get(value).push(p);
     }
   }
