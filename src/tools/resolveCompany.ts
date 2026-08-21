@@ -26,11 +26,11 @@ export async function runResolveCompany(
   args: ResolveCompanyArgs,
 ): Promise<CallToolResult> {
   try {
-    args = parseArgs(resolveCompanySchema, args) as typeof args;
+    const checked = parseArgs(resolveCompanySchema, args) as typeof args;
     const resolved: ResolvedName[] = [];
     const notes: string[] = [];
 
-    for (const name of args.names) {
+    for (const name of checked.names) {
       const resolution = await client.resolveCompany(name);
       resolved.push({
         input: resolution.input,
@@ -95,7 +95,9 @@ function summarise(payload: { resolved: ResolvedName[]; notes: string[] }): stri
       `  forms tried: ${entry.tried.join(", ") || "none"}${entry.cached ? " (answered from this session's memory, nothing was asked of Lever)" : ""}.`,
     );
   }
-  for (const note of payload.notes) lines.push(`Note: ${note}`);
+  for (const note of payload.notes) {
+    lines.push(`Note: ${note}`);
+  }
   return lines.join("\n");
 }
 

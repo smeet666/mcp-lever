@@ -13,18 +13,24 @@ import { probeSite, type Requester } from "./postings.js";
  */
 export function slugForms(name: string): string[] {
   const trimmed = name.trim();
-  if (trimmed === "") return [];
+  if (trimmed === "") {
+    return [];
+  }
 
   const words = trimmed.split(/[\s._/-]+/u).filter((w) => w !== "");
   const cleaned = words.map((w) => w.replace(/[^\p{L}\p{N}]/gu, "")).filter((w) => w !== "");
-  if (cleaned.length === 0) return [];
+  if (cleaned.length === 0) {
+    return [];
+  }
 
   const joined = cleaned.join("").toLowerCase();
   const forms: string[] = [];
 
   // A name already shaped like a site name is tried as typed, so a caller who
   // knows the exact spelling pays one request instead of four.
-  if (words.length === 1 && /^[\p{L}\p{N}]+$/u.test(trimmed)) forms.push(trimmed);
+  if (words.length === 1 && /^[\p{L}\p{N}]+$/u.test(trimmed)) {
+    forms.push(trimmed);
+  }
 
   forms.push(joined);
   forms.push(joined.charAt(0).toUpperCase() + joined.slice(1));
@@ -58,7 +64,9 @@ export async function resolveCompany(name: string, requester: Requester): Promis
     for (const form of forms) {
       tried.push(`${form} (${instance})`);
       const probe = await probeSite(form, instance as Instance, requester);
-      if (!probe.cached) everyProbeCached = false;
+      if (!probe.cached) {
+        everyProbeCached = false;
+      }
       if (probe.site) {
         found.push({
           slug: form,
@@ -85,8 +93,12 @@ export function nearestKnown(name: string, known: Iterable<string>): string | un
   let best: { slug: string; apart: number } | undefined;
   for (const slug of known) {
     const apart = editDistance(written, slug.toLowerCase());
-    if (apart === 0 || apart > 2) continue;
-    if (best === undefined || apart < best.apart) best = { slug, apart };
+    if (apart === 0 || apart > 2) {
+      continue;
+    }
+    if (best === undefined || apart < best.apart) {
+      best = { slug, apart };
+    }
   }
   return best?.slug;
 }

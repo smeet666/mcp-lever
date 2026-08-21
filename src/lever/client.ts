@@ -51,14 +51,20 @@ export class Client {
     const hit = this.documents.get(url);
     // An absence is cached like anything else: resolving one company probes up
     // to eight addresses, and re-asking for the same missing one costs a second.
-    if (isLeverError(hit)) throw Object.assign(hit, { cached: true });
-    if (hit !== undefined) return { value: hit as T, cached: true };
+    if (isLeverError(hit)) {
+      throw Object.assign(hit, { cached: true });
+    }
+    if (hit !== undefined) {
+      return { value: hit as T, cached: true };
+    }
 
     // Two concurrent reads of one address are one read: the published client is
     // an ordinary library, and a consumer resolving in parallel would otherwise
     // pay each shared address twice.
     const pending = this.inFlight.get(url);
-    if (pending) return { value: (await pending) as T, cached: true };
+    if (pending) {
+      return { value: (await pending) as T, cached: true };
+    }
 
     try {
       const run = this.limiter.schedule(() => getJson<T>(url, this.http)).then((r) => r.body);
@@ -68,7 +74,9 @@ export class Client {
       return { value: body, cached: false };
     } catch (error) {
       if (isLeverError(error)) {
-        if (error.code === "not_found") this.documents.set(url, error);
+        if (error.code === "not_found") {
+          this.documents.set(url, error);
+        }
         error.cached = false;
         // Lever named a delay, so the next departure waits it out rather than
         // walking straight back into the wall.
@@ -85,9 +93,13 @@ export class Client {
   async resolveCompany(name: string): Promise<Resolution> {
     const key = name.trim();
     const hit = this.resolutions.get(key);
-    if (hit) return { ...hit, cached: true };
+    if (hit) {
+      return { ...hit, cached: true };
+    }
     const resolution = await resolveCompany(name, this);
-    for (const site of resolution.found) this.confirmed.add(site.slug);
+    for (const site of resolution.found) {
+      this.confirmed.add(site.slug);
+    }
     this.resolutions.set(key, resolution);
     return resolution;
   }

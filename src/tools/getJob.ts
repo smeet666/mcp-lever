@@ -30,10 +30,10 @@ export interface GetJobArgs {
 
 export async function runGetJob(client: Client, args: GetJobArgs): Promise<CallToolResult> {
   try {
-    args = parseArgs(getJobSchema, args) as typeof args;
-    const instance: Instance = args.instance ?? "global";
-    const read = await client.getPosting(args.company_slug, args.job_id, instance);
-    const job = toRecord(read.data, args.company_slug, instance);
+    const checked = parseArgs(getJobSchema, args) as typeof args;
+    const instance: Instance = checked.instance ?? "global";
+    const read = await client.getPosting(checked.company_slug, checked.job_id, instance);
+    const job = toRecord(read.data, checked.company_slug, instance);
 
     const notes: string[] = [];
     if (job.salary === null) {
@@ -72,7 +72,9 @@ function summarise(payload: { job: ReturnType<typeof toRecord>; notes: string[] 
     // cost of reading it.
     `The advert and its ${job.sections.length} section(s) are in the structured payload.`,
   ];
-  for (const note of payload.notes) lines.push(`Note: ${note}`);
+  for (const note of payload.notes) {
+    lines.push(`Note: ${note}`);
+  }
   lines.push(`Source: ${job.url}`);
   return lines.join("\n");
 }

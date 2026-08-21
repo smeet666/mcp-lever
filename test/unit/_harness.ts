@@ -10,6 +10,17 @@ import { Client as McpClient } from "@modelcontextprotocol/sdk/client/index.js";
 import { createServer } from "../../src/server.js";
 import { corpus, type RawGroup, type RawPosting } from "./_corpus.js";
 
+/** The address a fetch was called with, whichever of the three shapes it took. */
+function addressOf(input: RequestInfo | URL): string {
+  if (typeof input === "string") {
+    return input;
+  }
+  if (input instanceof URL) {
+    return input.href;
+  }
+  return input.url;
+}
+
 export interface RecordedCall {
   url: string;
   method: string;
@@ -41,9 +52,13 @@ const INSTANCE_BY_HOST: Record<string, "global" | "eu"> = {
 function headersOf(init?: RequestInit): Record<string, string> {
   const out: Record<string, string> = {};
   const raw = init?.headers;
-  if (!raw) return out;
+  if (!raw) {
+    return out;
+  }
   if (Array.isArray(raw)) {
-    for (const [k, v] of raw) out[String(k).toLowerCase()] = String(v);
+    for (const [k, v] of raw) {
+      out[String(k).toLowerCase()] = String(v);
+    }
   } else if (typeof (raw as Headers).forEach === "function") {
     (raw as Headers).forEach((v, k) => {
       out[k.toLowerCase()] = v;
@@ -62,7 +77,9 @@ function groupsOf(postings: RawPosting[], key: "team" | "location" | "commitment
     const values =
       key === "location" ? p.categories.allLocations : [p.categories[key] as string | undefined];
     for (const value of values) {
-      if (value === undefined) continue;
+      if (value === undefined) {
+        continue;
+      }
       const list = buckets.get(value) ?? [];
       list.push(p);
       buckets.set(value, list);
@@ -91,12 +108,61 @@ const notFound = () =>
   });
 
 /** Un `fetch` qui sert le corpus sur les deux instances autorisées. */
+/** The answer a stubbed failure stands for, or nothing when it names none. */
+function answerForFailure(failure: NonNullable<StubOptions["fail"]>[string]): Response | null {
+  if ("kind" in failure && failure.kind === "network") {
+    throw new TypeError("fetch failed");
+  }
+  if ("kind" in failure && failure.kind === "invalid-json") {
+    return new Response("<html>not json</html>", {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  }
+  if ("status" in failure) {
+    return new Response(JSON.stringify({ ok: false, error: "upstream" }), {
+      status: failure.status,
+      headers: { "content-type": "application/json" },
+    });
+  }
+  return null;
+}
+
+/** What a stubbed site answers: one posting, a grouping, or the list it holds. */
+function answerForSite(
+  site: { postings: RawPosting[] },
+  jobId: string | undefined,
+  parsed: URL,
+): Response {
+  const json = (body: unknown) =>
+    new Response(JSON.stringify(body), {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+
+  if (jobId) {
+    const one = site.postings.find((p) => p.id === jobId);
+    return one ? json(one) : notFound();
+  }
+
+  const group = parsed.searchParams.get("group");
+  if (group === "team" || group === "location" || group === "commitment") {
+    return json(groupsOf(site.postings, group));
+  }
+
+  const kept = site.postings.filter((p) => matchesFilters(p, parsed.searchParams));
+  const skip = Number(parsed.searchParams.get("skip") ?? "0");
+  const limitParam = parsed.searchParams.get("limit");
+  const limit = limitParam === null ? kept.length : Number(limitParam);
+  return json(kept.slice(skip, skip + limit));
+}
+
 export function corpusFetch(options: StubOptions = {}): FetchStub {
   const calls: RecordedCall[] = [];
   const hidden = new Set(options.hide ?? []);
 
   const impl = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
-    const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+    const url = addressOf(input);
     calls.push({
       url,
       method: init?.method ?? "GET",
@@ -106,56 +172,35 @@ export function corpusFetch(options: StubOptions = {}): FetchStub {
 
     const parsed = new URL(url);
     const instance = INSTANCE_BY_HOST[parsed.hostname];
-    if (!instance) throw new Error(`hôte hors liste blanche demandé au fetch : ${parsed.hostname}`);
+    if (!instance) {
+      throw new Error(`hôte hors liste blanche demandé au fetch : ${parsed.hostname}`);
+    }
 
     const segments = parsed.pathname.split("/").filter(Boolean);
-    if (segments[0] !== "v0" || segments[1] !== "postings") return notFound();
+    if (segments[0] !== "v0" || segments[1] !== "postings") {
+      return notFound();
+    }
     const slug = segments[2];
-    if (!slug) return notFound();
+    if (!slug) {
+      return notFound();
+    }
     const jobId = segments[3];
 
     const failure = options.fail?.[`${slug}@${instance}`] ?? options.fail?.[slug];
-    if (failure) {
-      if ("kind" in failure && failure.kind === "network") throw new TypeError("fetch failed");
-      if ("kind" in failure && failure.kind === "invalid-json") {
-        return new Response("<html>not json</html>", {
-          status: 200,
-          headers: { "content-type": "application/json" },
-        });
-      }
-      if ("status" in failure) {
-        return new Response(JSON.stringify({ ok: false, error: "upstream" }), {
-          status: failure.status,
-          headers: { "content-type": "application/json" },
-        });
-      }
+    const failed = failure ? answerForFailure(failure) : null;
+    if (failed) {
+      return failed;
     }
 
-    if (hidden.has(`${slug}@${instance}`)) return notFound();
+    if (hidden.has(`${slug}@${instance}`)) {
+      return notFound();
+    }
     const site = corpus.sites.find((s) => s.slug === slug && s.instance === instance);
-    if (!site) return notFound();
-
-    const json = (body: unknown) =>
-      new Response(JSON.stringify(body), {
-        status: 200,
-        headers: { "content-type": "application/json" },
-      });
-
-    if (jobId) {
-      const one = site.postings.find((p) => p.id === jobId);
-      return one ? json(one) : notFound();
+    if (!site) {
+      return notFound();
     }
 
-    const group = parsed.searchParams.get("group");
-    if (group === "team" || group === "location" || group === "commitment") {
-      return json(groupsOf(site.postings, group));
-    }
-
-    const kept = site.postings.filter((p) => matchesFilters(p, parsed.searchParams));
-    const skip = Number(parsed.searchParams.get("skip") ?? "0");
-    const limitParam = parsed.searchParams.get("limit");
-    const limit = limitParam === null ? kept.length : Number(limitParam);
-    return json(kept.slice(skip, skip + limit));
+    return answerForSite(site, jobId, parsed);
   };
 
   return {
@@ -170,7 +215,7 @@ export function corpusFetch(options: StubOptions = {}): FetchStub {
 export function forbiddenFetch(): FetchStub {
   const calls: RecordedCall[] = [];
   const impl = async (input: RequestInfo | URL): Promise<Response> => {
-    const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+    const url = addressOf(input);
     calls.push({ url, method: "GET", headers: {}, startedAt: Date.now() });
     throw new Error(`connexion ouverte alors que le test l'interdit : ${url}`);
   };

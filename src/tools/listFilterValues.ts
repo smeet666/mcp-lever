@@ -42,14 +42,14 @@ export async function runListFilterValues(
   args: ListFilterValuesArgs,
 ): Promise<CallToolResult> {
   try {
-    args = parseArgs(listFilterValuesSchema, args) as typeof args;
-    const instance: Instance = args.instance ?? "global";
-    const wanted = args.fields?.length ? args.fields : FIELDS;
+    const checked = parseArgs(listFilterValuesSchema, args) as typeof args;
+    const instance: Instance = checked.instance ?? "global";
+    const wanted = checked.fields?.length ? checked.fields : FIELDS;
     const fields: Record<string, { value: string; count: number | null }[]> = {};
     const unlabelled: string[] = [];
 
     for (const field of wanted) {
-      const read = await client.listGroups(args.company_slug, instance, field);
+      const read = await client.listGroups(checked.company_slug, instance, field);
       // Lever returns one group with no title, holding the openings that carry
       // no value for this field. It names a gap, so it is reported as one
       // rather than offered as a wording a filter could carry.
@@ -79,19 +79,21 @@ export async function runListFilterValues(
     // vocabulary. Reading the first as the second says it files nothing.
     if (Object.values(fields).every((entries) => entries.length === 0)) {
       notes.push(
-        `The ${args.company_slug} site publishes no openings on the ${instance} instance right now. Lever builds these wordings from open roles, so this is an empty board rather than a company that files its roles under nothing.`,
+        `The ${checked.company_slug} site publishes no openings on the ${instance} instance right now. Lever builds these wordings from open roles, so this is an empty board rather than a company that files its roles under nothing.`,
       );
     } else {
       notes.push(
         "These wordings are what this company uses, and another company on Lever uses others.",
       );
     }
-    for (const gap of unlabelled) notes.push(gap);
+    for (const gap of unlabelled) {
+      notes.push(gap);
+    }
     notes.push(
       "Pass a value exactly as it appears here. Lever matches one value in any case, and matches several values only when each is written exactly.",
     );
 
-    const payload = { company_slug: args.company_slug, instance, fields, notes };
+    const payload = { company_slug: checked.company_slug, instance, fields, notes };
     return {
       content: [{ type: "text", text: summarise(payload) }],
       structuredContent: payload,
@@ -110,9 +112,13 @@ function summarise(payload: {
   const lines = [`Filter wordings used by ${payload.company_slug} (${payload.instance} instance):`];
   for (const [field, entries] of Object.entries(payload.fields)) {
     lines.push(`${field} (${entries.length}):`);
-    for (const entry of entries) lines.push(`- ${safeLine(entry.value)} (${entry.count})`);
+    for (const entry of entries) {
+      lines.push(`- ${safeLine(entry.value)} (${entry.count})`);
+    }
   }
-  for (const note of payload.notes) lines.push(`Note: ${note}`);
+  for (const note of payload.notes) {
+    lines.push(`Note: ${note}`);
+  }
   return lines.join("\n");
 }
 

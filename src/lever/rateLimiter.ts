@@ -17,13 +17,17 @@ export class RateLimiter {
 
   /** Holds the next departure back, for as long as Lever asked. */
   pause(ms: number): void {
-    if (ms > 0) this.lastStart = Math.max(this.lastStart, Date.now() + ms - this.intervalMs);
+    if (ms > 0) {
+      this.lastStart = Math.max(this.lastStart, Date.now() + ms - this.intervalMs);
+    }
   }
 
   schedule<T>(task: () => Promise<T>): Promise<T> {
     const run = this.chain.then(async () => {
       const wait = this.lastStart + this.intervalMs - Date.now();
-      if (wait > 0) await sleep(wait);
+      if (wait > 0) {
+        await sleep(wait);
+      }
       this.lastStart = Date.now();
       return task();
     });

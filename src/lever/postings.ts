@@ -52,7 +52,9 @@ export async function listPostings(
   try {
     read = await requester.read<RawPosting[]>(buildListUrl(params));
   } catch (error) {
-    if (isMissing(error)) return { data: null, cached: isCached(error) };
+    if (isMissing(error)) {
+      return { data: null, cached: isCached(error) };
+    }
     throw error;
   }
   if (!Array.isArray(read.value)) {
@@ -73,10 +75,11 @@ export async function getPosting(
     const { value, cached } = await requester.read<RawPosting>(url);
     return { data: value, cached };
   } catch (error) {
-    if (isMissing(error))
+    if (isMissing(error)) {
       throw notFound(
         `Lever holds no posting ${id} on the ${slug} site of the ${instance} instance. A site name distinguishes case and a site can live on the other instance, so resolve_company shows which spelling and which instance answer.`,
       );
+    }
     throw error;
   }
 }
@@ -107,7 +110,9 @@ export async function probeSite(
   requester: Requester,
 ): Promise<{ site: { publishes: boolean } | null; cached: boolean }> {
   const read = await listPostings({ slug, instance, limit: 1 }, requester);
-  if (read.data === null) return { site: null, cached: read.cached };
+  if (read.data === null) {
+    return { site: null, cached: read.cached };
+  }
   return { site: { publishes: read.data.length > 0 }, cached: read.cached };
 }
 
@@ -117,15 +122,21 @@ export function buildListUrl(params: ListParams): string {
   query.set("mode", "json");
   // A request without a limit returns the whole board, which has weighed 48 MB.
   query.set("limit", String(clampLimit(params.limit)));
-  if (params.skip !== undefined && params.skip > 0) query.set("skip", String(params.skip));
+  if (params.skip !== undefined && params.skip > 0) {
+    query.set("skip", String(params.skip));
+  }
   for (const key of ["location", "team", "department", "commitment"] as const) {
-    for (const value of params[key] ?? []) query.append(key, value);
+    for (const value of params[key] ?? []) {
+      query.append(key, value);
+    }
   }
   return `${base(params.instance)}/${encodeURIComponent(params.slug)}?${query.toString()}`;
 }
 
 function clampLimit(limit: number | undefined): number {
-  if (limit === undefined) return DEFAULT_LIMIT;
+  if (limit === undefined) {
+    return DEFAULT_LIMIT;
+  }
   if (!Number.isInteger(limit) || limit < 1 || limit > MAX_LIMIT) {
     throw invalidInput(
       `limit accepts a whole number from 1 to ${MAX_LIMIT}, and received ${limit}.`,

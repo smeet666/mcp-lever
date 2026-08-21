@@ -53,13 +53,17 @@ export async function getJson<T>(url: string, options: HttpOptions): Promise<Htt
         : networkError(`Reaching Lever failed: ${describe(cause)}`);
     }
 
-    if (response.status === 404) throw notFound(`Lever holds nothing at ${url}.`);
+    if (response.status === 404) {
+      throw notFound(`Lever holds nothing at ${url}.`);
+    }
     if (response.status === 429) {
       const wait = readRetryAfter(response);
       const error = rateLimited("Lever asked this client to slow down. Nothing is missing.");
       throw Object.assign(error, { retryAfterMs: wait });
     }
-    if (!response.ok) throw networkError(`Lever answered ${response.status} for ${url}.`);
+    if (!response.ok) {
+      throw networkError(`Lever answered ${response.status} for ${url}.`);
+    }
 
     const text = await readBounded(response, url, controller, options.timeoutMs);
 
@@ -101,7 +105,9 @@ async function readBounded(
   try {
     for (;;) {
       const chunk = await reader.read();
-      if (chunk.done) break;
+      if (chunk.done) {
+        break;
+      }
       bytes += chunk.value?.byteLength ?? 0;
       if (bytes > MAX_BODY_BYTES) {
         await reader.cancel().catch(() => undefined);
@@ -125,7 +131,9 @@ function bodyFailure(
   url: string,
   timeoutMs: number,
 ): unknown {
-  if (isLeverError(cause)) return cause;
+  if (isLeverError(cause)) {
+    return cause;
+  }
   if (controller.signal.aborted) {
     return timeout(`Lever stopped sending the body of ${url} within ${timeoutMs} ms.`);
   }
@@ -134,9 +142,13 @@ function bodyFailure(
 
 function readRetryAfter(response: Response): number | undefined {
   const header = response.headers?.get?.("retry-after");
-  if (!header) return undefined;
+  if (!header) {
+    return undefined;
+  }
   const seconds = Number.parseInt(header, 10);
-  if (Number.isFinite(seconds) && seconds >= 0) return seconds * 1000;
+  if (Number.isFinite(seconds) && seconds >= 0) {
+    return seconds * 1000;
+  }
   const when = Date.parse(header);
   return Number.isFinite(when) ? Math.max(0, when - Date.now()) : undefined;
 }

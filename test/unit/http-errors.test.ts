@@ -29,7 +29,9 @@ const cutConnection: typeof fetch = (async () => {
 const neverAnswers: typeof fetch = (async (_input: RequestInfo | URL, init?: RequestInit) =>
   new Promise<Response>((_resolve, reject) => {
     const signal = init?.signal;
-    if (!signal) return;
+    if (!signal) {
+      return;
+    }
     signal.addEventListener("abort", () => {
       const abort = new Error("The operation was aborted.");
       abort.name = "AbortError";

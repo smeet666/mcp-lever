@@ -24,7 +24,9 @@ export class LeverError extends Error {
     super(message);
     this.name = "LeverError";
     this.code = code;
-    if (allowedValues) this.allowedValues = allowedValues;
+    if (allowedValues) {
+      this.allowedValues = allowedValues;
+    }
   }
 }
 
