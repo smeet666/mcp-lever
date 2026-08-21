@@ -58,7 +58,12 @@ export const searchJobsSchema = strictInput({
     `the period salary_min is written in, as Lever writes it, such as ${DEFAULT_SALARY_INTERVAL} or per-hour-wage`,
   ).optional(),
   currency: currencyCode("currency").optional(),
-  posted_within_days: wholeNumber("posted_within_days", 1, 3650, "how recent an opening must be").optional(),
+  posted_within_days: wholeNumber(
+    "posted_within_days",
+    1,
+    3650,
+    "how recent an opening must be",
+  ).optional(),
   limit: wholeNumber("limit", 1, MAX_LIMIT, "how many openings to read per company").optional(),
   skip: wholeNumber("skip", 0, 100_000, "how many openings to step over per company").optional(),
 });
@@ -185,9 +190,7 @@ async function readOne(
       const near = client.suggestSlug(input);
       notes.push(
         `No Lever site was found for "${safeLine(input)}", so nothing here says whether that company is hiring. Site names distinguish case; resolve_company shows what was tried.` +
-          (near
-            ? ` The site "${near}", confirmed earlier in this session, is one edit away.`
-            : ""),
+          (near ? ` The site "${near}", confirmed earlier in this session, is one edit away.` : ""),
       );
       return { input, slug: null, instance: null, status: "unresolved", read: 0, returned: 0 };
     }
@@ -216,7 +219,14 @@ async function readOne(
       await refuseUnknownFilterValue(client, site.slug, site.instance, args, limit);
     }
     if (found.data.length === 0) {
-      return { input, slug: site.slug, instance: site.instance, status: "empty", read: 0, returned: 0 };
+      return {
+        input,
+        slug: site.slug,
+        instance: site.instance,
+        status: "empty",
+        read: 0,
+        returned: 0,
+      };
     }
 
     if (found.truncated) counters.filled.push(input);

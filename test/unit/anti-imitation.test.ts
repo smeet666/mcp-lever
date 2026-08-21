@@ -6,7 +6,8 @@ import { toRecord } from "../../src/tools/render.js";
 import { connect, corpusFetch } from "./_harness.js";
 import { FIXED_NOW, posting } from "./_corpus.js";
 
-const marker = () => toRecord(posting("marker_lines"), "acmerobotics", "global") as unknown as Record<string, unknown>;
+const marker = () =>
+  toRecord(posting("marker_lines"), "acmerobotics", "global") as unknown as Record<string, unknown>;
 
 describe("l'anti-imitation", () => {
   it("décale une ligne de description commençant par Note:", () => {
@@ -42,10 +43,11 @@ describe("l'anti-imitation", () => {
   });
 
   it("laisse intact un texte qui n'imite aucun préfixe", () => {
-    const record = toRecord(posting("empty_opening"), "acmerobotics", "global") as unknown as Record<
-      string,
-      unknown
-    >;
+    const record = toRecord(
+      posting("empty_opening"),
+      "acmerobotics",
+      "global",
+    ) as unknown as Record<string, unknown>;
     expect(String(record["description"]).startsWith("The reliability team")).toBe(true);
   });
 });
@@ -70,7 +72,9 @@ describe("l'anti-imitation dans la sortie d'un outil", () => {
     await harness.close();
 
     const description = String(
-      ((outcome.structured as { job?: Record<string, unknown> } | undefined)?.job?.["description"] as string) ?? "",
+      ((outcome.structured as { job?: Record<string, unknown> } | undefined)?.job?.[
+        "description"
+      ] as string) ?? "",
     );
     expect(description).not.toMatch(/^Note:/m);
     expect(description).not.toMatch(/^Source:/m);

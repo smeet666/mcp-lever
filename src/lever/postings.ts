@@ -73,7 +73,8 @@ export async function getPosting(
     const { value, cached } = await requester.read<RawPosting>(url);
     return { data: value, cached };
   } catch (error) {
-    if (isMissing(error)) throw notFound(
+    if (isMissing(error))
+      throw notFound(
         `Lever holds no posting ${id} on the ${slug} site of the ${instance} instance. A site name distinguishes case and a site can live on the other instance, so resolve_company shows which spelling and which instance answer.`,
       );
     throw error;

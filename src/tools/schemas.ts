@@ -79,7 +79,9 @@ export const companyOutcomeSchema = z.object({
   instance: instanceSchema.nullable(),
   status: z
     .enum(["read", "unresolved", "empty", "failed"])
-    .describe("A company read, one whose site name was not found, one publishing nothing, and one that failed are four different answers."),
+    .describe(
+      "A company read, one whose site name was not found, one publishing nothing, and one that failed are four different answers.",
+    ),
   read: z.number().int().describe("Openings Lever returned, before the filters applied here."),
   returned: z.number().int().describe("Openings kept after them."),
   error: z.string().optional(),
@@ -88,9 +90,7 @@ export const companyOutcomeSchema = z.object({
 export const searchJobsOutputShape = {
   jobs: z.array(jobRowSchema),
   per_company: z.array(companyOutcomeSchema),
-  total_available: z
-    .null()
-    .describe("Lever publishes no result count, so this is always null."),
+  total_available: z.null().describe("Lever publishes no result count, so this is always null."),
   notes: z.array(z.string()),
 } as const;
 
@@ -102,7 +102,11 @@ export const getJobOutputShape = {
 export const filterValuesSchema = z.array(
   z.object({
     value: z.string(),
-    count: z.number().int().nullable().describe("Null when Lever published no openings alongside the category."),
+    count: z
+      .number()
+      .int()
+      .nullable()
+      .describe("Null when Lever published no openings alongside the category."),
   }),
 );
 

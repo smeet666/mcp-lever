@@ -13,7 +13,7 @@ One version at a time, in this order.
 4. **Tag**, which builds the `.mcpb` bundle and cuts the GitHub release.
    A release cut by a workflow starts no other workflow, so the npm publish and
    the registry entry are dispatched by hand afterwards:
-   `gh workflow run publish.yml` and `gh workflow run registry.yml -f tag=vX.Y.Z`.    The registry caps its description at 100 characters and
+   `gh workflow run publish.yml` and `gh workflow run registry.yml -f tag=vX.Y.Z`. The registry caps its description at 100 characters and
    checks that the bundle URL downloads, so that URL is computed at publish time
    and never written by hand.
 5. **Glama.** Claim the server, set the build spec, then `Build` alone followed

@@ -8,9 +8,9 @@
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-6E56CF)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.smeet666/mcp-lever)
 [![Glama](https://glama.ai/mcp/servers/smeet666/mcp-lever/badges/score.svg)](https://glama.ai/mcp/servers/smeet666/mcp-lever)
 [![M8ven](https://m8ven.ai/badge/mcp/smeet666-mcp-lever-ti7zmm?variant=verified)](https://m8ven.ai/mcp/smeet666-mcp-lever-ti7zmm)
-<!-- m8ven-verify: 5faf86e7541e0167239ba83df2f3a7cc -->
 [![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=lever&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1sZXZlciJdfQ%3D%3D)
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=lever&config=%7B%22name%22%3A%22lever%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-lever%22%5D%7D)
+<!-- m8ven-verify: 5faf86e7541e0167239ba83df2f3a7cc -->
 
 An MCP server for the public job boards companies publish through
 [Lever](https://www.lever.co). Search the openings of the companies you name,
@@ -86,9 +86,9 @@ and the answer says so, listing the spellings that were sent.
 `companies` is required, and takes names or site names. Each name is resolved
 here, so no preparation is needed.
 
-| Filter | Applied by |
-|---|---|
-| `location`, `team`, `department`, `commitment` | Lever, on its exact wording |
+| Filter                                                                     | Applied by                           |
+| -------------------------------------------------------------------------- | ------------------------------------ |
+| `location`, `team`, `department`, `commitment`                             | Lever, on its exact wording          |
 | `keyword`, `workplace_type`, `country`, `salary_min`, `posted_within_days` | this server, on the openings it read |
 
 Lever offers no full-text search and accepts no filter on workplace type,
@@ -259,9 +259,9 @@ absente de Lever**, et la réponse le dit, en listant les formes envoyées.
 `companies` est requis et accepte des noms ou des identifiants. Chaque nom est
 résolu ici, sans préparation.
 
-| Filtre | Appliqué par |
-|---|---|
-| `location`, `team`, `department`, `commitment` | Lever, sur son libellé exact |
+| Filtre                                                                     | Appliqué par                    |
+| -------------------------------------------------------------------------- | ------------------------------- |
+| `location`, `team`, `department`, `commitment`                             | Lever, sur son libellé exact    |
 | `keyword`, `workplace_type`, `country`, `salary_min`, `posted_within_days` | ce serveur, sur les offres lues |
 
 Lever n'offre aucune recherche plein texte et n'accepte de filtre ni sur le mode

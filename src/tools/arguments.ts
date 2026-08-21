@@ -15,8 +15,7 @@ import { invalidInput } from "../lever/errors.js";
 
 const CODE = "[invalid_input]";
 
-const capitalise = (what: string): string =>
-  `${what.charAt(0).toUpperCase()}${what.slice(1)}.`;
+const capitalise = (what: string): string => `${what.charAt(0).toUpperCase()}${what.slice(1)}.`;
 
 /** Parses the arguments against the strict object before any work is done. */
 export function parseArgs<Shape extends z.ZodRawShape>(

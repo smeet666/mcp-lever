@@ -1,11 +1,4 @@
-import type {
-  Instance,
-  JobRecord,
-  JobRow,
-  JobSection,
-  RawPosting,
-  Salary,
-} from "../types.js";
+import type { Instance, JobRecord, JobRow, JobSection, RawPosting, Salary } from "../types.js";
 
 const NAMED_ENTITIES: Record<string, string> = {
   amp: "&",
@@ -27,12 +20,16 @@ const NAMED_ENTITIES: Record<string, string> = {
 export function decodeEntities(text: string): string {
   return text.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (whole, body: string) => {
     if (body.startsWith("#")) {
-      const code = body.startsWith("#x") || body.startsWith("#X")
-        ? Number.parseInt(body.slice(2), 16)
-        : Number.parseInt(body.slice(1), 10);
+      const code =
+        body.startsWith("#x") || body.startsWith("#X")
+          ? Number.parseInt(body.slice(2), 16)
+          : Number.parseInt(body.slice(1), 10);
       // A lone surrogate is half a character, so the entity stays as written.
       const usable =
-        Number.isFinite(code) && code > 0 && code <= 0x10ffff && !(code >= 0xd800 && code <= 0xdfff);
+        Number.isFinite(code) &&
+        code > 0 &&
+        code <= 0x10ffff &&
+        !(code >= 0xd800 && code <= 0xdfff);
       return usable ? String.fromCodePoint(code) : whole;
     }
     return NAMED_ENTITIES[body.toLowerCase()] ?? whole;
@@ -67,7 +64,12 @@ export function listItems(content: string): string[] {
 export function safeLine(text: string): string {
   // A newline inside a title or a heading would open a line of its own, and a
   // line of its own is all it takes to look like a line this server wrote.
-  return indentMarkerLines(text.replace(/[\r\n]+/g, " ").replace(/\s+/g, " ").trim());
+  return indentMarkerLines(
+    text
+      .replace(/[\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim(),
+  );
 }
 
 export function indentMarkerLines(text: string): string {

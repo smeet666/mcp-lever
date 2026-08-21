@@ -20,11 +20,11 @@ Une annonce seule se lit à `/v0/postings/{site}/{id}` et rend l'objet nu.
 
 C'est la propriété la plus utile de ce site, et un client qui les confond ment.
 
-| Réponse | Ce qu'elle veut dire |
-|---|---|
+| Réponse                                         | Ce qu'elle veut dire                           |
+| ----------------------------------------------- | ---------------------------------------------- |
 | `404 {"ok":false,"error":"Document not found"}` | ce nom de site n'existe pas sur cette instance |
-| `200 []` | le site existe et ne publie rien |
-| `200 [ … ]` | le site existe et publie |
+| `200 []`                                        | le site existe et ne publie rien               |
+| `200 [ … ]`                                     | le site existe et publie                       |
 
 La même distinction vaut sur une annonce : un identifiant inconnu répond 404.
 
@@ -37,28 +37,28 @@ jamais qu'une entreprise est absente de Lever.
 Vingt champs au plus. Dix-sept sont toujours présents, trois sont optionnels et
 **disparaissent de l'objet** quand ils ne sont pas publiés.
 
-| Champ | Type | Présence sur 450 | Vide | Statut |
-|---|---|---|---|---|
-| `id` | string | 450/450 | 0 | **toujours** |
-| `text` | string | 450/450 | 0 | **toujours** |
-| `categories` | object | 450/450 | 0 | **toujours** |
-| `country` | string \| null | 450/450 | **2 nuls** | **toujours**, nul quand inconnu |
-| `workplaceType` | string | 450/450 | 0 | **toujours** |
-| `createdAt` | integer | 450/450 | 0 | **toujours** |
-| `hostedUrl` | string | 450/450 | 0 | **toujours** |
-| `applyUrl` | string | 450/450 | 0 | **toujours** |
-| `description` | string | 450/450 | 4 | **toujours** |
-| `descriptionPlain` | string | 450/450 | 15 | **toujours** |
-| `descriptionBody` | string | 450/450 | 13 | **toujours** |
-| `descriptionBodyPlain` | string | 450/450 | 39 | **toujours** |
-| `opening` | string | 450/450 | **258** | **toujours**, vide 57 % du temps |
-| `openingPlain` | string | 450/450 | **258** | **toujours**, vide 57 % du temps |
-| `additional` | string | 450/450 | 19 | **toujours** |
-| `additionalPlain` | string | 450/450 | 23 | **toujours** |
-| `lists` | array | 450/450 | 52 | **toujours** |
-| `salaryRange` | object | **146/450** | 0 | **absent** quand non publié |
-| `salaryDescription` | string | **58/450** | 0 | **absent** quand non publié |
-| `salaryDescriptionPlain` | string | **58/450** | 0 | **absent** quand non publié |
+| Champ                    | Type           | Présence sur 450 | Vide       | Statut                           |
+| ------------------------ | -------------- | ---------------- | ---------- | -------------------------------- |
+| `id`                     | string         | 450/450          | 0          | **toujours**                     |
+| `text`                   | string         | 450/450          | 0          | **toujours**                     |
+| `categories`             | object         | 450/450          | 0          | **toujours**                     |
+| `country`                | string \| null | 450/450          | **2 nuls** | **toujours**, nul quand inconnu  |
+| `workplaceType`          | string         | 450/450          | 0          | **toujours**                     |
+| `createdAt`              | integer        | 450/450          | 0          | **toujours**                     |
+| `hostedUrl`              | string         | 450/450          | 0          | **toujours**                     |
+| `applyUrl`               | string         | 450/450          | 0          | **toujours**                     |
+| `description`            | string         | 450/450          | 4          | **toujours**                     |
+| `descriptionPlain`       | string         | 450/450          | 15         | **toujours**                     |
+| `descriptionBody`        | string         | 450/450          | 13         | **toujours**                     |
+| `descriptionBodyPlain`   | string         | 450/450          | 39         | **toujours**                     |
+| `opening`                | string         | 450/450          | **258**    | **toujours**, vide 57 % du temps |
+| `openingPlain`           | string         | 450/450          | **258**    | **toujours**, vide 57 % du temps |
+| `additional`             | string         | 450/450          | 19         | **toujours**                     |
+| `additionalPlain`        | string         | 450/450          | 23         | **toujours**                     |
+| `lists`                  | array          | 450/450          | 52         | **toujours**                     |
+| `salaryRange`            | object         | **146/450**      | 0          | **absent** quand non publié      |
+| `salaryDescription`      | string         | **58/450**       | 0          | **absent** quand non publié      |
+| `salaryDescriptionPlain` | string         | **58/450**       | 0          | **absent** quand non publié      |
 
 Trois formes d'absence coexistent :
 
@@ -76,13 +76,13 @@ offres, donc une fiche bâtie dessus rendrait un texte vide une fois sur deux.
 
 ## `categories`, et ses clés optionnelles
 
-| Clé | Présence sur 450 | Valeurs distinctes |
-|---|---|---|
-| `location` | 450/450 | 98 |
-| `team` | 450/450 | 103 |
-| `allLocations` | 450/450 | — |
-| `commitment` | **420/450** | 17 |
-| `department` | **371/450** | 35 |
+| Clé            | Présence sur 450 | Valeurs distinctes |
+| -------------- | ---------------- | ------------------ |
+| `location`     | 450/450          | 98                 |
+| `team`         | 450/450          | 103                |
+| `allLocations` | 450/450          | —                  |
+| `commitment`   | **420/450**      | 17                 |
+| `department`   | **371/450**      | 35                 |
 
 `commitment` et `department` **manquent de l'objet** sur certains sites, et leur
 absence se rend absente.
@@ -109,11 +109,11 @@ site, ce qui est le seul total que l'API laisse calculer.
 
 **`workplaceType` — trois valeurs observées, une quatrième documentée.**
 
-| Valeur | Part |
-|---|---|
-| `remote` | 311 |
-| `hybrid` | 121 |
-| `onsite` | 18 |
+| Valeur   | Part |
+| -------- | ---- |
+| `remote` | 311  |
+| `hybrid` | 121  |
+| `onsite` | 18   |
 
 La documentation annonce aussi `unspecified`, absent du corpus. Elle écrit
 `on-site` avec un tiret là où la charge porte `onsite` sans tiret : **la charge
@@ -146,10 +146,10 @@ plus ni de moins :
 { "min": 63.09, "max": 63.09, "currency": "USD", "interval": "per-hour-wage" }
 ```
 
-| Propriété | Ce que le corpus montre |
-|---|---|
-| `interval` | `per-year-salary` (138), `per-hour-wage` (8) |
-| `currency` | USD (140), CAD (2), GBP (2), INR (1), AUD (1) |
+| Propriété      | Ce que le corpus montre                                     |
+| -------------- | ----------------------------------------------------------- |
+| `interval`     | `per-year-salary` (138), `per-hour-wage` (8)                |
+| `currency`     | USD (140), CAD (2), GBP (2), INR (1), AUD (1)               |
 | `min` et `max` | nombres, `min` jamais supérieur à `max`, égaux sur 5 offres |
 
 **Les deux périodes ne se comparent pas.** Un taux horaire de 63,09 USD face à un
