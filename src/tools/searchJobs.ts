@@ -23,7 +23,6 @@ import {
 } from "./arguments.js";
 import { toolFailure } from "./errorShape.js";
 import { safeLine, toRow } from "./render.js";
-import { searchJobsOutputShape } from "./schemas.js";
 
 /** The period a bare salary threshold is read against, since amounts carry their own. */
 const DEFAULT_SALARY_INTERVAL = "per-year-salary";
@@ -359,16 +358,18 @@ function keeps(posting: RawPosting, args: SearchJobsArgs, counters: Counters): b
     kept = false;
   }
 
-  if (args.workplace_type?.length) {
-    const wanted = args.workplace_type.map((v) => v.toLowerCase());
+  const workplaces = args.workplace_type ?? [];
+  if (workplaces.length > 0) {
+    const wanted = workplaces.map((v) => v.toLowerCase());
     if (!wanted.includes((posting.workplaceType ?? "").toLowerCase())) {
       counters.workplace += 1;
       kept = false;
     }
   }
 
-  if (args.country?.length) {
-    const wanted = args.country.map((v) => v.toUpperCase());
+  const countries = args.country ?? [];
+  if (countries.length > 0) {
+    const wanted = countries.map((v) => v.toUpperCase());
     if (posting.country === null) {
       // Lever recording no country is not Lever recording another country.
       counters.unknownCountry += 1;
@@ -387,25 +388,42 @@ function keeps(posting: RawPosting, args: SearchJobsArgs, counters: Counters): b
     kept = false;
   }
 
-  if (args.salary_min !== undefined) {
-    const range = posting.salaryRange;
-    const wantedInterval = args.salary_interval ?? DEFAULT_SALARY_INTERVAL;
-    if (!range) {
-      counters.noSalary += 1;
-      kept = false;
-    } else if (range.interval !== wantedInterval) {
-      counters.otherInterval += 1;
-      kept = false;
-    } else if (args.currency && range.currency.toUpperCase() !== args.currency.toUpperCase()) {
-      counters.otherCurrency += 1;
-      kept = false;
-    } else if (range.max < args.salary_min) {
-      counters.belowSalary += 1;
-      kept = false;
-    }
+  if (args.salary_min !== undefined && !paysEnough(posting, args, counters)) {
+    kept = false;
   }
 
   return kept;
+}
+
+/**
+ * Whether an opening's published pay answers what was asked of it.
+ *
+ * Four reasons drop an opening here and each is counted apart: no pay published
+ * at all, pay published over another period, pay published in another currency,
+ * and pay whose top is under the floor asked for. A caller reading one count as
+ * another would take a silence for a refusal.
+ */
+function paysEnough(posting: RawPosting, args: SearchJobsArgs, counters: Counters): boolean {
+  const range = posting.salaryRange;
+  const wantedInterval = args.salary_interval ?? DEFAULT_SALARY_INTERVAL;
+
+  if (!range) {
+    counters.noSalary += 1;
+    return false;
+  }
+  if (range.interval !== wantedInterval) {
+    counters.otherInterval += 1;
+    return false;
+  }
+  if (args.currency && range.currency.toUpperCase() !== args.currency.toUpperCase()) {
+    counters.otherCurrency += 1;
+    return false;
+  }
+  if (args.salary_min !== undefined && range.max < args.salary_min) {
+    counters.belowSalary += 1;
+    return false;
+  }
+  return true;
 }
 
 function matchesKeyword(posting: RawPosting, keyword: string): boolean {
@@ -428,17 +446,17 @@ function hasLocalFilters(args: SearchJobsArgs): boolean {
     args.keyword !== undefined ||
     args.salary_min !== undefined ||
     args.posted_within_days !== undefined ||
-    Boolean(args.workplace_type?.length) ||
-    Boolean(args.country?.length)
+    (args.workplace_type ?? []).length > 0 ||
+    (args.country ?? []).length > 0
   );
 }
 
 function hasSiteFilters(args: SearchJobsArgs): boolean {
-  return Boolean(
-    args.location?.length ||
-      args.team?.length ||
-      args.department?.length ||
-      args.commitment?.length,
+  return (
+    (args.location ?? []).length > 0 ||
+    (args.team ?? []).length > 0 ||
+    (args.department ?? []).length > 0 ||
+    (args.commitment ?? []).length > 0
   );
 }
 
@@ -454,8 +472,10 @@ async function refuseUnknownFilterValue(
   limit: number,
 ): Promise<void> {
   for (const field of GROUPED_FIELDS) {
-    const wanted = args[field];
-    if (!wanted?.length) {
+    // Nothing asked and an empty list asked are the same thing here: neither
+    // narrows, so neither is put to the site.
+    const wanted = args[field] ?? [];
+    if (wanted.length === 0) {
       continue;
     }
     const read = await client.listGroups(slug, instance, field);
@@ -467,7 +487,8 @@ async function refuseUnknownFilterValue(
     );
   }
 
-  if (args.department?.length) {
+  const departments = args.department ?? [];
+  if (departments.length > 0) {
     // Lever groups by team, location and commitment only, so the departments a
     // company uses are read from the openings it publishes.
     const board = await client.listPostings({ slug, instance, limit });
@@ -478,7 +499,7 @@ async function refuseUnknownFilterValue(
           .filter((value): value is string => typeof value === "string"),
       ),
     ];
-    refuseAgainst("department", args.department, published, slug, true);
+    refuseAgainst("department", departments, published, slug, true);
   }
 }
 
@@ -588,7 +609,7 @@ function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[
       `${counters.keyword} opening(s) that were read do not carry "${safeLine(args.keyword)}" in their title or advert and were dropped. Lever offers no full-text search, so a keyword only reaches the openings this call read.`,
     );
   }
-  if (args.workplace_type?.length) {
+  if ((args.workplace_type ?? []).length > 0) {
     notes.push(
       "workplace_type was applied here: Lever accepts it as a parameter and ignores it, so asking Lever to filter on it would return openings of every kind.",
     );
@@ -596,7 +617,7 @@ function addFilterNotes(args: SearchJobsArgs, counters: Counters, notes: string[
       notes.push(`${counters.workplace} opening(s) of another workplace type were dropped.`);
     }
   }
-  if (args.country?.length) {
+  if ((args.country ?? []).length > 0) {
     if (counters.country > 0) {
       notes.push(`${counters.country} opening(s) in another country were dropped.`);
     }
@@ -673,5 +694,3 @@ function summarise(payload: {
   }
   return lines.join("\n");
 }
-
-export { searchJobsOutputShape };

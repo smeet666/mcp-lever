@@ -69,8 +69,8 @@ export async function getJson<T>(url: string, options: HttpOptions): Promise<Htt
 
     try {
       return { body: JSON.parse(text) as T };
-    } catch {
-      throw parseFailure(`Lever answered something other than JSON for ${url}.`);
+    } catch (cause) {
+      throw parseFailure(`Lever answered something other than JSON for ${url}.`, cause);
     }
   } finally {
     clearTimeout(timer);

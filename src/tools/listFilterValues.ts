@@ -6,7 +6,6 @@ import type { Instance } from "../types.js";
 import { parseArgs, strictInput, text } from "./arguments.js";
 import { toolFailure } from "./errorShape.js";
 import { safeLine } from "./render.js";
-import { listFilterValuesOutputShape } from "./schemas.js";
 
 const FIELDS: readonly GroupKey[] = ["team", "location", "commitment"];
 
@@ -44,7 +43,8 @@ export async function runListFilterValues(
   try {
     const checked = parseArgs(listFilterValuesSchema, args) as typeof args;
     const instance: Instance = checked.instance ?? "global";
-    const wanted = checked.fields?.length ? checked.fields : FIELDS;
+    const asked = checked.fields ?? [];
+    const wanted = asked.length > 0 ? asked : FIELDS;
     const fields: Record<string, { value: string; count: number | null }[]> = {};
     const unlabelled: string[] = [];
 
@@ -121,5 +121,3 @@ function summarise(payload: {
   }
   return lines.join("\n");
 }
-
-export { listFilterValuesOutputShape };

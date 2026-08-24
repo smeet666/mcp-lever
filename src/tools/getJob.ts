@@ -5,7 +5,6 @@ import type { Instance } from "../types.js";
 import { parseArgs, strictInput, text } from "./arguments.js";
 import { toolFailure } from "./errorShape.js";
 import { safeLine, toRecord } from "./render.js";
-import { getJobOutputShape } from "./schemas.js";
 
 export const getJobDescription =
   "Read one Lever opening in full: the advert, its named sections, and the salary as published. " +
@@ -78,5 +77,3 @@ function summarise(payload: { job: ReturnType<typeof toRecord>; notes: string[] 
   lines.push(`Source: ${job.url}`);
   return lines.join("\n");
 }
-
-export { getJobOutputShape };

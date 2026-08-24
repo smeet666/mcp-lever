@@ -4,19 +4,14 @@ import {
   REQUEST_TIMEOUT_MS,
   USER_AGENT,
   resolveInterval,
-  type ClientOptions,
 } from "./config.js";
+import type { ClientOptions } from "./config.js";
 import type { Instance, RawGroup, RawPosting, Read, Resolution } from "../types.js";
 import { Cache } from "./cache.js";
 import { isLeverError } from "./errors.js";
 import { getJson, type HttpOptions } from "./http.js";
-import {
-  getPosting,
-  listGroups,
-  listPostings,
-  type GroupKey,
-  type ListParams,
-} from "./postings.js";
+import { getPosting, listGroups, listPostings } from "./postings.js";
+import type { GroupKey, ListParams } from "./postings.js";
 import { RateLimiter } from "./rateLimiter.js";
 import { nearestKnown, resolveCompany } from "./resolve.js";
 
@@ -122,4 +117,5 @@ export class Client {
   }
 }
 
-export type { ClientOptions, GroupKey, ListParams };
+export type { ClientOptions } from "./config.js";
+export type { GroupKey, ListParams } from "./postings.js";

@@ -16,8 +16,9 @@ export function toolFailure(error: unknown): CallToolResult {
     ours?.message ??
     "This client failed while building the answer, so nothing here states anything about what Lever publishes.";
   const lines = [`[${code}] ${message}`];
-  if (ours?.allowedValues?.length) {
-    lines.push(`Lever accepts: ${ours.allowedValues.join(", ")}.`);
+  const accepted = ours?.allowedValues ?? [];
+  if (accepted.length > 0) {
+    lines.push(`Lever accepts: ${accepted.join(", ")}.`);
   }
   return { isError: true, content: [{ type: "text", text: lines.join("\n") }] };
 }

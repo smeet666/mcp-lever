@@ -8,26 +8,24 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
+import {
+  getJobOutputShape,
+  listFilterValuesOutputShape,
+  resolveCompanyOutputShape,
+  searchJobsOutputShape,
+} from "./tools/schemas.js";
 import type { ClientOptions } from "./lever/config.js";
 import { Client } from "./lever/client.js";
-import {
-  getJobDescription,
-  getJobSchema,
-  getJobOutputShape,
-  runGetJob,
-  type GetJobArgs,
-} from "./tools/getJob.js";
+import { getJobDescription, getJobSchema, runGetJob, type GetJobArgs } from "./tools/getJob.js";
 import {
   listFilterValuesDescription,
   listFilterValuesSchema,
-  listFilterValuesOutputShape,
   runListFilterValues,
   type ListFilterValuesArgs,
 } from "./tools/listFilterValues.js";
 import {
   resolveCompanyDescription,
   resolveCompanySchema,
-  resolveCompanyOutputShape,
   runResolveCompany,
   type ResolveCompanyArgs,
 } from "./tools/resolveCompany.js";
@@ -35,7 +33,6 @@ import {
   runSearchJobs,
   searchJobsDescription,
   searchJobsSchema,
-  searchJobsOutputShape,
   type SearchJobsArgs,
 } from "./tools/searchJobs.js";
 import { PACKAGE_NAME, VERSION } from "./version.js";
