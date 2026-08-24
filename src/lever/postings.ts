@@ -1,3 +1,4 @@
+import type { Instance, RawGroup, RawPosting, Read } from "../types.js";
 import { DEFAULT_LIMIT, INSTANCE_BASE, MAX_LIMIT } from "./config.js";
 import { invalidInput, isLeverError, notFound } from "./errors.js";
 
@@ -9,11 +10,10 @@ function assertSiteName(slug: string): void {
     );
   }
 }
-import type { Instance, RawGroup, RawPosting, Read } from "../types.js";
 
 /** What these functions need: a reader that already paces, caches and validates. */
 export interface Requester {
-  read<T>(url: string): Promise<{ value: T; cached: boolean }>;
+  read: <T>(url: string) => Promise<{ value: T; cached: boolean }>;
 }
 
 /** True for the one failure that means "this name does not exist here". */

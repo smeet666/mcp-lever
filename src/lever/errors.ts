@@ -20,8 +20,8 @@ export class LeverError extends Error {
   /** Set when the failure was replayed from the cache rather than asked again. */
   cached?: boolean;
 
-  constructor(code: ErrorCode, message: string, allowedValues?: string[]) {
-    super(message);
+  constructor(code: ErrorCode, message: string, allowedValues?: string[], cause?: unknown) {
+    super(message, cause === undefined ? undefined : { cause });
     this.name = "LeverError";
     this.code = code;
     if (allowedValues) {
@@ -34,7 +34,8 @@ export const notFound = (message: string) => new LeverError("not_found", message
 export const invalidInput = (message: string, allowed?: string[]) =>
   new LeverError("invalid_input", message, allowed);
 export const rateLimited = (message: string) => new LeverError("rate_limited", message);
-export const parseFailure = (message: string) => new LeverError("parse_failure", message);
+export const parseFailure = (message: string, cause?: unknown) =>
+  new LeverError("parse_failure", message, undefined, cause);
 export const networkError = (message: string) => new LeverError("network_error", message);
 export const timeout = (message: string) => new LeverError("timeout", message);
 

@@ -4,7 +4,6 @@ import { MAX_COMPANIES } from "../lever/config.js";
 import { parseArgs, strictInput, values } from "./arguments.js";
 import { toolFailure } from "./errorShape.js";
 import { safeLine } from "./render.js";
-import { resolveCompanyOutputShape } from "./schemas.js";
 
 export const resolveCompanyDescription =
   "Turn company names into the Lever site names that address their job boards, and report every instance that answered. " +
@@ -100,5 +99,3 @@ function summarise(payload: { resolved: ResolvedName[]; notes: string[] }): stri
   }
   return lines.join("\n");
 }
-
-export { resolveCompanyOutputShape };

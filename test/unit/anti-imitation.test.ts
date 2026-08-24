@@ -71,11 +71,10 @@ describe("l'anti-imitation dans la sortie d'un outil", () => {
     });
     await harness.close();
 
-    const description = String(
+    const description =
       ((outcome.structured as { job?: Record<string, unknown> } | undefined)?.job?.[
         "description"
-      ] as string) ?? "",
-    );
+      ] as string) ?? "";
     expect(description).not.toMatch(/^Note:/m);
     expect(description).not.toMatch(/^Source:/m);
     expect(description).toContain("this line was written by the employer");

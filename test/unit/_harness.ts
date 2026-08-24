@@ -309,7 +309,7 @@ export async function connect(clientOptions: Record<string, unknown>): Promise<H
         return {
           ok: false,
           structured: undefined,
-          text: String((error as Error)?.message ?? error),
+          text: (error as Error)?.message ?? String(error),
         };
       }
     },
