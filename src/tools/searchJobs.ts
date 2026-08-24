@@ -131,7 +131,7 @@ export async function runSearchJobs(client: Client, args: SearchJobsArgs): Promi
     };
 
     for (const input of checked.companies) {
-      perCompany.push(await readOne(client, args, input, jobs, counters, notes, refusals));
+      perCompany.push(await readOne(client, args, input, { jobs, counters, notes, refusals }));
     }
 
     // A wrong filter wording belongs to the caller, so a call that produced
@@ -174,15 +174,25 @@ function refuseIdleArguments(args: SearchJobsArgs): void {
   }
 }
 
+/**
+ * What one company's board answered, with what every company so far has left.
+ *
+ * The four lists are filled across companies rather than per company: a call
+ * that produced nothing but refusals is refused once the whole search has been
+ * read, and that verdict needs every company's outcome beside it.
+ */
 async function readOne(
   client: Client,
   args: SearchJobsArgs,
   input: string,
-  jobs: JobRow[],
-  counters: Counters,
-  notes: string[],
-  refusals: LeverError[],
+  collecting: {
+    jobs: JobRow[];
+    counters: Counters;
+    notes: string[];
+    refusals: LeverError[];
+  },
 ): Promise<CompanyOutcome> {
+  const { jobs, counters, notes, refusals } = collecting;
   let site: ResolvedSite | undefined;
 
   try {
