@@ -26,7 +26,10 @@ const cutConnection: typeof fetch = (async () => {
   throw new TypeError("fetch failed");
 }) as unknown as typeof fetch;
 
-const neverAnswers: typeof fetch = (async (_input: RequestInfo | URL, init?: RequestInit) =>
+const neverAnswers: typeof fetch = (async (
+  _input: Parameters<typeof fetch>[0],
+  init?: RequestInit,
+) =>
   new Promise<Response>((_resolve, reject) => {
     const signal = init?.signal;
     if (!signal) {
