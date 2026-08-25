@@ -9,7 +9,11 @@
     "name": "Damien Bouissou",
     "url": "https://github.com/smeet666"
   },
-  "homepage": "https://github.com/smeet666/mcp-lever",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smeet666/mcp-lever.git"
+  },
+  "homepage": "https://github.com/smeet666/mcp-lever#readme",
   "documentation": "https://github.com/smeet666/mcp-lever#readme",
   "support": "https://github.com/smeet666/mcp-lever/issues",
   "license": "MIT",
@@ -40,7 +44,7 @@
       "description": "List the filter wordings a company uses."
     }
   ],
-  "icon": "assets/icon-128.png",
+  "icon": "assets/icon-512.png",
   "compatibility": {
     "platforms": ["darwin", "win32", "linux"],
     "runtimes": {
