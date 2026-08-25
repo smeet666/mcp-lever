@@ -13,6 +13,9 @@
 import { z } from "zod";
 import { invalidInput } from "../lever/errors.js";
 
+const CURRENCY_CODE = /^[A-Za-z]{3}$/;
+const COUNTRY_CODE = /^[A-Za-z]{2}$/;
+
 const CODE = "[invalid_input]";
 
 const capitalise = (what: string): string => `${what.charAt(0).toUpperCase()}${what.slice(1)}.`;
@@ -54,7 +57,7 @@ export function currencyCode(argument: string): z.ZodString {
   const error = `${CODE} ${argument} takes a three-letter currency code, as in EUR or USD. Lever publishes salaries with their own currency, so a code it never uses matches nothing it holds.`;
   return z
     .string({ error })
-    .regex(/^[A-Za-z]{3}$/, error)
+    .regex(CURRENCY_CODE, error)
     .describe("A three-letter currency code, as in EUR or USD.");
 }
 
@@ -62,7 +65,7 @@ export function countryCode(argument: string): z.ZodString {
   const error = `${CODE} ${argument} takes a two-letter country code, as in FR or US. A country written out in full names no code Lever stores.`;
   return z
     .string({ error })
-    .regex(/^[A-Za-z]{2}$/, error)
+    .regex(COUNTRY_CODE, error)
     .describe("A two-letter country code, as in FR or US.");
 }
 
