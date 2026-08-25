@@ -1,5 +1,8 @@
 import type { Instance, JobRecord, JobRow, JobSection, RawPosting, Salary } from "../types.js";
 
+/** The two openings a rendered line uses to speak for the server rather than the site. */
+const MARKER_LINE = /^\s*(Note|Source):/i;
+
 const NAMED_ENTITIES: Record<string, string> = {
   amp: "&",
   lt: "<",
@@ -75,7 +78,7 @@ export function safeLine(text: string): string {
 export function indentMarkerLines(text: string): string {
   return text
     .split("\n")
-    .map((line) => (/^\s*(Note|Source):/i.test(line) ? ` ${line}` : line))
+    .map((line) => (MARKER_LINE.test(line) ? ` ${line}` : line))
     .join("\n");
 }
 

@@ -3,6 +3,9 @@ import { invalidInput } from "./errors.js";
 import type { Instance, Resolution, ResolvedSite } from "../types.js";
 import { probeSite, type Requester } from "./postings.js";
 
+const WORD_SEPARATORS = /[\s._/-]+/u;
+const LETTERS_AND_DIGITS_ONLY = /^[\p{L}\p{N}]+$/u;
+
 /**
  * The forms a company name can take as a Lever site name, most likely first.
  *
@@ -17,7 +20,7 @@ export function slugForms(name: string): string[] {
     return [];
   }
 
-  const words = trimmed.split(/[\s._/-]+/u).filter((w) => w !== "");
+  const words = trimmed.split(WORD_SEPARATORS).filter((w) => w !== "");
   const cleaned = words.map((w) => w.replace(/[^\p{L}\p{N}]/gu, "")).filter((w) => w !== "");
   if (cleaned.length === 0) {
     return [];
@@ -28,7 +31,7 @@ export function slugForms(name: string): string[] {
 
   // A name already shaped like a site name is tried as typed, so a caller who
   // knows the exact spelling pays one request instead of four.
-  if (words.length === 1 && /^[\p{L}\p{N}]+$/u.test(trimmed)) {
+  if (words.length === 1 && LETTERS_AND_DIGITS_ONLY.test(trimmed)) {
     forms.push(trimmed);
   }
 

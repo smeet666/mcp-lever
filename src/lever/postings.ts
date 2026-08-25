@@ -2,9 +2,11 @@ import type { Instance, RawGroup, RawPosting, Read } from "../types.js";
 import { DEFAULT_LIMIT, INSTANCE_BASE, MAX_LIMIT } from "./config.js";
 import { invalidInput, isLeverError, notFound } from "./errors.js";
 
+const LETTER_OR_DIGIT = /[\p{L}\p{N}]/u;
+
 /** A name made of dots addresses the parent route rather than a board. */
 function assertSiteName(slug: string): void {
-  if (!/[\p{L}\p{N}]/u.test(slug)) {
+  if (!LETTER_OR_DIGIT.test(slug)) {
     throw invalidInput(
       `"${slug}" carries no letter or digit, so it names no Lever site and would address a route this server never meant to read.`,
     );
