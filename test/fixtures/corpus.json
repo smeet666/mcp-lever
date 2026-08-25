@@ -1,0 +1,2856 @@
+{
+  "generated_by": "scripts/build-fixtures.mjs",
+  "note": "Offres inventées. Aucune donnée de Lever n'est stockée dans ce dépôt.",
+  "now": "2026-08-13T12:00:00.000Z",
+  "sites": [
+    {
+      "slug": "acmerobotics",
+      "instance": "global",
+      "postings": [
+        {
+          "id": "eb2430c9-82d0-461b-8010-753a2ff7bb50",
+          "text": "Backend Engineer",
+          "categories": {
+            "location": "Remote",
+            "team": "Engineering",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full-time",
+            "department": "Platform"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1780304400000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50/apply",
+          "description": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "<div><p>We are hiring an engineer for the ingestion pipeline.</p></div>",
+          "openingPlain": "We are hiring an engineer for the ingestion pipeline.",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "e2c88650-5635-4201-a644-141fe2496e2f",
+          "text": "Staff Data Engineer",
+          "categories": {
+            "location": "Chicago, IL",
+            "team": "Engineering",
+            "allLocations": [
+              "Chicago, IL",
+              "Remote"
+            ],
+            "commitment": "Full-time",
+            "department": "Platform"
+          },
+          "country": "US",
+          "workplaceType": "hybrid",
+          "createdAt": 1778779800000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f/apply",
+          "description": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryRange": {
+            "min": 165000,
+            "max": 210000,
+            "currency": "USD",
+            "interval": "per-year-salary"
+          },
+          "salaryDescription": "<div><p>Base range shown for US candidates, equity offered separately.</p></div>",
+          "salaryDescriptionPlain": "Base range shown for US candidates, equity offered separately."
+        },
+        {
+          "id": "92570487-dd0a-48a2-bdda-82a64f5197e5",
+          "text": "Clinical Advisor",
+          "categories": {
+            "location": "Remote",
+            "team": "Clinical",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Contractor",
+            "department": "Clinical & Behavioral Health"
+          },
+          "country": "CA",
+          "workplaceType": "remote",
+          "createdAt": 1775132145123,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5/apply",
+          "description": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryRange": {
+            "min": 63.09,
+            "max": 81.5,
+            "currency": "USD",
+            "interval": "per-hour-wage"
+          }
+        },
+        {
+          "id": "7d441faa-61e5-44db-88e8-d8b4fa338d83",
+          "text": "Support Specialist",
+          "categories": {
+            "location": "London",
+            "team": "Support",
+            "allLocations": [
+              "London"
+            ],
+            "commitment": "Part-Time",
+            "department": "Customer Experience"
+          },
+          "country": "GB",
+          "workplaceType": "onsite",
+          "createdAt": 1774080300000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83/apply",
+          "description": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryRange": {
+            "min": 42000,
+            "max": 42000,
+            "currency": "GBP",
+            "interval": "per-year-salary"
+          }
+        },
+        {
+          "id": "73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+          "text": "Product Designer",
+          "categories": {
+            "location": "Remote",
+            "team": "Design",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full Time",
+            "department": "Product"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1770846310500,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d/apply",
+          "description": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryDescription": "<div><p>Compensation is set by level and by the city the person works from.</p></div>",
+          "salaryDescriptionPlain": "Compensation is set by level and by the city the person works from."
+        },
+        {
+          "id": "ef0a3922-4345-4258-8162-3f8539656a57",
+          "text": "Field Operations Lead",
+          "categories": {
+            "location": "Multiple sites",
+            "team": "Operations",
+            "allLocations": [
+              "Multiple sites"
+            ],
+            "commitment": "Full-time",
+            "department": "Operations"
+          },
+          "country": null,
+          "workplaceType": "onsite",
+          "createdAt": 1764482400000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57/apply",
+          "description": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "e816501b-e042-4c60-89a0-1cc89e0db2b5",
+          "text": "Technical Writer",
+          "categories": {
+            "location": "Remote",
+            "team": "Documentation",
+            "allLocations": [
+              "Remote"
+            ],
+            "department": "Product"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1758205200000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/e816501b-e042-4c60-89a0-1cc89e0db2b5",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/e816501b-e042-4c60-89a0-1cc89e0db2b5/apply",
+          "description": "<div><p>Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "9ba5ed01-fdb7-4425-b686-551742adfe7f",
+          "text": "Recruiting Coordinator",
+          "categories": {
+            "location": "Austin, TX",
+            "team": "People",
+            "allLocations": [
+              "Austin, TX"
+            ],
+            "commitment": "EE Full-Time"
+          },
+          "country": "US",
+          "workplaceType": "hybrid",
+          "createdAt": 1751883010010,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f/apply",
+          "description": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "e06692cd-654f-4ba9-b99d-230535fe2aa5",
+          "text": "Site Reliability Engineer",
+          "categories": {
+            "location": "Remote",
+            "team": "Engineering",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full-time",
+            "department": "Platform"
+          },
+          "country": "DE",
+          "workplaceType": "remote",
+          "createdAt": 1767611471111,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5/apply",
+          "description": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+          "descriptionPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+          "descriptionBody": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+          "descriptionBodyPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+          "text": "Regional Account Executive",
+          "categories": {
+            "location": "Paris",
+            "team": "Sales",
+            "allLocations": [
+              "Paris",
+              "Berlin",
+              "Madrid",
+              "Milan",
+              "Amsterdam",
+              "Dublin",
+              "Lisbon",
+              "Warsaw",
+              "Stockholm"
+            ],
+            "commitment": "Full-time",
+            "department": "Revenue"
+          },
+          "country": "FR",
+          "workplaceType": "hybrid",
+          "createdAt": 1784473200000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+          "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "88433120-1d84-4e57-9c8a-40d336dde45a",
+          "text": "Research & Insights Manager",
+          "categories": {
+            "location": "Remote",
+            "team": "Research",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full-Time",
+            "department": "Product"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1782392400000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a/apply",
+          "description": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Required Qualifications:",
+              "content": "<li>Five years of research&nbsp;experience</li><li>Comfort with qualitative &amp; quantitative methods</li><li>You&#39;ve run a study end&nbsp;to&nbsp;end</li>"
+            },
+            {
+              "text": "Responsibilities: ",
+              "content": "<li>Own the research calendar &amp; its budget</li>"
+            }
+          ]
+        },
+        {
+          "id": "8ba12da5-97ea-4302-a515-74ef81140cc0",
+          "text": "Executive Assistant",
+          "categories": {
+            "location": "Chicago, IL",
+            "team": "Operations",
+            "allLocations": [
+              "Chicago, IL"
+            ],
+            "commitment": "Full-time",
+            "department": "Operations"
+          },
+          "country": "US",
+          "workplaceType": "onsite",
+          "createdAt": 1777707000000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0/apply",
+          "description": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": []
+        },
+        {
+          "id": "3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+          "text": "Warehouse Automation Technician",
+          "categories": {
+            "location": "Detroit, MI",
+            "team": "Operations",
+            "allLocations": [
+              "Detroit, MI"
+            ],
+            "commitment": "Full-time",
+            "department": "Operations"
+          },
+          "country": "US",
+          "workplaceType": "onsite",
+          "createdAt": 1504111320000,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2/apply",
+          "description": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+          "text": "Backend Engineer, Payments",
+          "categories": {
+            "location": "Remote",
+            "team": "Engineering",
+            "allLocations": [
+              "Remote",
+              "Chicago, IL"
+            ],
+            "commitment": "Full-time",
+            "department": "Platform"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1786579199999,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e/apply",
+          "description": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryRange": {
+            "min": 140000,
+            "max": 175000,
+            "currency": "USD",
+            "interval": "per-year-salary"
+          }
+        },
+        {
+          "id": "dad17698-9d0f-473d-b337-33005c945001",
+          "text": "Community Manager",
+          "categories": {
+            "location": "Remote",
+            "team": "Marketing",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full-time",
+            "department": "Marketing"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1772506983003,
+          "hostedUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001",
+          "applyUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001/apply",
+          "description": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+          "descriptionPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+          "descriptionBody": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+          "descriptionBodyPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities",
+              "content": "<li>Note: moderate the forum every morning</li><li>Source: the weekly newsletter draft</li>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Nimbus",
+      "instance": "global",
+      "postings": [
+        {
+          "id": "a513beae-5ae7-41be-9dee-a79f0e2ba65a",
+          "text": "Platform Engineer",
+          "categories": {
+            "location": "Remote",
+            "team": "Engineering",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full-time",
+            "department": "Engineering"
+          },
+          "country": "US",
+          "workplaceType": "remote",
+          "createdAt": 1782896400000,
+          "hostedUrl": "https://jobs.lever.co/Nimbus/a513beae-5ae7-41be-9dee-a79f0e2ba65a",
+          "applyUrl": "https://jobs.lever.co/Nimbus/a513beae-5ae7-41be-9dee-a79f0e2ba65a/apply",
+          "description": "<div><p>Platform Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Platform Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Platform Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Platform Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryRange": {
+            "min": 150000,
+            "max": 190000,
+            "currency": "USD",
+            "interval": "per-year-salary"
+          }
+        },
+        {
+          "id": "e1261cd0-825a-452d-99cb-1a2cd8140f8e",
+          "text": "Solutions Architect",
+          "categories": {
+            "location": "Bengaluru",
+            "team": "Solutions",
+            "allLocations": [
+              "Bengaluru"
+            ],
+            "commitment": "Employee India",
+            "department": "Engineering"
+          },
+          "country": "IN",
+          "workplaceType": "hybrid",
+          "createdAt": 1781155800000,
+          "hostedUrl": "https://jobs.lever.co/Nimbus/e1261cd0-825a-452d-99cb-1a2cd8140f8e",
+          "applyUrl": "https://jobs.lever.co/Nimbus/e1261cd0-825a-452d-99cb-1a2cd8140f8e/apply",
+          "description": "<div><p>Solutions Architect works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Solutions Architect works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Solutions Architect works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Solutions Architect works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ],
+          "salaryRange": {
+            "min": 3600000,
+            "max": 4200000,
+            "currency": "INR",
+            "interval": "per-year-salary"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "zephyrworks",
+      "instance": "eu",
+      "postings": [
+        {
+          "id": "4a5f8c54-2367-4176-95f8-8cbad1a861b1",
+          "text": "Data Protection Officer",
+          "categories": {
+            "location": "Berlin",
+            "team": "Legal",
+            "allLocations": [
+              "Berlin"
+            ],
+            "commitment": "Full-time",
+            "department": "Legal"
+          },
+          "country": "DE",
+          "workplaceType": "hybrid",
+          "createdAt": 1776844800000,
+          "hostedUrl": "https://jobs.lever.co/zephyrworks/4a5f8c54-2367-4176-95f8-8cbad1a861b1",
+          "applyUrl": "https://jobs.lever.co/zephyrworks/4a5f8c54-2367-4176-95f8-8cbad1a861b1/apply",
+          "description": "<div><p>Data Protection Officer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Data Protection Officer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Data Protection Officer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Data Protection Officer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        },
+        {
+          "id": "74984110-6044-454d-aca2-77400a40b182",
+          "text": "Frontend Engineer",
+          "categories": {
+            "location": "Remote",
+            "team": "Engineering",
+            "allLocations": [
+              "Remote"
+            ],
+            "commitment": "Full-time"
+          },
+          "country": "PT",
+          "workplaceType": "remote",
+          "createdAt": 1780142400000,
+          "hostedUrl": "https://jobs.lever.co/zephyrworks/74984110-6044-454d-aca2-77400a40b182",
+          "applyUrl": "https://jobs.lever.co/zephyrworks/74984110-6044-454d-aca2-77400a40b182/apply",
+          "description": "<div><p>Frontend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Frontend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Frontend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Frontend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "duplexlabs",
+      "instance": "global",
+      "postings": [
+        {
+          "id": "e4bdb92d-c844-4f32-ba0f-753dd24557a7",
+          "text": "Machine Learning Engineer",
+          "categories": {
+            "location": "New York, NY",
+            "team": "Engineering",
+            "allLocations": [
+              "New York, NY"
+            ],
+            "commitment": "Full-time",
+            "department": "Research"
+          },
+          "country": "US",
+          "workplaceType": "onsite",
+          "createdAt": 1772301600000,
+          "hostedUrl": "https://jobs.lever.co/duplexlabs/e4bdb92d-c844-4f32-ba0f-753dd24557a7",
+          "applyUrl": "https://jobs.lever.co/duplexlabs/e4bdb92d-c844-4f32-ba0f-753dd24557a7/apply",
+          "description": "<div><p>Machine Learning Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Machine Learning Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Machine Learning Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Machine Learning Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "duplexlabs",
+      "instance": "eu",
+      "postings": [
+        {
+          "id": "5bf413a6-a424-4754-b083-2b11dc4f9ba6",
+          "text": "Machine Learning Engineer, EMEA",
+          "categories": {
+            "location": "Amsterdam",
+            "team": "Engineering",
+            "allLocations": [
+              "Amsterdam"
+            ],
+            "commitment": "Full-time",
+            "department": "Research"
+          },
+          "country": "NL",
+          "workplaceType": "hybrid",
+          "createdAt": 1773567000000,
+          "hostedUrl": "https://jobs.lever.co/duplexlabs/5bf413a6-a424-4754-b083-2b11dc4f9ba6",
+          "applyUrl": "https://jobs.lever.co/duplexlabs/5bf413a6-a424-4754-b083-2b11dc4f9ba6/apply",
+          "description": "<div><p>Machine Learning Engineer, EMEA works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionPlain": "Machine Learning Engineer, EMEA works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "descriptionBody": "<div><p>Machine Learning Engineer, EMEA works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+          "descriptionBodyPlain": "Machine Learning Engineer, EMEA works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+          "opening": "",
+          "openingPlain": "",
+          "additional": "",
+          "additionalPlain": "",
+          "lists": [
+            {
+              "text": "Responsibilities:",
+              "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "quietstudio",
+      "instance": "global",
+      "postings": []
+    }
+  ],
+  "cases": {
+    "no_salary": "eb2430c9-82d0-461b-8010-753a2ff7bb50",
+    "salary_year": "e2c88650-5635-4201-a644-141fe2496e2f",
+    "salary_hour": "92570487-dd0a-48a2-bdda-82a64f5197e5",
+    "salary_equal": "7d441faa-61e5-44db-88e8-d8b4fa338d83",
+    "salary_description_only": "73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+    "country_null": "ef0a3922-4345-4258-8162-3f8539656a57",
+    "no_commitment": "e816501b-e042-4c60-89a0-1cc89e0db2b5",
+    "no_department": "9ba5ed01-fdb7-4425-b686-551742adfe7f",
+    "empty_opening": "e06692cd-654f-4ba9-b99d-230535fe2aa5",
+    "nine_locations": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+    "html_entities": "88433120-1d84-4e57-9c8a-40d336dde45a",
+    "empty_lists": "8ba12da5-97ea-4302-a515-74ef81140cc0",
+    "ancient": "3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+    "recent": "8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+    "marker_lines": "dad17698-9d0f-473d-b337-33005c945001"
+  },
+  "groups": {
+    "acmerobotics": {
+      "team": [
+        {
+          "title": "Clinical",
+          "postings": [
+            {
+              "id": "92570487-dd0a-48a2-bdda-82a64f5197e5",
+              "text": "Clinical Advisor",
+              "categories": {
+                "location": "Remote",
+                "team": "Clinical",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Contractor",
+                "department": "Clinical & Behavioral Health"
+              },
+              "country": "CA",
+              "workplaceType": "remote",
+              "createdAt": 1775132145123,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5/apply",
+              "description": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 63.09,
+                "max": 81.5,
+                "currency": "USD",
+                "interval": "per-hour-wage"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Design",
+          "postings": [
+            {
+              "id": "73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+              "text": "Product Designer",
+              "categories": {
+                "location": "Remote",
+                "team": "Design",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full Time",
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1770846310500,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d/apply",
+              "description": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryDescription": "<div><p>Compensation is set by level and by the city the person works from.</p></div>",
+              "salaryDescriptionPlain": "Compensation is set by level and by the city the person works from."
+            }
+          ]
+        },
+        {
+          "title": "Documentation",
+          "postings": [
+            {
+              "id": "e816501b-e042-4c60-89a0-1cc89e0db2b5",
+              "text": "Technical Writer",
+              "categories": {
+                "location": "Remote",
+                "team": "Documentation",
+                "allLocations": [
+                  "Remote"
+                ],
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1758205200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e816501b-e042-4c60-89a0-1cc89e0db2b5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e816501b-e042-4c60-89a0-1cc89e0db2b5/apply",
+              "description": "<div><p>Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Engineering",
+          "postings": [
+            {
+              "id": "eb2430c9-82d0-461b-8010-753a2ff7bb50",
+              "text": "Backend Engineer",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1780304400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50/apply",
+              "description": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "<div><p>We are hiring an engineer for the ingestion pipeline.</p></div>",
+              "openingPlain": "We are hiring an engineer for the ingestion pipeline.",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "e2c88650-5635-4201-a644-141fe2496e2f",
+              "text": "Staff Data Engineer",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Engineering",
+                "allLocations": [
+                  "Chicago, IL",
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1778779800000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f/apply",
+              "description": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 165000,
+                "max": 210000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              },
+              "salaryDescription": "<div><p>Base range shown for US candidates, equity offered separately.</p></div>",
+              "salaryDescriptionPlain": "Base range shown for US candidates, equity offered separately."
+            },
+            {
+              "id": "e06692cd-654f-4ba9-b99d-230535fe2aa5",
+              "text": "Site Reliability Engineer",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "DE",
+              "workplaceType": "remote",
+              "createdAt": 1767611471111,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5/apply",
+              "description": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+              "descriptionPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+              "descriptionBody": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+              "descriptionBodyPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "text": "Backend Engineer, Payments",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote",
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1786579199999,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e/apply",
+              "description": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 140000,
+                "max": 175000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Marketing",
+          "postings": [
+            {
+              "id": "dad17698-9d0f-473d-b337-33005c945001",
+              "text": "Community Manager",
+              "categories": {
+                "location": "Remote",
+                "team": "Marketing",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Marketing"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1772506983003,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001/apply",
+              "description": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+              "descriptionPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+              "descriptionBody": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+              "descriptionBodyPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities",
+                  "content": "<li>Note: moderate the forum every morning</li><li>Source: the weekly newsletter draft</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Operations",
+          "postings": [
+            {
+              "id": "ef0a3922-4345-4258-8162-3f8539656a57",
+              "text": "Field Operations Lead",
+              "categories": {
+                "location": "Multiple sites",
+                "team": "Operations",
+                "allLocations": [
+                  "Multiple sites"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": null,
+              "workplaceType": "onsite",
+              "createdAt": 1764482400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57/apply",
+              "description": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "8ba12da5-97ea-4302-a515-74ef81140cc0",
+              "text": "Executive Assistant",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Operations",
+                "allLocations": [
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": "US",
+              "workplaceType": "onsite",
+              "createdAt": 1777707000000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0/apply",
+              "description": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": []
+            },
+            {
+              "id": "3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+              "text": "Warehouse Automation Technician",
+              "categories": {
+                "location": "Detroit, MI",
+                "team": "Operations",
+                "allLocations": [
+                  "Detroit, MI"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": "US",
+              "workplaceType": "onsite",
+              "createdAt": 1504111320000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2/apply",
+              "description": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "People",
+          "postings": [
+            {
+              "id": "9ba5ed01-fdb7-4425-b686-551742adfe7f",
+              "text": "Recruiting Coordinator",
+              "categories": {
+                "location": "Austin, TX",
+                "team": "People",
+                "allLocations": [
+                  "Austin, TX"
+                ],
+                "commitment": "EE Full-Time"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1751883010010,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f/apply",
+              "description": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Research",
+          "postings": [
+            {
+              "id": "88433120-1d84-4e57-9c8a-40d336dde45a",
+              "text": "Research & Insights Manager",
+              "categories": {
+                "location": "Remote",
+                "team": "Research",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-Time",
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1782392400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a/apply",
+              "description": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Required Qualifications:",
+                  "content": "<li>Five years of research&nbsp;experience</li><li>Comfort with qualitative &amp; quantitative methods</li><li>You&#39;ve run a study end&nbsp;to&nbsp;end</li>"
+                },
+                {
+                  "text": "Responsibilities: ",
+                  "content": "<li>Own the research calendar &amp; its budget</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sales",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Support",
+          "postings": [
+            {
+              "id": "7d441faa-61e5-44db-88e8-d8b4fa338d83",
+              "text": "Support Specialist",
+              "categories": {
+                "location": "London",
+                "team": "Support",
+                "allLocations": [
+                  "London"
+                ],
+                "commitment": "Part-Time",
+                "department": "Customer Experience"
+              },
+              "country": "GB",
+              "workplaceType": "onsite",
+              "createdAt": 1774080300000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83/apply",
+              "description": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 42000,
+                "max": 42000,
+                "currency": "GBP",
+                "interval": "per-year-salary"
+              }
+            }
+          ]
+        }
+      ],
+      "location": [
+        {
+          "title": "Amsterdam",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Austin, TX",
+          "postings": [
+            {
+              "id": "9ba5ed01-fdb7-4425-b686-551742adfe7f",
+              "text": "Recruiting Coordinator",
+              "categories": {
+                "location": "Austin, TX",
+                "team": "People",
+                "allLocations": [
+                  "Austin, TX"
+                ],
+                "commitment": "EE Full-Time"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1751883010010,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f/apply",
+              "description": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Berlin",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chicago, IL",
+          "postings": [
+            {
+              "id": "e2c88650-5635-4201-a644-141fe2496e2f",
+              "text": "Staff Data Engineer",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Engineering",
+                "allLocations": [
+                  "Chicago, IL",
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1778779800000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f/apply",
+              "description": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 165000,
+                "max": 210000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              },
+              "salaryDescription": "<div><p>Base range shown for US candidates, equity offered separately.</p></div>",
+              "salaryDescriptionPlain": "Base range shown for US candidates, equity offered separately."
+            },
+            {
+              "id": "8ba12da5-97ea-4302-a515-74ef81140cc0",
+              "text": "Executive Assistant",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Operations",
+                "allLocations": [
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": "US",
+              "workplaceType": "onsite",
+              "createdAt": 1777707000000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0/apply",
+              "description": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": []
+            },
+            {
+              "id": "8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "text": "Backend Engineer, Payments",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote",
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1786579199999,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e/apply",
+              "description": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 140000,
+                "max": 175000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Detroit, MI",
+          "postings": [
+            {
+              "id": "3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+              "text": "Warehouse Automation Technician",
+              "categories": {
+                "location": "Detroit, MI",
+                "team": "Operations",
+                "allLocations": [
+                  "Detroit, MI"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": "US",
+              "workplaceType": "onsite",
+              "createdAt": 1504111320000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2/apply",
+              "description": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Dublin",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Lisbon",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "London",
+          "postings": [
+            {
+              "id": "7d441faa-61e5-44db-88e8-d8b4fa338d83",
+              "text": "Support Specialist",
+              "categories": {
+                "location": "London",
+                "team": "Support",
+                "allLocations": [
+                  "London"
+                ],
+                "commitment": "Part-Time",
+                "department": "Customer Experience"
+              },
+              "country": "GB",
+              "workplaceType": "onsite",
+              "createdAt": 1774080300000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83/apply",
+              "description": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 42000,
+                "max": 42000,
+                "currency": "GBP",
+                "interval": "per-year-salary"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Madrid",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Milan",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Multiple sites",
+          "postings": [
+            {
+              "id": "ef0a3922-4345-4258-8162-3f8539656a57",
+              "text": "Field Operations Lead",
+              "categories": {
+                "location": "Multiple sites",
+                "team": "Operations",
+                "allLocations": [
+                  "Multiple sites"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": null,
+              "workplaceType": "onsite",
+              "createdAt": 1764482400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57/apply",
+              "description": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Paris",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Remote",
+          "postings": [
+            {
+              "id": "eb2430c9-82d0-461b-8010-753a2ff7bb50",
+              "text": "Backend Engineer",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1780304400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50/apply",
+              "description": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "<div><p>We are hiring an engineer for the ingestion pipeline.</p></div>",
+              "openingPlain": "We are hiring an engineer for the ingestion pipeline.",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "e2c88650-5635-4201-a644-141fe2496e2f",
+              "text": "Staff Data Engineer",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Engineering",
+                "allLocations": [
+                  "Chicago, IL",
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1778779800000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f/apply",
+              "description": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 165000,
+                "max": 210000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              },
+              "salaryDescription": "<div><p>Base range shown for US candidates, equity offered separately.</p></div>",
+              "salaryDescriptionPlain": "Base range shown for US candidates, equity offered separately."
+            },
+            {
+              "id": "92570487-dd0a-48a2-bdda-82a64f5197e5",
+              "text": "Clinical Advisor",
+              "categories": {
+                "location": "Remote",
+                "team": "Clinical",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Contractor",
+                "department": "Clinical & Behavioral Health"
+              },
+              "country": "CA",
+              "workplaceType": "remote",
+              "createdAt": 1775132145123,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5/apply",
+              "description": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 63.09,
+                "max": 81.5,
+                "currency": "USD",
+                "interval": "per-hour-wage"
+              }
+            },
+            {
+              "id": "73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+              "text": "Product Designer",
+              "categories": {
+                "location": "Remote",
+                "team": "Design",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full Time",
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1770846310500,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d/apply",
+              "description": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryDescription": "<div><p>Compensation is set by level and by the city the person works from.</p></div>",
+              "salaryDescriptionPlain": "Compensation is set by level and by the city the person works from."
+            },
+            {
+              "id": "e816501b-e042-4c60-89a0-1cc89e0db2b5",
+              "text": "Technical Writer",
+              "categories": {
+                "location": "Remote",
+                "team": "Documentation",
+                "allLocations": [
+                  "Remote"
+                ],
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1758205200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e816501b-e042-4c60-89a0-1cc89e0db2b5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e816501b-e042-4c60-89a0-1cc89e0db2b5/apply",
+              "description": "<div><p>Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Technical Writer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "e06692cd-654f-4ba9-b99d-230535fe2aa5",
+              "text": "Site Reliability Engineer",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "DE",
+              "workplaceType": "remote",
+              "createdAt": 1767611471111,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5/apply",
+              "description": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+              "descriptionPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+              "descriptionBody": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+              "descriptionBodyPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "88433120-1d84-4e57-9c8a-40d336dde45a",
+              "text": "Research & Insights Manager",
+              "categories": {
+                "location": "Remote",
+                "team": "Research",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-Time",
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1782392400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a/apply",
+              "description": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Required Qualifications:",
+                  "content": "<li>Five years of research&nbsp;experience</li><li>Comfort with qualitative &amp; quantitative methods</li><li>You&#39;ve run a study end&nbsp;to&nbsp;end</li>"
+                },
+                {
+                  "text": "Responsibilities: ",
+                  "content": "<li>Own the research calendar &amp; its budget</li>"
+                }
+              ]
+            },
+            {
+              "id": "8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "text": "Backend Engineer, Payments",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote",
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1786579199999,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e/apply",
+              "description": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 140000,
+                "max": 175000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              }
+            },
+            {
+              "id": "dad17698-9d0f-473d-b337-33005c945001",
+              "text": "Community Manager",
+              "categories": {
+                "location": "Remote",
+                "team": "Marketing",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Marketing"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1772506983003,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001/apply",
+              "description": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+              "descriptionPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+              "descriptionBody": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+              "descriptionBodyPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities",
+                  "content": "<li>Note: moderate the forum every morning</li><li>Source: the weekly newsletter draft</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Stockholm",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Warsaw",
+          "postings": [
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "commitment": [
+        {
+          "title": "Contractor",
+          "postings": [
+            {
+              "id": "92570487-dd0a-48a2-bdda-82a64f5197e5",
+              "text": "Clinical Advisor",
+              "categories": {
+                "location": "Remote",
+                "team": "Clinical",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Contractor",
+                "department": "Clinical & Behavioral Health"
+              },
+              "country": "CA",
+              "workplaceType": "remote",
+              "createdAt": 1775132145123,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/92570487-dd0a-48a2-bdda-82a64f5197e5/apply",
+              "description": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Clinical Advisor works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 63.09,
+                "max": 81.5,
+                "currency": "USD",
+                "interval": "per-hour-wage"
+              }
+            }
+          ]
+        },
+        {
+          "title": "EE Full-Time",
+          "postings": [
+            {
+              "id": "9ba5ed01-fdb7-4425-b686-551742adfe7f",
+              "text": "Recruiting Coordinator",
+              "categories": {
+                "location": "Austin, TX",
+                "team": "People",
+                "allLocations": [
+                  "Austin, TX"
+                ],
+                "commitment": "EE Full-Time"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1751883010010,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/9ba5ed01-fdb7-4425-b686-551742adfe7f/apply",
+              "description": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Recruiting Coordinator works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Full Time",
+          "postings": [
+            {
+              "id": "73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+              "text": "Product Designer",
+              "categories": {
+                "location": "Remote",
+                "team": "Design",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full Time",
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1770846310500,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/73e26ce6-3c32-4e89-995b-77eb37ac5b5d/apply",
+              "description": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Product Designer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryDescription": "<div><p>Compensation is set by level and by the city the person works from.</p></div>",
+              "salaryDescriptionPlain": "Compensation is set by level and by the city the person works from."
+            }
+          ]
+        },
+        {
+          "title": "Full-Time",
+          "postings": [
+            {
+              "id": "88433120-1d84-4e57-9c8a-40d336dde45a",
+              "text": "Research & Insights Manager",
+              "categories": {
+                "location": "Remote",
+                "team": "Research",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-Time",
+                "department": "Product"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1782392400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/88433120-1d84-4e57-9c8a-40d336dde45a/apply",
+              "description": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Research & Insights Manager works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Required Qualifications:",
+                  "content": "<li>Five years of research&nbsp;experience</li><li>Comfort with qualitative &amp; quantitative methods</li><li>You&#39;ve run a study end&nbsp;to&nbsp;end</li>"
+                },
+                {
+                  "text": "Responsibilities: ",
+                  "content": "<li>Own the research calendar &amp; its budget</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Full-time",
+          "postings": [
+            {
+              "id": "eb2430c9-82d0-461b-8010-753a2ff7bb50",
+              "text": "Backend Engineer",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1780304400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/eb2430c9-82d0-461b-8010-753a2ff7bb50/apply",
+              "description": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "<div><p>We are hiring an engineer for the ingestion pipeline.</p></div>",
+              "openingPlain": "We are hiring an engineer for the ingestion pipeline.",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "e2c88650-5635-4201-a644-141fe2496e2f",
+              "text": "Staff Data Engineer",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Engineering",
+                "allLocations": [
+                  "Chicago, IL",
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "hybrid",
+              "createdAt": 1778779800000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e2c88650-5635-4201-a644-141fe2496e2f/apply",
+              "description": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Staff Data Engineer works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 165000,
+                "max": 210000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              },
+              "salaryDescription": "<div><p>Base range shown for US candidates, equity offered separately.</p></div>",
+              "salaryDescriptionPlain": "Base range shown for US candidates, equity offered separately."
+            },
+            {
+              "id": "ef0a3922-4345-4258-8162-3f8539656a57",
+              "text": "Field Operations Lead",
+              "categories": {
+                "location": "Multiple sites",
+                "team": "Operations",
+                "allLocations": [
+                  "Multiple sites"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": null,
+              "workplaceType": "onsite",
+              "createdAt": 1764482400000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/ef0a3922-4345-4258-8162-3f8539656a57/apply",
+              "description": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Field Operations Lead works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "e06692cd-654f-4ba9-b99d-230535fe2aa5",
+              "text": "Site Reliability Engineer",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "DE",
+              "workplaceType": "remote",
+              "createdAt": 1767611471111,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/e06692cd-654f-4ba9-b99d-230535fe2aa5/apply",
+              "description": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+              "descriptionPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+              "descriptionBody": "<div><p>The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.</p></div>",
+              "descriptionBodyPlain": "The reliability team owns the paging rotation, the error budget and the post-incident write-ups. This posting carries no preamble, and the whole of what the role covers lives in this description.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "text": "Regional Account Executive",
+              "categories": {
+                "location": "Paris",
+                "team": "Sales",
+                "allLocations": [
+                  "Paris",
+                  "Berlin",
+                  "Madrid",
+                  "Milan",
+                  "Amsterdam",
+                  "Dublin",
+                  "Lisbon",
+                  "Warsaw",
+                  "Stockholm"
+                ],
+                "commitment": "Full-time",
+                "department": "Revenue"
+              },
+              "country": "FR",
+              "workplaceType": "hybrid",
+              "createdAt": 1784473200000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/0059f57d-5e28-4d69-9830-e43a460f5bdc/apply",
+              "description": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Regional Account Executive works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "8ba12da5-97ea-4302-a515-74ef81140cc0",
+              "text": "Executive Assistant",
+              "categories": {
+                "location": "Chicago, IL",
+                "team": "Operations",
+                "allLocations": [
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": "US",
+              "workplaceType": "onsite",
+              "createdAt": 1777707000000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8ba12da5-97ea-4302-a515-74ef81140cc0/apply",
+              "description": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Executive Assistant works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": []
+            },
+            {
+              "id": "3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+              "text": "Warehouse Automation Technician",
+              "categories": {
+                "location": "Detroit, MI",
+                "team": "Operations",
+                "allLocations": [
+                  "Detroit, MI"
+                ],
+                "commitment": "Full-time",
+                "department": "Operations"
+              },
+              "country": "US",
+              "workplaceType": "onsite",
+              "createdAt": 1504111320000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/3516d474-c5a9-4c1b-91a0-9154a51aa2f2/apply",
+              "description": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Warehouse Automation Technician works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ]
+            },
+            {
+              "id": "8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "text": "Backend Engineer, Payments",
+              "categories": {
+                "location": "Remote",
+                "team": "Engineering",
+                "allLocations": [
+                  "Remote",
+                  "Chicago, IL"
+                ],
+                "commitment": "Full-time",
+                "department": "Platform"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1786579199999,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/8884ece5-3e53-42d0-bb5a-2a1ce41bde2e/apply",
+              "description": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Backend Engineer, Payments works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 140000,
+                "max": 175000,
+                "currency": "USD",
+                "interval": "per-year-salary"
+              }
+            },
+            {
+              "id": "dad17698-9d0f-473d-b337-33005c945001",
+              "text": "Community Manager",
+              "categories": {
+                "location": "Remote",
+                "team": "Marketing",
+                "allLocations": [
+                  "Remote"
+                ],
+                "commitment": "Full-time",
+                "department": "Marketing"
+              },
+              "country": "US",
+              "workplaceType": "remote",
+              "createdAt": 1772506983003,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/dad17698-9d0f-473d-b337-33005c945001/apply",
+              "description": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+              "descriptionPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+              "descriptionBody": "<div><p>We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.</p></div>",
+              "descriptionBodyPlain": "We run a forum and a newsletter.\nNote: this line was written by the employer inside the posting.\nSource: an employer sentence that looks like an attribution line.\nApplications are read weekly.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities",
+                  "content": "<li>Note: moderate the forum every morning</li><li>Source: the weekly newsletter draft</li>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Part-Time",
+          "postings": [
+            {
+              "id": "7d441faa-61e5-44db-88e8-d8b4fa338d83",
+              "text": "Support Specialist",
+              "categories": {
+                "location": "London",
+                "team": "Support",
+                "allLocations": [
+                  "London"
+                ],
+                "commitment": "Part-Time",
+                "department": "Customer Experience"
+              },
+              "country": "GB",
+              "workplaceType": "onsite",
+              "createdAt": 1774080300000,
+              "hostedUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83",
+              "applyUrl": "https://jobs.lever.co/acmerobotics/7d441faa-61e5-44db-88e8-d8b4fa338d83/apply",
+              "description": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "descriptionBody": "<div><p>Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.</p></div>",
+              "descriptionBodyPlain": "Support Specialist works alongside a small team that ships weekly. The role covers design, build and operation of the systems behind the product, and the person holding it is expected to write down what they decide.",
+              "opening": "",
+              "openingPlain": "",
+              "additional": "",
+              "additionalPlain": "",
+              "lists": [
+                {
+                  "text": "Responsibilities:",
+                  "content": "<li>Build the thing</li><li>Keep the thing running</li>"
+                }
+              ],
+              "salaryRange": {
+                "min": 42000,
+                "max": 42000,
+                "currency": "GBP",
+                "interval": "per-year-salary"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
