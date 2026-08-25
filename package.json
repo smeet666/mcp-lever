@@ -28,7 +28,10 @@
     "url": "git+https://github.com/smeet666/mcp-lever.git"
   },
   "license": "MIT",
-  "author": "Damien Bouissou",
+  "author": {
+    "name": "Damien Bouissou",
+    "url": "https://github.com/smeet666"
+  },
   "type": "module",
   "bin": {
     "mcp-lever": "dist/index.js"
