@@ -37,7 +37,10 @@
     "mcp-lever": "dist/index.js"
   },
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./client": {
       "types": "./dist/lever/client.d.ts",
       "import": "./dist/lever/client.js"
@@ -45,10 +48,10 @@
   },
   "files": [
     "dist",
-    "assets",
     "README.md",
     "LICENSE",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "server.json"
   ],
   "engines": {
     "node": ">=24.0.0"
