@@ -76,7 +76,7 @@ describe("les notes du serveur", () => {
 
     const outcome = await harness.call("search_jobs", {
       companies: ["acmerobotics"],
-      salary_min: 100000,
+      salary_min: 100_000,
       currency: "USD",
       limit: 100,
     });
@@ -93,7 +93,7 @@ describe("les notes du serveur", () => {
 
     const outcome = await harness.call("search_jobs", {
       companies: ["acmerobotics"],
-      salary_min: 100000,
+      salary_min: 100_000,
       currency: "USD",
       limit: 100,
     });

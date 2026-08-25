@@ -5,6 +5,7 @@
 // `ClaudeBot`, ou le chemin `/v0/postings/`, doit casser la construction plutôt
 // que passer inaperçue.
 
+import process from "node:process";
 import { describe, it, expect } from "vitest";
 import { Client } from "../../src/lever/client.js";
 
@@ -34,7 +35,7 @@ function parseRobots(text: string): RobotsGroup[] {
     const value = rest.join(":").trim();
 
     if (field === "user-agent") {
-      if (!current || !previousWasAgent) {
+      if (!(current && previousWasAgent)) {
         current = { agents: [], disallow: [] };
         groups.push(current);
       }
