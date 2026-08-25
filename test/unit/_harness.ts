@@ -161,7 +161,10 @@ export function corpusFetch(options: StubOptions = {}): FetchStub {
   const calls: RecordedCall[] = [];
   const hidden = new Set(options.hide ?? []);
 
-  const impl = async (input: Parameters<typeof fetch>[0], init?: RequestInit): Promise<Response> => {
+  const impl = async (
+    input: Parameters<typeof fetch>[0],
+    init?: RequestInit,
+  ): Promise<Response> => {
     const url = addressOf(input);
     calls.push({
       url,
