@@ -11,7 +11,7 @@ import { createServer } from "../../src/server.js";
 import { corpus, type RawGroup, type RawPosting } from "./_corpus.js";
 
 /** The address a fetch was called with, whichever of the three shapes it took. */
-function addressOf(input: RequestInfo | URL): string {
+function addressOf(input: Parameters<typeof fetch>[0]): string {
   if (typeof input === "string") {
     return input;
   }
@@ -161,7 +161,7 @@ export function corpusFetch(options: StubOptions = {}): FetchStub {
   const calls: RecordedCall[] = [];
   const hidden = new Set(options.hide ?? []);
 
-  const impl = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+  const impl = async (input: Parameters<typeof fetch>[0], init?: RequestInit): Promise<Response> => {
     const url = addressOf(input);
     calls.push({
       url,
@@ -214,7 +214,7 @@ export function corpusFetch(options: StubOptions = {}): FetchStub {
 /** Un `fetch` qui n'est jamais censé partir : tout appel fait échouer le test. */
 export function forbiddenFetch(): FetchStub {
   const calls: RecordedCall[] = [];
-  const impl = async (input: RequestInfo | URL): Promise<Response> => {
+  const impl = async (input: Parameters<typeof fetch>[0]): Promise<Response> => {
     const url = addressOf(input);
     calls.push({ url, method: "GET", headers: {}, startedAt: Date.now() });
     throw new Error(`connexion ouverte alors que le test l'interdit : ${url}`);

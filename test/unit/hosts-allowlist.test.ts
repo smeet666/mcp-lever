@@ -101,8 +101,8 @@ describe("la liste blanche d'hôtes", () => {
 
   it("envoie un User-Agent qui nomme le projet et n'imite aucun navigateur", async () => {
     const seen: Record<string, string>[] = [];
-    const fetchImpl = (async (_input: RequestInfo | URL, init?: RequestInit) => {
-      const headers = new Headers(init?.headers as HeadersInit);
+    const fetchImpl = (async (_input: Parameters<typeof fetch>[0], init?: RequestInit) => {
+      const headers = new Headers(init?.headers);
       const collected: Record<string, string> = {};
       headers.forEach((v, k) => {
         collected[k.toLowerCase()] = v;
