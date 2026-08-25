@@ -40,5 +40,11 @@
       "description": "List the filter wordings a company uses."
     }
   ],
-  "icon": "assets/icon-128.png"
+  "icon": "assets/icon-128.png",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=24.0.0"
+    }
+  }
 }
