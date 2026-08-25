@@ -24,8 +24,8 @@ describe("le salaire", () => {
   it("rend un montant unique quand min égale max, sans fabriquer une fourchette", () => {
     const rendered = row("salary_equal") as unknown as Record<string, unknown>;
     const salary = rendered["salary"] as unknown as Record<string, unknown>;
-    expect(salary["min"]).toBe(42000);
-    expect(salary["max"]).toBe(42000);
+    expect(salary["min"]).toBe(42_000);
+    expect(salary["max"]).toBe(42_000);
     expect(salary["currency"]).toBe("GBP");
     expect(salary["interval"]).toBe("per-year-salary");
   });

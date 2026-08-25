@@ -11,6 +11,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import process from "node:process";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outDir = join(here, "..", "test", "fixtures");
@@ -114,7 +115,7 @@ const acme = [
     country: "US",
     workplaceType: "hybrid",
     createdAt: at("2026-05-14T17:30:00.000Z"),
-    salaryRange: { min: 165000, max: 210000, currency: "USD", interval: "per-year-salary" },
+    salaryRange: { min: 165_000, max: 210_000, currency: "USD", interval: "per-year-salary" },
     salaryDescriptionPlain: "Base range shown for US candidates, equity offered separately.",
   }),
 
@@ -139,7 +140,7 @@ const acme = [
     country: "GB",
     workplaceType: "onsite",
     createdAt: at("2026-03-21T08:05:00.000Z"),
-    salaryRange: { min: 42000, max: 42000, currency: "GBP", interval: "per-year-salary" },
+    salaryRange: { min: 42_000, max: 42_000, currency: "GBP", interval: "per-year-salary" },
   }),
 
   posting("acmerobotics", "salary_description_only", {
@@ -276,7 +277,7 @@ const acme = [
     country: "US",
     workplaceType: "remote",
     createdAt: at("2026-08-12T23:59:59.999Z"),
-    salaryRange: { min: 140000, max: 175000, currency: "USD", interval: "per-year-salary" },
+    salaryRange: { min: 140_000, max: 175_000, currency: "USD", interval: "per-year-salary" },
   }),
 
   posting("acmerobotics", "marker_lines", {
@@ -316,7 +317,7 @@ const nimbus = [
     country: "US",
     workplaceType: "remote",
     createdAt: at("2026-07-01T09:00:00.000Z"),
-    salaryRange: { min: 150000, max: 190000, currency: "USD", interval: "per-year-salary" },
+    salaryRange: { min: 150_000, max: 190_000, currency: "USD", interval: "per-year-salary" },
   }),
   posting("Nimbus", "two", {
     text: "Solutions Architect",
@@ -327,7 +328,7 @@ const nimbus = [
     country: "IN",
     workplaceType: "hybrid",
     createdAt: at("2026-06-11T05:30:00.000Z"),
-    salaryRange: { min: 3600000, max: 4200000, currency: "INR", interval: "per-year-salary" },
+    salaryRange: { min: 3_600_000, max: 4_200_000, currency: "INR", interval: "per-year-salary" },
   }),
 ];
 
