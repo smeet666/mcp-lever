@@ -57,7 +57,7 @@ Claude Desktop, `claude_desktop_config.json`:
   "mcpServers": {
     "lever": {
       "command": "docker",
-      "args": ["run", "-i", "--rm", "ghcr.io/smeet666/mcp-lever:1.0.0"]
+      "args": ["run", "-i", "--rm", "ghcr.io/smeet666/mcp-lever:2.0.0"]
     }
   }
 }
@@ -229,7 +229,7 @@ Claude Desktop, dans `claude_desktop_config.json` :
   "mcpServers": {
     "lever": {
       "command": "docker",
-      "args": ["run", "-i", "--rm", "ghcr.io/smeet666/mcp-lever:1.0.0"]
+      "args": ["run", "-i", "--rm", "ghcr.io/smeet666/mcp-lever:2.0.0"]
     }
   }
 }
