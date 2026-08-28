@@ -29,19 +29,212 @@
   "tools": [
     {
       "name": "resolve_company",
-      "description": "Turn company names into their Lever site names."
+      "description": "Turn company names into their Lever site names.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "minItems": 1,
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A company name, or a Lever site name you already know."
+            },
+            "description": "A list of a company name, or a Lever site name you already know, one to 25 of them."
+          }
+        },
+        "required": ["names"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      }
     },
     {
       "name": "search_jobs",
-      "description": "Search the openings of named companies."
+      "description": "Search the openings of named companies.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "companies": {
+            "minItems": 1,
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A company name or a Lever site name."
+            },
+            "description": "A list of a company name or a Lever site name, one to 25 of them."
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Words to look for in the title and the advert."
+          },
+          "location": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A location exactly as Lever writes it."
+            },
+            "description": "A list of a location exactly as Lever writes it, one to 20 of them."
+          },
+          "team": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A team exactly as Lever writes it."
+            },
+            "description": "A list of a team exactly as Lever writes it, one to 20 of them."
+          },
+          "department": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A department exactly as Lever writes it."
+            },
+            "description": "A list of a department exactly as Lever writes it, one to 20 of them."
+          },
+          "commitment": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A commitment exactly as Lever writes it."
+            },
+            "description": "A list of a commitment exactly as Lever writes it, one to 20 of them."
+          },
+          "workplace_type": {
+            "minItems": 1,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Remote, hybrid, onsite or unspecified."
+            },
+            "description": "A list of remote, hybrid, onsite or unspecified, one to 4 of them."
+          },
+          "country": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$",
+              "description": "A two-letter country code, as in FR or US."
+            },
+            "description": "A list of a two-letter country code, as in FR or US, one to 20 of them."
+          },
+          "salary_min": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The lowest upper bound of a salary range to keep."
+          },
+          "salary_interval": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The period salary_min is written in, as Lever writes it, such as per-year-salary or per-hour-wage."
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Za-z]{3}$",
+            "description": "A three-letter currency code, as in EUR or USD."
+          },
+          "posted_within_days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3650,
+            "description": "How recent an opening must be."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "description": "How many openings to read per company."
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000,
+            "description": "How many openings to step over per company."
+          }
+        },
+        "required": ["companies"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      }
     },
     {
       "name": "get_job",
-      "description": "Read one opening in full."
+      "description": "Read one opening in full.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_slug": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The Lever site name, as resolve_company returns it."
+          },
+          "job_id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The identifier of one opening, as a search returns it."
+          },
+          "instance": {
+            "type": "string",
+            "enum": ["global", "eu"],
+            "description": "The Lever instance the row came from. Left out, the global one is read."
+          }
+        },
+        "required": ["company_slug", "job_id"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      }
     },
     {
       "name": "list_filter_values",
-      "description": "List the filter wordings a company uses."
+      "description": "List the filter wordings a company uses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_slug": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The Lever site name, as resolve_company returns it."
+          },
+          "instance": {
+            "type": "string",
+            "enum": ["global", "eu"],
+            "description": "The Lever instance this site lives on. Left out, the global one is read."
+          },
+          "fields": {
+            "minItems": 1,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["team", "location", "commitment"]
+            },
+            "description": "Which vocabularies to read. Each costs one request. All three by default."
+          }
+        },
+        "required": ["company_slug"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      }
     }
   ],
   "icon": "assets/icon-512.png",
