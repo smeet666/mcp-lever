@@ -10,34 +10,41 @@
 [![M8ven](https://m8ven.ai/badge/mcp/smeet666-mcp-lever-ti7zmm?variant=verified)](https://m8ven.ai/mcp/smeet666-mcp-lever-ti7zmm)
 [![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=lever&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1sZXZlciJdfQ%3D%3D)
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=lever&config=%7B%22name%22%3A%22lever%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-lever%22%5D%7D)
+
 <!-- m8ven-verify: 5faf86e7541e0167239ba83df2f3a7cc -->
 
-An MCP server for the public job boards companies publish through
-[Lever](https://www.lever.co). Search the openings of the companies you name,
-read one in full, and see the wordings each company filters by. No API key, no
-account, read-only.
+[Lever](https://www.lever.co) is recruiting software that thousands of companies
+use to run their hiring, and every customer gets a public job board that comes
+with it. Each board carries that company's open positions with their title,
+their location, the team and department they sit in, the commitment they ask for,
+the full advert, and the salary range where the company chose to publish one.
+Lever hosts one board per company, on either its global or its European instance,
+and publishes no index across them.
 
-[Français](#mcp-lever-français)
+This server connects a chat client to those boards. You name the companies you
+are interested in, and it turns each name into the site name that addresses its
+board, searches their openings, filters them by location, team, workplace type,
+country, salary or how recently they were posted, reads one opening in full, and
+lists the wordings each company filters by. It needs no API key and no account.
 
-## What it does
+_[Version française](#mcp-lever-français)_
 
-Lever hosts one job board per company, and publishes no index across them. Every
-question therefore starts with a company name, and this server turns that name
-into the site name that addresses its board.
-
-```
-resolve_company(["Included Health"])  ->  includedhealth, global instance, publishing
-search_jobs(["Included Health"], keyword: "therapist")
-get_job("includedhealth", "6f97a19f-…")
-```
+---
 
 ## Install
 
+**One-click install**
+
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=lever&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1sZXZlciJdfQ%3D%3D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=lever&config=%7B%22name%22%3A%22lever%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-lever%22%5D%7D)
+
+**Claude Code**
+
 ```bash
-npx mcp-lever
+claude mcp add lever -- npx -y mcp-lever
 ```
 
-Claude Desktop, `claude_desktop_config.json`:
+**Claude Desktop, Cursor, and any client using the standard config format**
 
 ```json
 {
@@ -49,6 +56,8 @@ Claude Desktop, `claude_desktop_config.json`:
   }
 }
 ```
+
+Node 24 or later is required, and no environment variable has to be set.
 
 ### With Docker
 
@@ -63,153 +72,273 @@ Claude Desktop, `claude_desktop_config.json`:
 }
 ```
 
-`-i` keeps stdin open, which is where the protocol travels, and no `-t` is
-passed: a TTY rewrites the stream and breaks it. The container needs outbound
-HTTPS to `api.lever.co` and `api.eu.lever.co`, and nothing else: no volume, no
-port, no environment variable, no credential.
+`-i` keeps stdin open, which is where the protocol travels, and `-t` is left out
+because a TTY rewrites the stream. The container needs outbound HTTPS to
+`api.lever.co` and `api.eu.lever.co`, and nothing else: no volume, no port, no
+credential.
 
-## The tools
+### Bundle, without npm
 
-### `resolve_company`
+Download `mcp-lever-2.0.0.mcpb` from
+[the latest release](https://github.com/smeet666/mcp-lever/releases/latest) and
+open it. A client that supports MCP bundles installs it on its own, with no npm
+and no configuration file to edit. The bundle carries its dependencies, so
+nothing is fetched at install time.
 
-Company names in, the Lever site names out, with every instance that answered. It
-takes a list, because probing ten names costs ten resolutions where a search
-would read ten boards.
+## What you can ask
 
-Lever site names distinguish case: `Flex` answers where `flex` returns 404. Four
-spellings are tried on each of Lever's two instances, stopping at the first one
-confirmed. **Nothing found is never proof that a company is absent from Lever**,
-and the answer says so, listing the spellings that were sent.
+- "Which of Included Health, Netlify and Ramp are hiring on Lever?"
+- "Find me remote engineering roles at those three companies."
+- "Read me that opening in full."
+- "What locations does Included Health list its jobs under?"
+- "Anything posted in the last two weeks at Netlify?"
 
-### `search_jobs`
-
-`companies` is required, and takes names or site names. Each name is resolved
-here, so no preparation is needed.
-
-| Filter                                                                     | Applied by                           |
-| -------------------------------------------------------------------------- | ------------------------------------ |
-| `location`, `team`, `department`, `commitment`                             | Lever, on its exact wording          |
-| `keyword`, `workplace_type`, `country`, `salary_min`, `posted_within_days` | this server, on the openings it read |
-
-Lever offers no full-text search and accepts no filter on workplace type,
-country or salary, which is why those are applied here. `limit` applies per
-company, and a company whose openings fill it may publish more: the notes say
-when that happened, and that a count taken inside that window measures the
-window.
-
-`posted_within_days` walks up to five pages per company. Lever pages by title,
-so an opening published yesterday sits anywhere in a board, and a recency
-question read from the first page answers about the first page.
-
-### `get_job`
-
-One opening in full: the advert, its named sections, and the salary as
-published. A search returns rows without the text, because one company's board
-runs to megabytes.
-
-### `list_filter_values`
-
-The team, location and commitment wordings one company uses. Read it before
-filtering: Lever matches its own wording, and **answers a wording it does not
-know with an empty list and no error**, which reads as "nothing found". The
-vocabulary belongs to each company: one writes `Full-time`, another `Full Time`,
-another `EE Full-Time`.
-
-## What the answers never claim
-
-- **A salary Lever does not publish is `null`**, never zero. Most openings
-  publish none, and filtering on salary drops them: the notes say how many.
-- **An amount carries its own period.** A rate published per hour is never
-  annualised, and a threshold is only compared against amounts sharing its
-  period. Nothing is converted between currencies.
-- **A country Lever does not record is `null`**, never another country. Openings
-  carrying no country are counted separately when a country filter drops them.
-- **A site name that does not exist, a site publishing nothing, and a read that
-  failed are three answers**, and `per_company` says which is which.
-- **No result count.** Lever publishes none, so `total_available` is always
-  `null`, and a full page is no measure of what exists.
-
-## What it reads, and what it leaves alone
-
-The server reads `api.lever.co` and `api.eu.lever.co`, which Lever documents as
-public and whose `robots.txt` allows everything with `Crawl-delay: 1`. It sends
-one request at a time, a second apart, under a `User-Agent` naming the project
-and a contact address.
-
-It never reads `jobs.lever.co`, whose `robots.txt` names six agents and refuses
-each of them. Openings carry the address of their page there, because citing an
-address is not crawling it.
-
-## Stability
-
-A major version covers what a caller writes against and reads back:
-
-- the four tool names, and the names and types of their arguments;
-- the shape of what each tool returns, and the fields it carries;
-- the six error codes;
-- the `./client` subpath: `Client`, `Read<T>`, and the shapes it hands back.
-
-These stay minor, and a caller who reads only what it asked for is untouched:
-
-- a new optional argument, or a new tool;
-- a new field in an answer, or a new note;
-- the wording of a note, a description, or an error message;
-- following a newer revision of the Model Context Protocol, which changes the
-  envelope around the tools rather than the tools.
-
-A field that Lever stops publishing is reported as absent rather than removed
-from the shape, so a schema never narrows without a major version.
-
-## Use it as a library
-
-The low-level client is published on its own, with the pacing, the cache and the
-error taxonomy, and no protocol attached:
-
-```js
-import { Client } from "mcp-lever/client";
-
-const client = new Client();
-const { found } = await client.resolveCompany("Aircall");
-const { data } = await client.listPostings({ slug: found[0].slug, instance: "global" });
-```
-
-Errors carry one of six codes: `not_found`, `invalid_input`, `rate_limited`,
-`parse_failure`, `network_error`, `timeout`. A failure is never returned as an
-empty result.
-
-## Licence
-
-MIT. Job adverts belong to the companies that published them: credit the company
-and link the page each opening carries.
-
----
-
-# mcp-lever (français)
-
-Un serveur MCP pour les pages carrières que les entreprises publient à travers
-[Lever](https://www.lever.co). Cherchez les offres des entreprises que vous
-nommez, lisez-en une en entier, et consultez le vocabulaire de filtre propre à
-chacune. Sans clé d'API, sans compte, en lecture seule.
-
-## Ce qu'il fait
-
-Lever héberge une page carrières par entreprise et ne publie aucun index qui les
-traverse. Toute question part donc d'un nom d'entreprise, que ce serveur
-transforme en identifiant de site.
+Every question starts from a company, since Lever offers no search across boards.
+`search_jobs` resolves the names you give it, so no preparation is needed:
 
 ```
-resolve_company(["Included Health"])  ->  includedhealth, instance globale, publie
+resolve_company(["Included Health"])  ->  includedhealth, global instance, publishing
 search_jobs(["Included Health"], keyword: "therapist")
 get_job("includedhealth", "6f97a19f-…")
 ```
 
-## Installation
+## Tools
 
-```bash
-npx mcp-lever
+| Tool                 | What it does                                                   |
+| -------------------- | -------------------------------------------------------------- |
+| `resolve_company`    | Turns company names into the Lever site names of their boards. |
+| `search_jobs`        | Searches the openings of the companies you name.               |
+| `get_job`            | Reads one opening in full, advert included.                    |
+| `list_filter_values` | Lists the wordings one company files its openings under.       |
+
+A Lever site name distinguishes case, so `Flex` answers where `flex` returns
+nothing. Four spellings are tried per name on each of the two instances, and the
+answer lists what was sent, so nothing found is never proof that a company is
+absent from Lever.
+
+### `resolve_company`
+
+Turns company names into Lever site names, reporting every instance that
+answered. It takes a list.
+
+| Argument | Type                     | Required | What it does                                         |
+| -------- | ------------------------ | -------- | ---------------------------------------------------- |
+| `names`  | array of 1 to 25 strings | yes      | Company names, or Lever site names you already know. |
+
+**In return:** one entry per name, carrying `input`; `found`, a list of
+`{ slug, instance, publishes }` where `publishes` is false for a site that exists
+and lists nothing today; `tried`, the spellings sent in order; and `cached`, true
+when this session had already resolved that name. A name answering on both
+instances comes back with both, and neither is elected: pass the one you mean to
+the other tools.
+
+### `search_jobs`
+
+Searches the openings of the companies named. Lever applies the filters it
+supports on its own exact wording, and this server applies the rest to the
+openings it read.
+
+| Argument             | Type                              | Required | What it does                                                      |
+| -------------------- | --------------------------------- | -------- | ----------------------------------------------------------------- |
+| `companies`          | array of 1 to 25 strings          | yes      | Company names or Lever site names. Each is resolved here.         |
+| `keyword`            | string                            | no       | Words to look for in the title and the advert.                    |
+| `location`           | array of 1 to 20 strings          | no       | Locations, exactly as Lever writes them.                          |
+| `team`               | array of 1 to 20 strings          | no       | Teams, exactly as Lever writes them.                              |
+| `department`         | array of 1 to 20 strings          | no       | Departments, exactly as Lever writes them.                        |
+| `commitment`         | array of 1 to 20 strings          | no       | Commitments, exactly as Lever writes them.                        |
+| `workplace_type`     | array of 1 to 4 strings           | no       | `remote`, `hybrid`, `onsite` or `unspecified`.                    |
+| `country`            | array of 1 to 20 two-letter codes | no       | Countries as ISO codes, as in `FR` or `US`.                       |
+| `salary_min`         | number, 0 or more                 | no       | The lowest upper bound of a salary range to keep.                 |
+| `salary_interval`    | string                            | no       | The period `salary_min` is written in, such as `per-year-salary`. |
+| `currency`           | three-letter code                 | no       | The currency `salary_min` is written in, as in `EUR`.             |
+| `posted_within_days` | integer, 1 to 3650                | no       | How recent an opening must be.                                    |
+| `limit`              | integer, 1 to 100, default `25`   | no       | Openings to read per company.                                     |
+| `skip`               | integer, 0 to 100000, default `0` | no       | Openings to step over per company.                                |
+
+Lever itself applies `location`, `team`, `department` and `commitment`; this
+server applies `keyword`, `workplace_type`, `country`, `salary_min`,
+`salary_interval`, `currency` and `posted_within_days` to what it read.
+`list_filter_values` publishes the wordings the first four take, and a wording
+Lever does not know comes back as an empty list.
+
+**In return:** `jobs`, each carrying `id` and `company_slug`, which `get_job`
+takes, plus `title`, `location`, `all_locations`, `country`, `workplace_type`,
+`team`, `posted_at`, `url` and `apply_url`. `commitment` and `department` are
+absent when the company records neither. `salary` is `null` for an opening
+published without one, which is never the same as zero, and it carries the
+`interval` Lever wrote it in, never converted or annualised. `per_company` gives
+one outcome per company, with a `status` of `read`, `unresolved`, `empty` or
+`failed`, which are four different answers, and the `read` and `returned` counts
+around the filters. `total_available` is always `null`: Lever publishes no result
+count. The rows carry no advert text, since one company's board can run to
+megabytes.
+
+`limit` applies per company, and a company whose openings fill it may publish
+more: the notes say when that happened, and that a count taken inside that window
+measures the window. `posted_within_days` walks up to five pages per company,
+and Lever pages by title, so an opening published yesterday can sit anywhere in a
+board.
+
+### `get_job`
+
+Reads one opening in full: the advert, its named sections, and the salary as
+published.
+
+| Argument       | Type             | Required | What it does                                               |
+| -------------- | ---------------- | -------- | ---------------------------------------------------------- |
+| `company_slug` | string           | yes      | The Lever site name, as `resolve_company` returns it.      |
+| `job_id`       | string           | yes      | The identifier of one opening, as a search returns it.     |
+| `instance`     | `global` or `eu` | no       | The instance the row came from. The global one by default. |
+
+**In return:** `job`, holding the fields a search row carries, plus
+`description`, `sections` as `{ heading, items }`, `salary_note` for what the
+company wrote beside the range, and `source` with the address it was retrieved
+from.
+
+### `list_filter_values`
+
+Lists the team, location and commitment wordings one company uses. Read it before
+filtering: Lever matches its own wording, and the vocabulary belongs to each
+company, one writing `Full-time` where another writes `EE Full-Time`.
+
+| Argument       | Type                                                | Required | What it does                                                                           |
+| -------------- | --------------------------------------------------- | -------- | -------------------------------------------------------------------------------------- |
+| `company_slug` | string                                              | yes      | The Lever site name, as `resolve_company` returns it.                                  |
+| `instance`     | `global` or `eu`                                    | no       | The instance this site lives on. The global one by default.                            |
+| `fields`       | array of 1 to 3 of `team`, `location`, `commitment` | no       | Which vocabularies to read. Each costs one request, and all three are read by default. |
+
+**In return:** `company_slug`, `instance`, and `fields` holding a list of
+`{ value, count }` for each vocabulary asked for. A `count` is `null` where Lever
+published no figure alongside the category.
+
+## Configuration
+
+Nothing has to be configured. The server reads no environment variable, and the
+`mcpServers` block above is complete as written.
+
+The pacing, the timeout and the cache are settings of the client layer, which
+[As a library](#as-a-library) shows how to pass. The interval between two
+requests can be widened there and never narrowed.
+
+## Errors
+
+Every failure carries one of six codes, a message, and where it helps the values
+that would have been accepted.
+
+| Code            | What happened                                           | What to do                                                                        |
+| --------------- | ------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `not_found`     | Lever answered, and holds no such site or opening.      | Check the site name with `resolve_company`.                                       |
+| `invalid_input` | The arguments were refused before any request went out. | Read the message, which names the argument and what it takes.                     |
+| `rate_limited`  | Lever asked this client to slow down.                   | Wait, then call again with the same arguments. The opening is still on the board. |
+| `parse_failure` | Lever answered in a shape this client cannot read.      | Report it at [the issue tracker](https://github.com/smeet666/mcp-lever/issues).   |
+| `network_error` | The request did not complete.                           | Try again shortly.                                                                |
+| `timeout`       | The request passed its deadline.                        | Ask for fewer companies, or a smaller `limit`.                                    |
+
+## As a library
+
+The layer reading Lever is published on its own, with its pacing, its cache and
+its errors, and with no protocol attached.
+
+```ts
+import { Client } from "mcp-lever/client";
+
+const client = new Client({ minIntervalMs: 2000 });
+const resolved = await client.resolveCompany("Included Health");
+const jobs = await client.listPostings(resolved.found[0], { limit: 10 });
+console.log(jobs.length);
 ```
 
-Claude Desktop, dans `claude_desktop_config.json` :
+`ClientOptions` takes `minIntervalMs`, `timeoutMs`, `cacheTtlMs` and `fetchImpl`.
+An interval below the published floor is ignored, so the floor holds here as
+well.
+
+## Pacing and attribution
+
+Both API hosts publish `Crawl-delay: 1`, so requests go out one at a time with at
+least a second between them, and that floor holds however the client is
+configured. The `User-Agent` carries the project and an address where a person
+can be reached, and imitates no browser.
+
+Reads go to `api.lever.co` and `api.eu.lever.co`, which are the hosts Lever
+documents for its posting data. The `jobs.lever.co` careers pages are left alone.
+
+Every opening carries the address of its Lever page and its apply URL. Credit the
+company and link that page when you show an opening.
+
+This MCP server is an unofficial project, with no affiliation to Lever or to the
+companies whose boards it reads.
+
+## Privacy
+
+This server collects nothing about you and sends nothing to its author. It runs
+on your machine, contacts `api.lever.co` and `api.eu.lever.co` and nothing else, holds its answers in memory
+while it runs, and writes nothing to disk.
+[PRIVACY.md](PRIVACY.md) states what a request carries and which settings change
+any of it.
+
+## Development
+
+```bash
+npm install
+npm run build:fixtures
+npm test
+npm run check
+```
+
+Tests run against generated fixtures and make no network request. The live suite,
+`npm run test:live`, makes one request per route and runs nightly against the
+service itself.
+
+## Contributing
+
+Bugs, questions and ideas belong in
+[the issue tracker](https://github.com/smeet666/mcp-lever/issues). Pull requests
+are welcome; opening an issue first helps agree on the shape of the change. See
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+MIT, see [LICENSE](LICENSE). The openings belong to the companies that published
+them.
+
+---
+
+<a name="mcp-lever-français"></a>
+
+# mcp-lever (français)
+
+_[English version](#mcp-lever)_
+
+[Lever](https://www.lever.co) est un logiciel de recrutement qu'utilisent des
+milliers d'entreprises pour mener leurs embauches, et chaque cliente reçoit avec
+lui un site d'offres public. Chaque site porte les postes ouverts de cette
+entreprise avec leur intitulé, leur lieu, l'équipe et le département auxquels ils
+appartiennent, le type de contrat demandé, l'annonce complète, et la fourchette
+de salaire quand l'entreprise a choisi d'en publier une. Lever héberge un site
+par entreprise, sur son instance mondiale ou sur son instance européenne, et ne
+publie aucun index les traversant.
+
+Ce serveur relie un client de conversation à ces sites. Vous nommez les
+entreprises qui vous intéressent, et il traduit chaque nom en l'identifiant qui
+adresse son site, cherche dans leurs offres, les filtre par lieu, équipe, mode de
+travail, pays, salaire ou fraîcheur de publication, lit une offre en entier, et
+liste les formulations selon lesquelles chaque entreprise classe les siennes.
+Aucune clé d'API, aucun compte.
+
+## Installation
+
+**Installation en un clic**
+
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=lever&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1sZXZlciJdfQ%3D%3D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=lever&config=%7B%22name%22%3A%22lever%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-lever%22%5D%7D)
+
+**Claude Code**
+
+```bash
+claude mcp add lever -- npx -y mcp-lever
+```
+
+**Claude Desktop, Cursor, et tout client au format de configuration standard**
 
 ```json
 {
@@ -221,6 +350,9 @@ Claude Desktop, dans `claude_desktop_config.json` :
   }
 }
 ```
+
+Node 24 ou plus récent est nécessaire, et aucune variable d'environnement n'est à
+renseigner.
 
 ### Avec Docker
 
@@ -235,124 +367,233 @@ Claude Desktop, dans `claude_desktop_config.json` :
 }
 ```
 
-`-i` garde l'entrée standard ouverte, qui est le canal du protocole, et aucun
-`-t` n'est passé : un terminal réécrit le flux et le casse. Le conteneur a
-besoin d'un accès HTTPS sortant vers `api.lever.co` et `api.eu.lever.co`, et de
-rien d'autre : aucun volume, aucun port, aucune variable d'environnement, aucun
-identifiant.
+`-i` garde l'entrée standard ouverte, qui est le canal du protocole, et `-t` est
+omis parce qu'un TTY réécrit le flux. Le conteneur a besoin d'un accès HTTPS
+sortant vers `api.lever.co` et `api.eu.lever.co`, et de rien d'autre : aucun
+volume, aucun port, aucun identifiant.
+
+### Bundle, sans npm
+
+Téléchargez `mcp-lever-2.0.0.mcpb` depuis
+[la dernière publication](https://github.com/smeet666/mcp-lever/releases/latest)
+et ouvrez-le. Un client qui gère les bundles MCP l'installe seul, sans npm et
+sans fichier de configuration à modifier. Le bundle emporte ses dépendances, donc
+rien n'est téléchargé à l'installation.
+
+## Ce qu'on peut demander
+
+- « Lesquelles d'Included Health, Netlify et Ramp recrutent sur Lever ? »
+- « Trouve-moi des postes d'ingénierie en télétravail chez ces trois-là. »
+- « Lis-moi cette offre en entier. »
+- « Sous quels lieux Included Health classe-t-elle ses offres ? »
+- « Quelque chose publié ces quinze derniers jours chez Netlify ? »
+
+Chaque question part d'une entreprise, puisque Lever n'offre aucune recherche
+traversant les sites. `search_jobs` résout lui-même les noms qu'on lui donne,
+donc rien n'est à préparer :
+
+```
+resolve_company(["Included Health"])  ->  includedhealth, instance mondiale, publie
+search_jobs(["Included Health"], keyword: "therapist")
+get_job("includedhealth", "6f97a19f-…")
+```
 
 ## Les outils
 
+| Outil                | Ce qu'il fait                                                  |
+| -------------------- | -------------------------------------------------------------- |
+| `resolve_company`    | Traduit des noms d'entreprises en identifiants de sites Lever. |
+| `search_jobs`        | Cherche dans les offres des entreprises nommées.               |
+| `get_job`            | Lit une offre en entier, annonce comprise.                     |
+| `list_filter_values` | Liste les formulations sous lesquelles une entreprise classe.  |
+
+Un identifiant de site Lever distingue la casse, donc `Flex` répond là où `flex`
+ne rend rien. Quatre orthographes sont essayées par nom sur chacune des deux
+instances, et la réponse liste ce qui a été envoyé : ne rien trouver ne prouve
+jamais qu'une entreprise est absente de Lever.
+
 ### `resolve_company`
 
-Des noms d'entreprises en entrée, leurs identifiants de site en sortie, avec
-chaque instance qui a répondu. L'outil prend une liste, parce que sonder dix noms
-coûte dix résolutions là où une recherche lirait dix pages carrières.
+Traduit des noms d'entreprises en identifiants de sites Lever, en signalant
+chaque instance qui a répondu. Il prend une liste.
 
-Les identifiants distinguent la casse : `Flex` répond là où `flex` rend 404.
-Quatre formes sont essayées sur chacune des deux instances, en s'arrêtant à la
-première confirmée. **Ne rien trouver ne prouve jamais qu'une entreprise est
-absente de Lever**, et la réponse le dit, en listant les formes envoyées.
+| Argument | Type                      | Requis | Ce qu'il fait                                            |
+| -------- | ------------------------- | ------ | -------------------------------------------------------- |
+| `names`  | tableau de 1 à 25 chaînes | oui    | Des noms d'entreprises, ou des identifiants déjà connus. |
+
+**En retour :** une entrée par nom, portant `input` ; `found`, une liste de
+`{ slug, instance, publishes }` où `publishes` est faux pour un site qui existe
+et ne liste rien aujourd'hui ; `tried`, les orthographes envoyées dans l'ordre ;
+et `cached`, vrai quand la session avait déjà résolu ce nom. Un nom qui répond
+sur les deux instances revient avec les deux, et aucune n'est élue : passez celle
+que vous visez aux autres outils.
 
 ### `search_jobs`
 
-`companies` est requis et accepte des noms ou des identifiants. Chaque nom est
-résolu ici, sans préparation.
+Cherche dans les offres des entreprises nommées. Lever applique les filtres qu'il
+gère sur sa propre formulation exacte, et ce serveur applique les autres aux
+offres qu'il a lues.
 
-| Filtre                                                                     | Appliqué par                    |
-| -------------------------------------------------------------------------- | ------------------------------- |
-| `location`, `team`, `department`, `commitment`                             | Lever, sur son libellé exact    |
-| `keyword`, `workplace_type`, `country`, `salary_min`, `posted_within_days` | ce serveur, sur les offres lues |
+| Argument             | Type                                   | Requis | Ce qu'il fait                                                                   |
+| -------------------- | -------------------------------------- | ------ | ------------------------------------------------------------------------------- |
+| `companies`          | tableau de 1 à 25 chaînes              | oui    | Noms d'entreprises ou identifiants. Chacun est résolu ici.                      |
+| `keyword`            | chaîne                                 | non    | Mots à chercher dans l'intitulé et dans l'annonce.                              |
+| `location`           | tableau de 1 à 20 chaînes              | non    | Des lieux, exactement comme Lever les écrit.                                    |
+| `team`               | tableau de 1 à 20 chaînes              | non    | Des équipes, exactement comme Lever les écrit.                                  |
+| `department`         | tableau de 1 à 20 chaînes              | non    | Des départements, exactement comme Lever les écrit.                             |
+| `commitment`         | tableau de 1 à 20 chaînes              | non    | Des types de contrat, exactement comme Lever les écrit.                         |
+| `workplace_type`     | tableau de 1 à 4 chaînes               | non    | `remote`, `hybrid`, `onsite` ou `unspecified`.                                  |
+| `country`            | tableau de 1 à 20 codes à deux lettres | non    | Des pays en code ISO, comme `FR` ou `US`.                                       |
+| `salary_min`         | nombre, 0 ou plus                      | non    | La plus basse borne haute de fourchette à conserver.                            |
+| `salary_interval`    | chaîne                                 | non    | La période dans laquelle `salary_min` est écrit, par exemple `per-year-salary`. |
+| `currency`           | code à trois lettres                   | non    | La devise dans laquelle `salary_min` est écrit, comme `EUR`.                    |
+| `posted_within_days` | entier, 1 à 3650                       | non    | L'ancienneté maximale d'une offre.                                              |
+| `limit`              | entier, 1 à 100, défaut `25`           | non    | Offres à lire par entreprise.                                                   |
+| `skip`               | entier, 0 à 100000, défaut `0`         | non    | Offres à enjamber par entreprise.                                               |
 
-Lever n'offre aucune recherche plein texte et n'accepte de filtre ni sur le mode
-de travail, ni sur le pays, ni sur le salaire. `limit` s'applique par entreprise,
-et une entreprise qui le remplit peut publier davantage : les notes le disent, et
-disent aussi qu'un compte pris dans cette fenêtre mesure la fenêtre.
+Lever applique lui-même `location`, `team`, `department` et `commitment` ; ce
+serveur applique `keyword`, `workplace_type`, `country`, `salary_min`,
+`salary_interval`, `currency` et `posted_within_days` à ce qu'il a lu.
+`list_filter_values` publie les formulations que prennent les quatre premiers, et
+une formulation que Lever ignore revient en liste vide.
 
-`posted_within_days` parcourt jusqu'à cinq pages par entreprise. Lever pagine par
-titre, donc une offre publiée hier se trouve n'importe où dans une page
-carrières, et une question de fraîcheur lue sur la première page répond sur la
-première page.
+**En retour :** `jobs`, chacune portant `id` et `company_slug`, que `get_job`
+reprend, plus `title`, `location`, `all_locations`, `country`, `workplace_type`,
+`team`, `posted_at`, `url` et `apply_url`. `commitment` et `department` sont
+absents quand l'entreprise ne les renseigne pas. `salary` vaut `null` pour une
+offre publiée sans fourchette, ce qui ne vaut jamais zéro, et porte l'`interval`
+dans lequel Lever l'a écrite, jamais converti ni annualisé. `per_company` donne
+une issue par entreprise, avec un `status` valant `read`, `unresolved`, `empty`
+ou `failed`, qui sont quatre réponses différentes, et les comptes `read` et
+`returned` de part et d'autre des filtres. `total_available` vaut toujours
+`null` : Lever ne publie aucun compte de résultats. Les lignes ne portent pas
+l'annonce, un site d'entreprise pouvant peser plusieurs mégaoctets.
+
+`limit` s'applique par entreprise, et une entreprise dont les offres le
+remplissent en publie peut-être davantage : les notes le signalent, et disent
+qu'un compte pris dans cette fenêtre mesure la fenêtre. `posted_within_days`
+parcourt jusqu'à cinq pages par entreprise, et Lever pagine par intitulé, donc
+une offre publiée hier peut se trouver n'importe où dans un site.
 
 ### `get_job`
 
-Une offre en entier : l'annonce, ses rubriques nommées, et le salaire tel que
-publié. Une recherche rend des lignes sans le texte, une page carrières pesant
-plusieurs mégaoctets.
+Lit une offre en entier : l'annonce, ses sections nommées, et le salaire tel que
+publié.
+
+| Argument       | Type             | Requis | Ce qu'il fait                                           |
+| -------------- | ---------------- | ------ | ------------------------------------------------------- |
+| `company_slug` | chaîne           | oui    | L'identifiant du site, rendu par `resolve_company`.     |
+| `job_id`       | chaîne           | oui    | L'identifiant d'une offre, rendu par une recherche.     |
+| `instance`     | `global` ou `eu` | non    | L'instance d'où vient la ligne. La mondiale par défaut. |
+
+**En retour :** `job`, qui porte les champs d'une ligne de recherche, plus
+`description`, `sections` en `{ heading, items }`, `salary_note` pour ce que
+l'entreprise a écrit à côté de la fourchette, et `source` avec l'adresse d'où
+l'offre a été lue.
 
 ### `list_filter_values`
 
-Les libellés d'équipe, de lieu et de type de contrat qu'une entreprise emploie.
-À lire avant de filtrer : Lever exige son propre libellé et **répond à un libellé
-inconnu par une liste vide, sans erreur**, ce qui se lit « rien trouvé ». Le
-vocabulaire appartient à chaque entreprise : l'une écrit `Full-time`, une autre
-`Full Time`, une troisième `EE Full-Time`.
+Liste les formulations d'équipe, de lieu et de contrat qu'une entreprise emploie.
+À lire avant de filtrer : Lever fait correspondre sa propre formulation, et le
+vocabulaire appartient à chaque entreprise, l'une écrivant `Full-time` là où une
+autre écrit `EE Full-Time`.
 
-## Ce que les réponses n'affirment jamais
+| Argument       | Type                                                    | Requis | Ce qu'il fait                                                                        |
+| -------------- | ------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| `company_slug` | chaîne                                                  | oui    | L'identifiant du site, rendu par `resolve_company`.                                  |
+| `instance`     | `global` ou `eu`                                        | non    | L'instance où vit ce site. La mondiale par défaut.                                   |
+| `fields`       | tableau de 1 à 3 parmi `team`, `location`, `commitment` | non    | Les vocabulaires à lire. Chacun coûte une requête, et les trois sont lus par défaut. |
 
-- **Un salaire que Lever ne publie pas vaut `null`**, jamais zéro. La plupart des
-  offres n'en publient aucun, et filtrer sur le salaire les écarte : les notes
-  disent combien.
-- **Un montant porte sa période.** Un taux horaire n'est jamais annualisé, et un
-  seuil ne se compare qu'à des montants de même période. Aucune devise n'est
-  convertie.
-- **Un pays que Lever n'enregistre pas vaut `null`**, jamais un autre pays. Les
-  offres sans pays sont comptées à part quand un filtre les écarte.
-- **Un identifiant qui n'existe pas, un site qui ne publie rien et une lecture en
-  panne sont trois réponses**, et `per_company` dit laquelle.
-- **Aucun compteur de résultats.** Lever n'en publie pas, donc `total_available`
-  vaut toujours `null`, et une page pleine ne mesure rien.
+**En retour :** `company_slug`, `instance`, et `fields` qui porte une liste de
+`{ value, count }` pour chaque vocabulaire demandé. Un `count` vaut `null`
+là où Lever n'a publié aucun chiffre à côté de la catégorie.
 
-## Ce qu'il lit, et ce qu'il laisse tranquille
+## Configuration
 
-Le serveur lit `api.lever.co` et `api.eu.lever.co`, que Lever documente comme
-publics et dont le `robots.txt` autorise tout avec `Crawl-delay: 1`. Il envoie
-une requête à la fois, à une seconde d'intervalle, sous un `User-Agent` portant
-le nom du projet et une adresse de contact.
+Il n'y a rien à configurer. Le serveur ne lit aucune variable d'environnement, et
+le bloc `mcpServers` ci-dessus est complet tel quel.
 
-Il ne lit jamais `jobs.lever.co`, dont le `robots.txt` nomme six agents et les
-refuse chacun. Les offres portent l'adresse de leur page là-bas, citer une
-adresse n'étant pas la parcourir.
+Le rythme, le délai et le cache sont des réglages de la couche cliente, que
+[Comme bibliothèque](#comme-bibliothèque) montre comment passer. L'écart entre
+deux requêtes peut y être élargi et jamais resserré.
 
-## Stabilité
+## Erreurs
 
-Une version majeure couvre ce qu'un appelant écrit et relit :
+Chaque échec porte un des six codes, un message, et quand cela aide les valeurs
+qui auraient été acceptées.
 
-- les noms des quatre outils, et les noms et types de leurs arguments ;
-- la forme de ce que chaque outil rend, et les champs qu'elle porte ;
-- les six codes d'erreur ;
-- le sous-chemin `./client` : `Client`, `Read<T>`, et les formes qu'il rend.
-
-Restent mineurs, et laissent intact un appelant qui ne lit que ce qu'il a
-demandé :
-
-- un argument optionnel de plus, ou un outil de plus ;
-- un champ de plus dans une réponse, ou une note de plus ;
-- la formulation d'une note, d'une description ou d'un message d'erreur ;
-- le passage à une révision plus récente du Model Context Protocol, qui change
-  l'enveloppe autour des outils plutôt que les outils.
-
-Un champ que Lever cesse de publier se rend absent plutôt que retiré de la
-forme, de sorte qu'un schéma ne se rétrécit jamais sans version majeure.
+| Code            | Ce qui s'est passé                                       | Que faire                                                                             |
+| --------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `not_found`     | Lever a répondu, et n'a ni ce site ni cette offre.       | Vérifiez l'identifiant avec `resolve_company`.                                        |
+| `invalid_input` | Les arguments ont été refusés avant toute requête.       | Lisez le message, qui nomme l'argument et ce qu'il prend.                             |
+| `rate_limited`  | Lever demande à ce client de ralentir.                   | Attendez, puis rappelez avec les mêmes arguments. L'offre est toujours en ligne.      |
+| `parse_failure` | Lever a répondu dans une forme que ce client ne lit pas. | Signalez-le sur [le suivi d'incidents](https://github.com/smeet666/mcp-lever/issues). |
+| `network_error` | La requête n'a pas abouti.                               | Réessayez sous peu.                                                                   |
+| `timeout`       | La requête a dépassé son délai.                          | Demandez moins d'entreprises, ou un `limit` plus petit.                               |
 
 ## Comme bibliothèque
 
-La couche basse est publiée seule, avec son rythme, son cache et sa taxonomie
-d'erreurs, sans protocole attaché :
+La couche qui lit Lever est publiée seule, avec son rythme, son cache et ses
+erreurs, sans protocole attaché.
 
-```js
+```ts
 import { Client } from "mcp-lever/client";
 
-const client = new Client();
-const { found } = await client.resolveCompany("Aircall");
-const { data } = await client.listPostings({ slug: found[0].slug, instance: "global" });
+const client = new Client({ minIntervalMs: 2000 });
+const resolved = await client.resolveCompany("Included Health");
+const jobs = await client.listPostings(resolved.found[0], { limit: 10 });
+console.log(jobs.length);
 ```
 
-Les erreurs portent l'un de six codes : `not_found`, `invalid_input`,
-`rate_limited`, `parse_failure`, `network_error`, `timeout`. Une panne n'est
-jamais rendue comme un résultat vide.
+`ClientOptions` prend `minIntervalMs`, `timeoutMs`, `cacheTtlMs` et `fetchImpl`.
+Un écart sous le plancher publié est ignoré, donc le plancher tient également
+ici.
+
+## Rythme et attribution
+
+Les deux hôtes d'API publient `Crawl-delay: 1`, donc les requêtes partent une à
+une avec au moins une seconde entre elles, et ce plancher tient quelle que soit
+la configuration du client. Le `User-Agent` porte le projet et une adresse où
+joindre une personne, et n'imite aucun navigateur.
+
+Les lectures vont vers `api.lever.co` et `api.eu.lever.co`, les hôtes que Lever
+documente pour ses données d'offres. Les pages carrières `jobs.lever.co` sont
+laissées tranquilles.
+
+Chaque offre porte l'adresse de sa page Lever et son adresse de candidature.
+Créditez l'entreprise et renvoyez vers cette page quand vous montrez une offre.
+
+Ce MCP est un projet non officiel, sans affiliation à Lever ni aux entreprises
+dont il lit les sites.
+
+## Confidentialité
+
+Ce serveur ne collecte rien sur vous et n'envoie rien à son auteur. Il tourne sur
+votre machine, ne joint que `api.lever.co` et `api.eu.lever.co`, garde ses réponses en mémoire le temps qu'il
+tourne, et n'écrit rien sur le disque. [PRIVACY.md](PRIVACY.md) dit ce qu'une
+requête emporte et quels réglages changent cela.
+
+## Développement
+
+```bash
+npm install
+npm run build:fixtures
+npm test
+npm run check
+```
+
+Les tests s'exécutent sur des fixtures engendrées et n'émettent aucune requête.
+La suite en direct, `npm run test:live`, émet une requête par route et tourne
+chaque nuit contre le service lui-même.
+
+## Contribuer
+
+Les anomalies, les questions et les idées ont leur place dans
+[le suivi d'incidents](https://github.com/smeet666/mcp-lever/issues). Les
+propositions de modification sont bienvenues ; ouvrir un ticket d'abord aide à
+s'accorder sur la forme du changement. Voir [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-MIT. Les annonces appartiennent aux entreprises qui les publient : créditez
-l'entreprise et liez la page que chaque offre porte.
+MIT, voir [LICENSE](LICENSE). Les offres appartiennent aux entreprises qui les
+ont publiées.
