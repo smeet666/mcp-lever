@@ -1,0 +1,788 @@
+{
+  "author": "Damien Bouissou",
+  "authorUrl": "https://github.com/smeet666",
+  "description": "MCP server for public Lever job boards. Resolve a company to its board, search its openings and read one posting. No API key required.",
+  "homepage": "https://github.com/smeet666/mcp-lever#readme",
+  "identifier": "smeet666-mcp-lever",
+  "name": "mcp-lever",
+  "prompts": [],
+  "resources": [],
+  "tags": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "lever",
+    "jobs",
+    "job-search",
+    "job-board",
+    "ats",
+    "hiring",
+    "careers",
+    "no-api-key"
+  ],
+  "tools": [
+    {
+      "name": "resolve_company",
+      "title": "Resolve company names to Lever boards",
+      "description": "Turn company names into the Lever site names that address their job boards, and report every instance that answered. search_jobs resolves names on its own, so reach for this to check which of several companies are on Lever at all: it probes names without reading a single board, where a search would read one per company.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "minItems": 1,
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A company name, or a Lever site name you already know."
+            },
+            "description": "A list of a company name, or a Lever site name you already know, one to 25 of them."
+          }
+        },
+        "required": ["names"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "resolved": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "string"
+                },
+                "found": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "slug": {
+                        "type": "string"
+                      },
+                      "instance": {
+                        "type": "string",
+                        "enum": ["global", "eu"]
+                      },
+                      "publishes": {
+                        "type": "boolean",
+                        "description": "False when the site exists and publishes nothing."
+                      }
+                    },
+                    "required": ["slug", "instance", "publishes"],
+                    "additionalProperties": false
+                  }
+                },
+                "tried": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "The forms sent, in order, one entry per request."
+                },
+                "cached": {
+                  "type": "boolean",
+                  "description": "True when this session had already resolved the name, so nothing was sent."
+                }
+              },
+              "required": ["input", "found", "tried", "cached"],
+              "additionalProperties": false
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["resolved", "notes"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "search_jobs",
+      "title": "Search openings at named companies",
+      "description": "Search the openings published by named companies on Lever. `companies` takes company names or Lever site names, and each name is turned into a site name here. A name found on the first spelling costs 3 requests, and one that resists costs up to 9, at one second each. location, team, department and commitment are sent to Lever and need its exact wording. keyword, workplace_type, country, salary and recency are applied here, because Lever accepts none of them as filters. limit applies per company, so a company whose openings fill it may publish more. posted_within_days walks up to 5 pages per company, because Lever pages by title and a recent opening sits anywhere.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "companies": {
+            "minItems": 1,
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A company name or a Lever site name."
+            },
+            "description": "A list of a company name or a Lever site name, one to 25 of them."
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Words to look for in the title and the advert."
+          },
+          "location": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A location exactly as Lever writes it."
+            },
+            "description": "A list of a location exactly as Lever writes it, one to 20 of them."
+          },
+          "team": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A team exactly as Lever writes it."
+            },
+            "description": "A list of a team exactly as Lever writes it, one to 20 of them."
+          },
+          "department": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A department exactly as Lever writes it."
+            },
+            "description": "A list of a department exactly as Lever writes it, one to 20 of them."
+          },
+          "commitment": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A commitment exactly as Lever writes it."
+            },
+            "description": "A list of a commitment exactly as Lever writes it, one to 20 of them."
+          },
+          "workplace_type": {
+            "minItems": 1,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Remote, hybrid, onsite or unspecified."
+            },
+            "description": "A list of remote, hybrid, onsite or unspecified, one to 4 of them."
+          },
+          "country": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$",
+              "description": "A two-letter country code, as in FR or US."
+            },
+            "description": "A list of a two-letter country code, as in FR or US, one to 20 of them."
+          },
+          "salary_min": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The lowest upper bound of a salary range to keep."
+          },
+          "salary_interval": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The period salary_min is written in, as Lever writes it, such as per-year-salary or per-hour-wage."
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Za-z]{3}$",
+            "description": "A three-letter currency code, as in EUR or USD."
+          },
+          "posted_within_days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3650,
+            "description": "How recent an opening must be."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "description": "How many openings to read per company."
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000,
+            "description": "How many openings to step over per company."
+          }
+        },
+        "required": ["companies"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "company_slug": {
+                  "type": "string"
+                },
+                "instance": {
+                  "type": "string",
+                  "enum": ["global", "eu"]
+                },
+                "location": {
+                  "type": "string"
+                },
+                "all_locations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "country": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "ISO 3166-1 alpha-2, null when Lever does not record a country."
+                },
+                "workplace_type": {
+                  "type": "string"
+                },
+                "commitment": {
+                  "description": "Absent when the company does not record it.",
+                  "type": "string"
+                },
+                "team": {
+                  "type": "string"
+                },
+                "department": {
+                  "description": "Absent when the company does not record it.",
+                  "type": "string"
+                },
+                "salary": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "min": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "interval": {
+                          "type": "string",
+                          "description": "The period the amounts belong to, as Lever writes it. Never converted."
+                        }
+                      },
+                      "required": ["min", "max", "currency", "interval"],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Null when the company published no salary, which is never the same as zero."
+                },
+                "posted_at": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "apply_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "company_slug",
+                "instance",
+                "location",
+                "all_locations",
+                "country",
+                "workplace_type",
+                "team",
+                "salary",
+                "posted_at",
+                "url",
+                "apply_url"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "per_company": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "string"
+                },
+                "slug": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "instance": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": ["global", "eu"]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["read", "unresolved", "empty", "failed"],
+                  "description": "A company read, one whose site name was not found, one publishing nothing, and one that failed are four different answers."
+                },
+                "read": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Openings Lever returned, before the filters applied here."
+                },
+                "returned": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Openings kept after them."
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["input", "slug", "instance", "status", "read", "returned"],
+              "additionalProperties": false
+            }
+          },
+          "total_available": {
+            "type": "null",
+            "description": "Lever publishes no result count, so this is always null."
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["jobs", "per_company", "total_available", "notes"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_job",
+      "title": "Read one opening",
+      "description": "Read one Lever opening in full: the advert, its named sections, and the salary as published. company_slug and instance are the ones the row carried, and a site living on both instances holds different openings on each.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_slug": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The Lever site name, as resolve_company returns it."
+          },
+          "job_id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The identifier of one opening, as a search returns it."
+          },
+          "instance": {
+            "type": "string",
+            "enum": ["global", "eu"],
+            "description": "The Lever instance the row came from. Left out, the global one is read."
+          }
+        },
+        "required": ["company_slug", "job_id"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "job": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "company_slug": {
+                "type": "string"
+              },
+              "instance": {
+                "type": "string",
+                "enum": ["global", "eu"]
+              },
+              "location": {
+                "type": "string"
+              },
+              "all_locations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "ISO 3166-1 alpha-2, null when Lever does not record a country."
+              },
+              "workplace_type": {
+                "type": "string"
+              },
+              "commitment": {
+                "description": "Absent when the company does not record it.",
+                "type": "string"
+              },
+              "team": {
+                "type": "string"
+              },
+              "department": {
+                "description": "Absent when the company does not record it.",
+                "type": "string"
+              },
+              "salary": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "min": {
+                        "type": "number"
+                      },
+                      "max": {
+                        "type": "number"
+                      },
+                      "currency": {
+                        "type": "string"
+                      },
+                      "interval": {
+                        "type": "string",
+                        "description": "The period the amounts belong to, as Lever writes it. Never converted."
+                      }
+                    },
+                    "required": ["min", "max", "currency", "interval"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Null when the company published no salary, which is never the same as zero."
+              },
+              "posted_at": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "apply_url": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "sections": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "heading": {
+                      "type": "string"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": ["heading", "items"],
+                  "additionalProperties": false
+                }
+              },
+              "salary_note": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "site": {
+                    "type": "string",
+                    "const": "Lever"
+                  },
+                  "retrieved_from": {
+                    "type": "string"
+                  }
+                },
+                "required": ["site", "retrieved_from"],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "company_slug",
+              "instance",
+              "location",
+              "all_locations",
+              "country",
+              "workplace_type",
+              "team",
+              "salary",
+              "posted_at",
+              "url",
+              "apply_url",
+              "description",
+              "sections",
+              "salary_note",
+              "source"
+            ],
+            "additionalProperties": false
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["job", "notes"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "list_filter_values",
+      "title": "List a company's filter wordings",
+      "description": "List the team, location and commitment wordings one company uses on Lever, so a filter can carry the words that company publishes. The vocabulary belongs to each company: one writes Full-time, another Full Time, another EE Full-Time. Lever publishes no vocabulary for department, so a department filter is checked against the openings a company has open right now.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_slug": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The Lever site name, as resolve_company returns it."
+          },
+          "instance": {
+            "type": "string",
+            "enum": ["global", "eu"],
+            "description": "The Lever instance this site lives on. Left out, the global one is read."
+          },
+          "fields": {
+            "minItems": 1,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["team", "location", "commitment"]
+            },
+            "description": "Which vocabularies to read. Each costs one request. All three by default."
+          }
+        },
+        "required": ["company_slug"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "company_slug": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string",
+            "enum": ["global", "eu"]
+          },
+          "fields": {
+            "type": "object",
+            "properties": {
+              "team": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Null when Lever published no openings alongside the category."
+                    }
+                  },
+                  "required": ["value", "count"],
+                  "additionalProperties": false
+                }
+              },
+              "location": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Null when Lever published no openings alongside the category."
+                    }
+                  },
+                  "required": ["value", "count"],
+                  "additionalProperties": false
+                }
+              },
+              "commitment": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Null when Lever published no openings alongside the category."
+                    }
+                  },
+                  "required": ["value", "count"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["company_slug", "instance", "fields", "notes"],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "2.0.1"
+}
