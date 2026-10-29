@@ -44,7 +44,12 @@ describe("le salaire", () => {
       unknown
     >;
     expect(salary["interval"]).toBe("per-year-salary");
-    expect(Object.keys(salary).sort()).toEqual(["currency", "interval", "max", "min"]);
+    expect(Object.keys(salary).sort((a, b) => Number(a > b) - Number(a < b))).toEqual([
+      "currency",
+      "interval",
+      "max",
+      "min",
+    ]);
   });
 });
 

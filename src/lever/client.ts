@@ -57,7 +57,7 @@ export class Client {
     // an ordinary library, and a consumer resolving in parallel would otherwise
     // pay each shared address twice.
     const pending = this.inFlight.get(url);
-    if (pending) {
+    if (pending !== undefined) {
       return { value: (await pending) as T, cached: true };
     }
 
