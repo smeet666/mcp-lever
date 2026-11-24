@@ -103,7 +103,7 @@ async function readBounded(
   let bytes = 0;
 
   try {
-    for (;;) {
+    while (true) {
       const chunk = await reader.read();
       if (chunk.done) {
         break;
